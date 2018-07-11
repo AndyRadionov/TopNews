@@ -27,6 +27,7 @@ class NewsAdapter(private val mClickListener: OnArticleClickListener) : Recycler
     }
 
     fun updateData(articles: List<Article>) {
+        mArticles.clear()
         mArticles.addAll(articles)
         notifyDataSetChanged()
     }

@@ -9,7 +9,7 @@ interface NewsContract {
 
     interface Presenter {
         fun getTopNews()
-        fun searchNews()
+        fun searchNews(query: String)
         fun showNews(articles: List<Article>)
         fun showError()
         fun attachView(view: NewsContract.View)

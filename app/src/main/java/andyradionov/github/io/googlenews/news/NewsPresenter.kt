@@ -2,7 +2,6 @@ package andyradionov.github.io.googlenews.news
 
 import andyradionov.github.io.googlenews.app.App
 import andyradionov.github.io.googlenews.data.Article
-import andyradionov.github.io.googlenews.data.NewsApi
 import andyradionov.github.io.googlenews.data.NewsStore
 import javax.inject.Inject
 
@@ -12,7 +11,7 @@ import javax.inject.Inject
 class NewsPresenter : NewsContract.Presenter {
 
     @Inject lateinit var mNewsStore: NewsStore
-    lateinit var mView: NewsContract.View
+    private var mView: NewsContract.View? = null
 
     init {
         App.sAppComponent.inject(this)
@@ -22,16 +21,16 @@ class NewsPresenter : NewsContract.Presenter {
         mNewsStore.getTopNews(this)
     }
 
-    override fun searchNews() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    override fun searchNews(query: String) {
+        mNewsStore.searchNews(query, this)
     }
 
     override fun showNews(articles: List<Article>) {
-        mView.showNews(articles)
+        mView?.showNews(articles)
     }
 
     override fun showError() {
-        mView.showError()
+        mView?.showError()
     }
 
     override fun attachView(view: NewsContract.View) {
@@ -39,6 +38,6 @@ class NewsPresenter : NewsContract.Presenter {
     }
 
     override fun detachView() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        mView = null
     }
 }
