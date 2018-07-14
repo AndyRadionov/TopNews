@@ -1,8 +1,6 @@
 package andyradionov.github.io.googlenews.app.di
 
-import android.content.Context
 import android.support.annotation.NonNull
-import android.util.Log
 import andyradionov.github.io.googlenews.app.API_KEY
 import andyradionov.github.io.googlenews.app.BASE_URL
 import andyradionov.github.io.googlenews.data.NewsApi
@@ -28,16 +26,12 @@ class NewsModule {
     @NonNull
     @Provides
     @Singleton
-    fun provideNewsPresenter(): NewsContract.Presenter {
-        return NewsPresenter()
-    }
+    fun provideNewsPresenter(): NewsContract.Presenter = NewsPresenter()
 
     @NonNull
     @Provides
     @Singleton
-    fun provideNewsStore(): NewsStore {
-        return NewsStore()
-    }
+    fun provideNewsStore() = NewsStore()
 
     @NonNull
     @Provides

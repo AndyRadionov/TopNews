@@ -14,7 +14,7 @@ class NewsStore {
     @Inject lateinit var mNewsApi: NewsApi
 
     init {
-        App.sAppComponent.inject(this)
+        App.appComponent.inject(this)
     }
 
     fun getTopNews(presenter: NewsContract.Presenter) {

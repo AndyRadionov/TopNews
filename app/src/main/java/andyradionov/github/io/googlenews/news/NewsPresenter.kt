@@ -14,7 +14,7 @@ class NewsPresenter : NewsContract.Presenter {
     private var mView: NewsContract.View? = null
 
     init {
-        App.sAppComponent.inject(this)
+        App.appComponent.inject(this)
     }
 
     override fun getTopNews() {

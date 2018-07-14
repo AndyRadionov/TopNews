@@ -18,7 +18,7 @@ class NewsAdapter(private val mClickListener: OnArticleClickListener) : Recycler
     private val mArticles = ArrayList<Article>()
 
     interface OnArticleClickListener {
-        fun onClick(articleUrl: String?)
+        fun onClick(articleUrl: String)
     }
 
     fun clearData() {
@@ -46,11 +46,10 @@ class NewsAdapter(private val mClickListener: OnArticleClickListener) : Recycler
         return mArticles.size
     }
 
-
     inner class ArticleViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView),
             View.OnClickListener {
 
-        internal fun bind(position: Int) {
+        fun bind(position: Int) {
             val article = mArticles[position]
 
             itemView.tv_article_title.text = article.title
@@ -62,9 +61,8 @@ class NewsAdapter(private val mClickListener: OnArticleClickListener) : Recycler
         }
 
         override fun onClick(v: View) {
-            val position = adapterPosition
-            mClickListener.onClick(mArticles[position].url)
+            val url = mArticles[adapterPosition].url
+            if (url != null) mClickListener.onClick(url)
         }
-
     }
 }

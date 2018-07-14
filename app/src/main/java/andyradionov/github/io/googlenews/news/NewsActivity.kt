@@ -23,7 +23,7 @@ class NewsActivity : AppCompatActivity(), NewsContract.View, NewsAdapter.OnArtic
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_news)
 
-        App.sAppComponent.inject(this)
+        App.appComponent.inject(this)
 
         setUpRecycler()
         mPresenter.attachView(this)
@@ -80,7 +80,7 @@ class NewsActivity : AppCompatActivity(), NewsContract.View, NewsAdapter.OnArtic
         mNewsAdapter.clearData();
     }
 
-    override fun onClick(articleUrl: String?) {
+    override fun onClick(articleUrl: String) {
         TODO("not implemented")
     }
 

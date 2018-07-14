@@ -10,12 +10,12 @@ import andyradionov.github.io.googlenews.app.di.NewsModule
  */
 class App : Application() {
     companion object {
-        lateinit var sAppComponent: AppComponent
+        lateinit var appComponent: AppComponent
     }
 
     override fun onCreate() {
         super.onCreate()
-        sAppComponent = DaggerAppComponent
+        appComponent = DaggerAppComponent
                 .builder()
                 .newsModule(NewsModule())
                 .build()
