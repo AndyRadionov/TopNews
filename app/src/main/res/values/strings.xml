@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">GoogleNews</string>
+    <string name="web_view_title">Article Details</string>
+    <string name="empty_view_text">No Articles Found</string>
 </resources>

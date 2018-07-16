@@ -50,6 +50,7 @@ class NewsAdapter(private val mClickListener: OnArticleClickListener) : Recycler
             View.OnClickListener {
 
         fun bind(position: Int) {
+            itemView.setOnClickListener(this)
             val article = mArticles[position]
 
             itemView.tv_article_title.text = article.title
@@ -57,6 +58,8 @@ class NewsAdapter(private val mClickListener: OnArticleClickListener) : Recycler
             Picasso.get()
                     .load(article.urlToImage)
                     .placeholder(R.drawable.error_placeholder)
+                    .centerCrop()
+                    .fit()
                     .into(itemView.iv_article_image)
         }
 

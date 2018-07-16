@@ -1,11 +1,13 @@
 package andyradionov.github.io.googlenews.news
 
+import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.SearchView
 import android.view.Menu
 import android.view.MenuItem
+import android.view.View
 import android.view.inputmethod.EditorInfo
 import andyradionov.github.io.googlenews.R
 import andyradionov.github.io.googlenews.app.App
@@ -45,9 +47,7 @@ class NewsActivity : AppCompatActivity(), NewsContract.View, NewsAdapter.OnArtic
         searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String): Boolean {
                 mPresenter.searchNews(query)
-                if (!searchView.isIconified) {
-                    searchView.isIconified = true
-                }
+                showLoading()
                 return false
             }
 
@@ -65,6 +65,7 @@ class NewsActivity : AppCompatActivity(), NewsContract.View, NewsAdapter.OnArtic
             override fun onMenuItemActionCollapse(item: MenuItem): Boolean {
                 invalidateOptionsMenu()
                 mPresenter.getTopNews()
+                showLoading()
                 return true
             }
         })
@@ -73,15 +74,24 @@ class NewsActivity : AppCompatActivity(), NewsContract.View, NewsAdapter.OnArtic
     }
 
     override fun showNews(articles: List<Article>) {
+        setVisibility(container = true)
         mNewsAdapter.updateData(articles)
     }
 
     override fun showError() {
+        setVisibility(empty = true)
+        mNewsAdapter.clearData();
+    }
+
+    fun showLoading() {
+        setVisibility(loading = true)
         mNewsAdapter.clearData();
     }
 
     override fun onClick(articleUrl: String) {
-        TODO("not implemented")
+        intent = Intent(this, WebViewActivity::class.java)
+        intent.putExtra(WebViewActivity.ARTICLE_URL_EXTRA, articleUrl)
+        startActivity(intent)
     }
 
     private fun setUpRecycler() {
@@ -90,5 +100,14 @@ class NewsActivity : AppCompatActivity(), NewsContract.View, NewsAdapter.OnArtic
 
         val layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
         rv_news_container.layoutManager = layoutManager
+    }
+
+    private fun setVisibility(container: Boolean = false,
+                              loading: Boolean = false,
+                              empty: Boolean = false) {
+
+        rv_news_container.visibility = if (container) View.VISIBLE else View.INVISIBLE
+        pb_loading.visibility = if (loading) View.VISIBLE else View.INVISIBLE
+        tv_empty_view.visibility = if (empty) View.VISIBLE else View.INVISIBLE
     }
 }
