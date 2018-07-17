@@ -18,11 +18,11 @@ class NewsPresenter : NewsContract.Presenter {
     }
 
     override fun getTopNews() {
-        mNewsStore.getTopNews(this)
+        mNewsStore.fetchNews(presenter = this)
     }
 
     override fun searchNews(query: String) {
-        mNewsStore.searchNews(query, this)
+        mNewsStore.fetchNews(query, this)
     }
 
     override fun showNews(articles: List<Article>) {

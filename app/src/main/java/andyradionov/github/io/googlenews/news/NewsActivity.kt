@@ -4,6 +4,7 @@ import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.os.PersistableBundle
+import android.support.v7.widget.GridLayoutManager
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.SearchView
 import android.view.Menu
@@ -47,8 +48,6 @@ class NewsActivity : AppCompatActivity(), NewsContract.View, NewsAdapter.OnArtic
         super.onResume()
         if (mQuery.isEmpty()) {
             mPresenter.getTopNews()
-        } else {
-        //    mPresenter.searchNews(mQuery)
         }
     }
 
@@ -129,7 +128,9 @@ class NewsActivity : AppCompatActivity(), NewsContract.View, NewsAdapter.OnArtic
         mNewsAdapter = NewsAdapter(this)
         rv_news_container.adapter = mNewsAdapter
 
-        val layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
+        val columnsNumber = resources.getInteger(R.integer.columns_number)
+        val layoutManager = GridLayoutManager(this, columnsNumber)
+
         rv_news_container.layoutManager = layoutManager
     }
 

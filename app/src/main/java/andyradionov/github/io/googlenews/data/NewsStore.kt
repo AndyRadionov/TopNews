@@ -3,6 +3,7 @@ package andyradionov.github.io.googlenews.data
 import andyradionov.github.io.googlenews.app.App
 import andyradionov.github.io.googlenews.news.NewsContract
 import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
 import javax.inject.Inject
 
@@ -17,40 +18,30 @@ class NewsStore {
         App.appComponent.inject(this)
     }
 
+    private var mSubscription: Disposable? = null
     private var cacheQuery: String = ""
     private var cache: List<Article> = emptyList()
 
-    fun getTopNews(presenter: NewsContract.Presenter) {
+    fun fetchNews(query: String = "", presenter: NewsContract.Presenter) {
 
-        if (cacheQuery.isEmpty() && !cache.isEmpty()){
+        if(mSubscription?.isDisposed == true){
+            mSubscription?.dispose();
+            mSubscription = null;
+        }
+
+        if (isCached(query)){
             presenter.showNews(cache)
             return
         }
 
-        mNewsApi.getTopNews()
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .doOnError({ presenter.showError() })
-                .map { it.articles }
-                .subscribe({
-                    if (it.isEmpty()) {
-                        presenter.showError()
-                    } else {
-                        cacheQuery = ""
-                        cache = it
-                        presenter.showNews(it)
-                    }
-                }, { presenter.showError() })
-    }
+        val newsObservable =
+                if (query.isEmpty()) {
+                    mNewsApi.getTopNews()
+                } else {
+                    mNewsApi.searchNews(query)
+                }
 
-    fun searchNews(query: String, presenter: NewsContract.Presenter) {
-
-        if (cacheQuery == query && !cache.isEmpty()){
-            presenter.showNews(cache)
-            return
-        }
-
-        mNewsApi.searchNews(query)
+        newsObservable
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .doOnError({ presenter.showError() })
@@ -64,5 +55,9 @@ class NewsStore {
                         presenter.showNews(it)
                     }
                 }, { presenter.showError() })
+    }
+
+    private fun isCached(query: String): Boolean {
+        return query == cacheQuery && !cache.isEmpty()
     }
 }
