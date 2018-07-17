@@ -3,6 +3,7 @@ package andyradionov.github.io.googlenews.news
 import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.os.PersistableBundle
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.SearchView
 import android.view.Menu
@@ -18,8 +19,14 @@ import kotlinx.android.synthetic.main.activity_news.*
 
 class NewsActivity : AppCompatActivity(), NewsContract.View, NewsAdapter.OnArticleClickListener {
 
+    companion object {
+        const val EXTRA_QUERY = "extra_query"
+        const val EMPTY_QUERY = ""
+    }
+
     @Inject lateinit var mPresenter: NewsContract.Presenter
     private lateinit var mNewsAdapter: NewsAdapter
+    private var mQuery: String = EMPTY_QUERY
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -29,12 +36,30 @@ class NewsActivity : AppCompatActivity(), NewsContract.View, NewsAdapter.OnArtic
 
         setUpRecycler()
         mPresenter.attachView(this)
-        mPresenter.getTopNews()
     }
 
     override fun onDestroy() {
         super.onDestroy()
         mPresenter.detachView()
+    }
+
+    override fun onResume() {
+        super.onResume()
+        if (mQuery.isEmpty()) {
+            mPresenter.getTopNews()
+        } else {
+        //    mPresenter.searchNews(mQuery)
+        }
+    }
+
+    override fun onRestoreInstanceState(savedInstanceState: Bundle?) {
+        super.onRestoreInstanceState(savedInstanceState)
+        mQuery = savedInstanceState?.getString(EXTRA_QUERY) ?: EMPTY_QUERY
+    }
+
+    override fun onSaveInstanceState(outState: Bundle?) {
+        super.onSaveInstanceState(outState)
+        outState?.putString(EXTRA_QUERY, mQuery)
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -46,8 +71,9 @@ class NewsActivity : AppCompatActivity(), NewsContract.View, NewsAdapter.OnArtic
         searchView.maxWidth = Integer.MAX_VALUE
         searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String): Boolean {
-                mPresenter.searchNews(query)
                 showLoading()
+                mQuery = query
+                mPresenter.searchNews(query)
                 return false
             }
 
@@ -69,6 +95,11 @@ class NewsActivity : AppCompatActivity(), NewsContract.View, NewsAdapter.OnArtic
                 return true
             }
         })
+
+        if (!mQuery.isEmpty()) {
+            searchAction.expandActionView()
+            searchView.setQuery(mQuery, true)
+        }
 
         return true
     }

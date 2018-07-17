@@ -17,7 +17,16 @@ class NewsStore {
         App.appComponent.inject(this)
     }
 
+    private var cacheQuery: String = ""
+    private var cache: List<Article> = emptyList()
+
     fun getTopNews(presenter: NewsContract.Presenter) {
+
+        if (cacheQuery.isEmpty() && !cache.isEmpty()){
+            presenter.showNews(cache)
+            return
+        }
+
         mNewsApi.getTopNews()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -27,12 +36,20 @@ class NewsStore {
                     if (it.isEmpty()) {
                         presenter.showError()
                     } else {
+                        cacheQuery = ""
+                        cache = it
                         presenter.showNews(it)
                     }
                 }, { presenter.showError() })
     }
 
     fun searchNews(query: String, presenter: NewsContract.Presenter) {
+
+        if (cacheQuery == query && !cache.isEmpty()){
+            presenter.showNews(cache)
+            return
+        }
+
         mNewsApi.searchNews(query)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -42,6 +59,8 @@ class NewsStore {
                     if (it.isEmpty()) {
                         presenter.showError()
                     } else {
+                        cacheQuery = query
+                        cache = it
                         presenter.showNews(it)
                     }
                 }, { presenter.showError() })
