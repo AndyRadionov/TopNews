@@ -22,16 +22,11 @@ class NewsStore {
     private var cacheQuery: String = ""
     private var cache: List<Article> = emptyList()
 
-    fun fetchNews(query: String = "", presenter: NewsContract.Presenter) {
+    fun fetchNews(query: String = "", callback: NewsCallback) {
 
         if(mSubscription?.isDisposed == true){
             mSubscription?.dispose();
             mSubscription = null;
-        }
-
-        if (isCached(query)){
-            presenter.showNews(cache)
-            return
         }
 
         val newsObservable =
@@ -44,20 +39,24 @@ class NewsStore {
         newsObservable
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .doOnError({ presenter.showError() })
+                .doOnError({ callback.onErrorLoading() })
                 .map { it.articles }
                 .subscribe({
                     if (it.isEmpty()) {
-                        presenter.showError()
+                        callback.onErrorLoading()
                     } else {
                         cacheQuery = query
                         cache = it
-                        presenter.showNews(it)
+                        callback.onSuccessLoading(it)
                     }
-                }, { presenter.showError() })
+                }, { callback.onErrorLoading() })
     }
 
-    private fun isCached(query: String): Boolean {
+    fun isCached(query: String): Boolean {
         return query == cacheQuery && !cache.isEmpty()
+    }
+
+    fun getCache(): List<Article> {
+        return cache
     }
 }
