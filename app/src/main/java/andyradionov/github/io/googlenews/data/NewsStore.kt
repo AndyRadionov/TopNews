@@ -24,9 +24,11 @@ class NewsStore {
 
     fun fetchNews(query: String = "", callback: NewsCallback) {
 
-        if(mSubscription?.isDisposed == true){
-            mSubscription?.dispose();
-            mSubscription = null;
+        unsubscribe()
+
+        if (isCached(query)) {
+            callback.onSuccessLoading(cache)
+            return
         }
 
         val newsObservable =
@@ -52,11 +54,14 @@ class NewsStore {
                 }, { callback.onErrorLoading() })
     }
 
-    fun isCached(query: String): Boolean {
-        return query == cacheQuery && !cache.isEmpty()
+    public fun unsubscribe() {
+        if (mSubscription?.isDisposed == true) {
+            mSubscription?.dispose();
+            mSubscription = null;
+        }
     }
 
-    fun getCache(): List<Article> {
-        return cache
+    private fun isCached(query: String): Boolean {
+        return query == cacheQuery && !cache.isEmpty()
     }
 }

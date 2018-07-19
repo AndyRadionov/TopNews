@@ -19,18 +19,10 @@ class NewsPresenter : NewsContract.Presenter, NewsCallback {
     }
 
     override fun getTopNews() {
-        if (mNewsStore.isCached("")) {
-            mView?.showNews(mNewsStore.getCache())
-            return
-        }
         mNewsStore.fetchNews(callback = this)
     }
 
     override fun searchNews(query: String) {
-        if (mNewsStore.isCached(query)) {
-            mView?.showNews(mNewsStore.getCache())
-            return
-        }
         mNewsStore.fetchNews(query, this)
     }
 
@@ -39,6 +31,7 @@ class NewsPresenter : NewsContract.Presenter, NewsCallback {
     }
 
     override fun detachView() {
+        mNewsStore.unsubscribe()
         mView = null
     }
 
