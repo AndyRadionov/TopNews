@@ -9,21 +9,18 @@ import javax.inject.Inject
 /**
  * @author Andrey Radionov
  */
-class NewsPresenter : NewsContract.Presenter, NewsCallback {
+class NewsPresenter(private val newsStore: NewsStore) :
+        NewsContract.Presenter, NewsCallback {
 
-    @Inject lateinit var mNewsStore: NewsStore
+
     private var mView: NewsContract.View? = null
 
-    init {
-        App.appComponent.inject(this)
-    }
-
     override fun getTopNews() {
-        mNewsStore.fetchNews(callback = this)
+        newsStore.fetchNews(callback = this)
     }
 
     override fun searchNews(query: String) {
-        mNewsStore.fetchNews(query, this)
+        newsStore.fetchNews(query, this)
     }
 
     override fun attachView(view: NewsContract.View) {
@@ -31,7 +28,7 @@ class NewsPresenter : NewsContract.Presenter, NewsCallback {
     }
 
     override fun detachView() {
-        mNewsStore.unsubscribe()
+        newsStore.unsubscribe()
         mView = null
     }
 

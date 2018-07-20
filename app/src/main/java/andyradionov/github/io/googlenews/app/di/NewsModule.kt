@@ -26,12 +26,12 @@ class NewsModule {
     @NonNull
     @Provides
     @Singleton
-    fun provideNewsPresenter(): NewsContract.Presenter = NewsPresenter()
+    fun provideNewsPresenter(newsStore: NewsStore): NewsContract.Presenter = NewsPresenter(newsStore)
 
     @NonNull
     @Provides
     @Singleton
-    fun provideNewsStore() = NewsStore()
+    fun provideNewsStore(newsApi: NewsApi) = NewsStore(newsApi)
 
     @NonNull
     @Provides

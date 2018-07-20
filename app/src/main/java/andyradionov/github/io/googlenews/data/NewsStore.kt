@@ -10,19 +10,13 @@ import javax.inject.Inject
 /**
  * @author Andrey Radionov
  */
-class NewsStore {
-
-    @Inject lateinit var mNewsApi: NewsApi
-
-    init {
-        App.appComponent.inject(this)
-    }
+open class NewsStore(private val newsApi: NewsApi) {
 
     private var mSubscription: Disposable? = null
     private var cacheQuery: String = ""
     private var cache: List<Article> = emptyList()
 
-    fun fetchNews(query: String = "", callback: NewsCallback) {
+    open fun fetchNews(query: String = "", callback: NewsCallback) {
 
         unsubscribe()
 
@@ -33,9 +27,9 @@ class NewsStore {
 
         val newsObservable =
                 if (query.isEmpty()) {
-                    mNewsApi.getTopNews()
+                    newsApi.getTopNews()
                 } else {
-                    mNewsApi.searchNews(query)
+                    newsApi.searchNews(query)
                 }
 
         newsObservable
@@ -54,7 +48,7 @@ class NewsStore {
                 }, { callback.onErrorLoading() })
     }
 
-    public fun unsubscribe() {
+    fun unsubscribe() {
         if (mSubscription?.isDisposed == true) {
             mSubscription?.dispose();
             mSubscription = null;

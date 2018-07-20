@@ -16,7 +16,5 @@ interface AppComponent {
 
     fun inject(newsStore: NewsStore)
 
-    fun inject(presenter: NewsPresenter)
-
     fun inject(activity: NewsActivity)
 }
