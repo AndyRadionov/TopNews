@@ -44,6 +44,8 @@ dependencies {
     implementation 'com.google.dagger:dagger-android-support:2.16'
     kapt 'com.google.dagger:dagger-compiler:2.16'
 
+    implementation 'com.hannesdorfmann.mosby3:viewstate:3.1.0'
+
     testImplementation 'junit:junit:4.12'
     testImplementation "org.jetbrains.kotlin:kotlin-test-junit:$kotlin_version"
     testImplementation 'org.mockito:mockito-core:2.19.1'

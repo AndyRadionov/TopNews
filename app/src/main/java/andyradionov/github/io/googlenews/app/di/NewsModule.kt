@@ -4,7 +4,7 @@ import android.support.annotation.NonNull
 import andyradionov.github.io.googlenews.app.API_KEY
 import andyradionov.github.io.googlenews.app.BASE_URL
 import andyradionov.github.io.googlenews.data.NewsApi
-import andyradionov.github.io.googlenews.data.NewsStore
+import andyradionov.github.io.googlenews.data.NewsRepository
 import andyradionov.github.io.googlenews.news.NewsContract
 import andyradionov.github.io.googlenews.news.NewsPresenter
 import com.google.gson.Gson
@@ -26,12 +26,13 @@ class NewsModule {
     @NonNull
     @Provides
     @Singleton
-    fun provideNewsPresenter(newsStore: NewsStore): NewsContract.Presenter = NewsPresenter(newsStore)
+    fun provideNewsPresenter(newsRepository: NewsRepository): NewsContract.Presenter
+            = NewsPresenter(newsRepository)
 
     @NonNull
     @Provides
     @Singleton
-    fun provideNewsStore(newsApi: NewsApi) = NewsStore(newsApi)
+    fun provideNewsStore(newsApi: NewsApi) = NewsRepository(newsApi)
 
     @NonNull
     @Provides

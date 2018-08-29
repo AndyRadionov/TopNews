@@ -1,16 +1,13 @@
 package andyradionov.github.io.googlenews.data
 
-import andyradionov.github.io.googlenews.app.App
-import andyradionov.github.io.googlenews.news.NewsContract
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
-import javax.inject.Inject
 
 /**
  * @author Andrey Radionov
  */
-open class NewsStore(private val newsApi: NewsApi) {
+open class NewsRepository(private val newsApi: NewsApi) {
 
     private var mSubscription: Disposable? = null
     private var cacheQuery: String = ""
@@ -32,7 +29,7 @@ open class NewsStore(private val newsApi: NewsApi) {
                     newsApi.searchNews(query)
                 }
 
-        newsObservable
+        mSubscription = newsObservable
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .doOnError({ callback.onErrorLoading() })

@@ -2,21 +2,15 @@ package andyradionov.github.io.googlenews.news
 
 import andyradionov.github.io.googlenews.data.Article
 import andyradionov.github.io.googlenews.data.NewsApi
-import andyradionov.github.io.googlenews.data.NewsStore
-import org.junit.Test
-
-import org.junit.Assert.*
+import andyradionov.github.io.googlenews.data.NewsRepository
 import org.junit.Before
 import org.junit.Rule
-import org.mockito.junit.MockitoJUnit
+import org.junit.Test
 import org.mockito.InjectMocks
 import org.mockito.Mock
 import org.mockito.Mockito
 import org.mockito.Spy
-import org.mockito.invocation.InvocationOnMock
-import org.mockito.stubbing.Answer
-import java.util.*
-import kotlin.collections.ArrayList
+import org.mockito.junit.MockitoJUnit
 
 
 /**
@@ -32,26 +26,26 @@ class NewsPresenterTest {
     @get:Rule var mockitoRule = MockitoJUnit.rule()
     @Mock lateinit var newsApiMock: NewsApi
     @Mock lateinit var viewMock: NewsContract.View
-    @Spy @InjectMocks lateinit var newsStoreMock: NewsStore
+    @Spy @InjectMocks lateinit var newsRepositoryMock: NewsRepository
     private lateinit var presenter: NewsPresenter
 
     @Before
     fun setup() {
-        presenter = NewsPresenter(newsStoreMock)
+        presenter = NewsPresenter(newsRepositoryMock)
         presenter.attachView(viewMock)
 
         Mockito.doAnswer({presenter.onSuccessLoading(list) })
-                .`when`(newsStoreMock).fetchNews(CORRECT_QUERY, presenter)
+                .`when`(newsRepositoryMock).fetchNews(CORRECT_QUERY, presenter)
 
         Mockito.doAnswer({presenter.onErrorLoading() })
-                .`when`(newsStoreMock).fetchNews(INCORRECT_QUERY, presenter)
+                .`when`(newsRepositoryMock).fetchNews(INCORRECT_QUERY, presenter)
     }
 
     @Test
     fun testGetTopNews() {
         presenter.getTopNews()
 
-        Mockito.verify(newsStoreMock, Mockito.times(1)).fetchNews(CORRECT_QUERY, presenter)
+        Mockito.verify(newsRepositoryMock, Mockito.times(1)).fetchNews(CORRECT_QUERY, presenter)
         Mockito.verify(viewMock, Mockito.times(1)).showNews(list)
     }
 
@@ -59,7 +53,7 @@ class NewsPresenterTest {
     fun testIncorrectSearch() {
         presenter.searchNews(INCORRECT_QUERY)
 
-        Mockito.verify(newsStoreMock, Mockito.times(1)).fetchNews(INCORRECT_QUERY, presenter)
+        Mockito.verify(newsRepositoryMock, Mockito.times(1)).fetchNews(INCORRECT_QUERY, presenter)
         Mockito.verify(viewMock, Mockito.times(1)).showError()
     }
 

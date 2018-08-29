@@ -1,11 +1,8 @@
 package andyradionov.github.io.googlenews.news
 
 import android.content.Intent
-import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
-import android.os.PersistableBundle
 import android.support.v7.widget.GridLayoutManager
-import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.SearchView
 import android.view.Menu
 import android.view.MenuItem
@@ -14,51 +11,43 @@ import android.view.inputmethod.EditorInfo
 import andyradionov.github.io.googlenews.R
 import andyradionov.github.io.googlenews.app.App
 import andyradionov.github.io.googlenews.data.Article
+import com.hannesdorfmann.mosby3.mvp.viewstate.MvpViewStateActivity
+import kotlinx.android.synthetic.main.activity_news.*
 import javax.inject.Inject
 
-import kotlinx.android.synthetic.main.activity_news.*
-
-class NewsActivity : AppCompatActivity(), NewsContract.View, NewsAdapter.OnArticleClickListener {
+class NewsActivity : MvpViewStateActivity<NewsContract.View, NewsContract.Presenter, NewsViewState>(),
+        NewsContract.View,
+        NewsAdapter.OnArticleClickListener {
 
     companion object {
-        const val EXTRA_QUERY = "extra_query"
         const val EMPTY_QUERY = ""
     }
 
-    @Inject lateinit var mPresenter: NewsContract.Presenter
+    @Inject
+    lateinit var mPresenter: NewsContract.Presenter
     private lateinit var mNewsAdapter: NewsAdapter
     private var mQuery: String = EMPTY_QUERY
 
+    override fun createPresenter() = mPresenter
+
+    override fun createViewState() = NewsViewState()
+
     override fun onCreate(savedInstanceState: Bundle?) {
+        App.appComponent.inject(this)
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_news)
 
-        App.appComponent.inject(this)
-
         setUpRecycler()
-        mPresenter.attachView(this)
-    }
-
-    override fun onDestroy() {
-        super.onDestroy()
-        mPresenter.detachView()
     }
 
     override fun onResume() {
         super.onResume()
+        mQuery = viewState.getQuery()
         if (mQuery.isEmpty()) {
             mPresenter.getTopNews()
+        } else {
+            invalidateOptionsMenu()
         }
-    }
-
-    override fun onRestoreInstanceState(savedInstanceState: Bundle?) {
-        super.onRestoreInstanceState(savedInstanceState)
-        mQuery = savedInstanceState?.getString(EXTRA_QUERY) ?: EMPTY_QUERY
-    }
-
-    override fun onSaveInstanceState(outState: Bundle?) {
-        super.onSaveInstanceState(outState)
-        outState?.putString(EXTRA_QUERY, mQuery)
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -72,6 +61,7 @@ class NewsActivity : AppCompatActivity(), NewsContract.View, NewsAdapter.OnArtic
             override fun onQueryTextSubmit(query: String): Boolean {
                 showLoading()
                 mQuery = query
+                viewState.setQuery(query)
                 mPresenter.searchNews(query)
                 return false
             }
@@ -98,22 +88,26 @@ class NewsActivity : AppCompatActivity(), NewsContract.View, NewsAdapter.OnArtic
         if (!mQuery.isEmpty()) {
             searchAction.expandActionView()
             searchView.setQuery(mQuery, true)
+            searchView.clearFocus()
         }
 
         return true
     }
 
     override fun showNews(articles: List<Article>) {
+        viewState.setData(articles)
         setVisibility(container = true)
         mNewsAdapter.updateData(articles)
     }
 
     override fun showError() {
+        viewState.setShowError()
         setVisibility(empty = true)
         mNewsAdapter.clearData();
     }
 
-    fun showLoading() {
+    override fun showLoading() {
+        viewState.setShowLoading()
         setVisibility(loading = true)
         mNewsAdapter.clearData();
     }
@@ -123,6 +117,8 @@ class NewsActivity : AppCompatActivity(), NewsContract.View, NewsAdapter.OnArtic
         intent.putExtra(WebViewActivity.ARTICLE_URL_EXTRA, articleUrl)
         startActivity(intent)
     }
+
+    override fun onNewViewStateInstance() { /*NOP*/ }
 
     private fun setUpRecycler() {
         mNewsAdapter = NewsAdapter(this)
