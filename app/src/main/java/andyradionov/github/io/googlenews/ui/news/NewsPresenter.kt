@@ -1,4 +1,4 @@
-package andyradionov.github.io.googlenews.news
+package andyradionov.github.io.googlenews.ui.news
 
 import andyradionov.github.io.googlenews.data.Article
 import andyradionov.github.io.googlenews.data.NewsCallback

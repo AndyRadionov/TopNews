@@ -1,12 +1,13 @@
-package andyradionov.github.io.googlenews.app.di
+package andyradionov.github.io.googlenews.di
 
 import android.support.annotation.NonNull
+import andyradionov.github.io.googlenews.BuildConfig
 import andyradionov.github.io.googlenews.app.API_KEY
 import andyradionov.github.io.googlenews.app.BASE_URL
 import andyradionov.github.io.googlenews.data.NewsApi
 import andyradionov.github.io.googlenews.data.NewsRepository
-import andyradionov.github.io.googlenews.news.NewsContract
-import andyradionov.github.io.googlenews.news.NewsPresenter
+import andyradionov.github.io.googlenews.ui.news.NewsContract
+import andyradionov.github.io.googlenews.ui.news.NewsPresenter
 import com.google.gson.Gson
 import dagger.Module
 import dagger.Provides
@@ -59,7 +60,7 @@ class NewsModule {
                     val request = original.newBuilder().url(
                             original.url()
                                     .newBuilder()
-                                    .addQueryParameter("apiKey", API_KEY)
+                                    .addQueryParameter("apiKey", BuildConfig.ApiKey)
                                     .build())
                             .build()
 

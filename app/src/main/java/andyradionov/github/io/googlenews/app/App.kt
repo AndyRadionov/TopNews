@@ -1,9 +1,9 @@
 package andyradionov.github.io.googlenews.app
 
 import android.app.Application
-import andyradionov.github.io.googlenews.app.di.AppComponent
-import andyradionov.github.io.googlenews.app.di.DaggerAppComponent
-import andyradionov.github.io.googlenews.app.di.NewsModule
+import andyradionov.github.io.googlenews.di.AppComponent
+import andyradionov.github.io.googlenews.di.DaggerAppComponent
+import andyradionov.github.io.googlenews.di.NewsModule
 
 /**
  * @author Andrey Radionov

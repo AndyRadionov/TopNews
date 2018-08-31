@@ -11,7 +11,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".news.NewsActivity">
+        <activity android:name="andyradionov.github.io.googlenews.ui.news.NewsActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -19,7 +19,7 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".news.WebViewActivity" />
+        <activity android:name="andyradionov.github.io.googlenews.ui.details.WebViewActivity" />
     </application>
 
 </manifest>

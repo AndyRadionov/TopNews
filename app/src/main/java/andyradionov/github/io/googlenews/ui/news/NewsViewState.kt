@@ -1,7 +1,7 @@
-package andyradionov.github.io.googlenews.news
+package andyradionov.github.io.googlenews.ui.news
 
 import andyradionov.github.io.googlenews.data.Article
-import andyradionov.github.io.googlenews.news.NewsActivity.Companion.EMPTY_QUERY
+import andyradionov.github.io.googlenews.ui.news.NewsActivity.Companion.EMPTY_QUERY
 import com.hannesdorfmann.mosby3.mvp.viewstate.ViewState
 
 /**

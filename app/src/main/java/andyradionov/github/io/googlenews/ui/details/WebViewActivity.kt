@@ -1,9 +1,8 @@
-package andyradionov.github.io.googlenews.news
+package andyradionov.github.io.googlenews.ui.details
 
 import android.support.v7.app.AppCompatActivity
 import android.webkit.WebView
 import android.webkit.WebViewClient
-import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.MenuItem
