@@ -1,6 +1,6 @@
 package andyradionov.github.io.googlenews.ui.news
 
-import andyradionov.github.io.googlenews.data.Article
+import andyradionov.github.io.googlenews.data.entities.Article
 import com.hannesdorfmann.mosby3.mvp.MvpPresenter
 import com.hannesdorfmann.mosby3.mvp.MvpView
 

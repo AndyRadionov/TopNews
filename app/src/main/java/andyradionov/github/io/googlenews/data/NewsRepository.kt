@@ -1,7 +1,8 @@
 package andyradionov.github.io.googlenews.data
 
+import andyradionov.github.io.googlenews.data.entities.Article
+import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
-import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
 
 /**
@@ -9,18 +10,7 @@ import io.reactivex.schedulers.Schedulers
  */
 open class NewsRepository(private val newsApi: NewsApi) {
 
-    private var mSubscription: Disposable? = null
-    private var cacheQuery: String = ""
-    private var cache: List<Article> = emptyList()
-
-    open fun fetchNews(query: String = "", callback: NewsCallback) {
-
-        unsubscribe()
-
-        if (isCached(query)) {
-            callback.onSuccessLoading(cache)
-            return
-        }
+    open fun fetchNews(query: String): Observable<List<Article>> {
 
         val newsObservable =
                 if (query.isEmpty()) {
@@ -29,30 +19,9 @@ open class NewsRepository(private val newsApi: NewsApi) {
                     newsApi.searchNews(query)
                 }
 
-        mSubscription = newsObservable
+        return newsObservable
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .doOnError({ callback.onErrorLoading() })
                 .map { it.articles }
-                .subscribe({
-                    if (it.isEmpty()) {
-                        callback.onErrorLoading()
-                    } else {
-                        cacheQuery = query
-                        cache = it
-                        callback.onSuccessLoading(it)
-                    }
-                }, { callback.onErrorLoading() })
-    }
-
-    fun unsubscribe() {
-        if (mSubscription?.isDisposed == true) {
-            mSubscription?.dispose();
-            mSubscription = null;
-        }
-    }
-
-    private fun isCached(query: String): Boolean {
-        return query == cacheQuery && !cache.isEmpty()
     }
 }

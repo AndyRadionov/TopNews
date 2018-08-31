@@ -10,7 +10,7 @@ import android.view.View
 import android.view.inputmethod.EditorInfo
 import andyradionov.github.io.googlenews.R
 import andyradionov.github.io.googlenews.app.App
-import andyradionov.github.io.googlenews.data.Article
+import andyradionov.github.io.googlenews.data.entities.Article
 import andyradionov.github.io.googlenews.ui.details.WebViewActivity
 import com.hannesdorfmann.mosby3.mvp.viewstate.MvpViewStateActivity
 import kotlinx.android.synthetic.main.activity_news.*

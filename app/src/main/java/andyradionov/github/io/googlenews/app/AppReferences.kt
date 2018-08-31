@@ -1,7 +1,5 @@
 package andyradionov.github.io.googlenews.app
 
-import andyradionov.github.io.googlenews.BuildConfig
-
 /**
  * @author Andrey Radionov
  */

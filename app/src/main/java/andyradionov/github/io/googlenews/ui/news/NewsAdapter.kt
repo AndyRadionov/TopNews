@@ -6,7 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import andyradionov.github.io.googlenews.R
-import andyradionov.github.io.googlenews.data.Article
+import andyradionov.github.io.googlenews.data.entities.Article
 import com.squareup.picasso.Picasso
 
 import kotlinx.android.synthetic.main.item_article.view.*

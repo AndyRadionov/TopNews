@@ -1,4 +1,4 @@
-package andyradionov.github.io.googlenews.data
+package andyradionov.github.io.googlenews.data.entities
 
 import java.util.*
 

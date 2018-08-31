@@ -1,36 +1,51 @@
 package andyradionov.github.io.googlenews.ui.news
 
-import andyradionov.github.io.googlenews.data.Article
-import andyradionov.github.io.googlenews.data.NewsCallback
 import andyradionov.github.io.googlenews.data.NewsRepository
 import com.hannesdorfmann.mosby3.mvp.MvpBasePresenter
+import io.reactivex.disposables.Disposable
 
 /**
  * @author Andrey Radionov
  */
 class NewsPresenter(private val newsRepository: NewsRepository) :
         MvpBasePresenter<NewsContract.View>(),
-        NewsCallback,
-        NewsContract.Presenter{
+        NewsContract.Presenter {
+
+    private var mSubscription: Disposable? = null
 
     override fun getTopNews() {
-        newsRepository.fetchNews(callback = this)
+        fetchNews()
     }
 
     override fun searchNews(query: String) {
-        newsRepository.fetchNews(query, this)
+        fetchNews(query)
     }
 
-    override fun onSuccessLoading(articles: List<Article>) {
-        ifViewAttached { it.showNews(articles) }
-    }
+    private fun fetchNews(query: String = "") {
+        unsubscribe()
 
-    override fun onErrorLoading() {
-        ifViewAttached { it.showError() }
+        newsRepository.fetchNews(query)
+                .subscribe({ articles ->
+                    if (articles.isEmpty()) {
+                        ifViewAttached { it.showError() }
+                    } else {
+                        ifViewAttached { it.showNews(articles) }
+
+                    }
+                }, {
+                    ifViewAttached { it.showError() }
+                })
     }
 
     override fun destroy() {
         super.destroy()
-        newsRepository.unsubscribe()
+        unsubscribe()
+    }
+
+    fun unsubscribe() {
+        if (mSubscription?.isDisposed == true) {
+            mSubscription?.dispose()
+            mSubscription = null
+        }
     }
 }
