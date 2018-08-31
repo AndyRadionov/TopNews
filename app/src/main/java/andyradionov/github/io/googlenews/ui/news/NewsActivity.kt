@@ -2,8 +2,8 @@ package andyradionov.github.io.googlenews.ui.news
 
 import android.content.Intent
 import android.os.Bundle
+import android.support.v4.widget.SwipeRefreshLayout
 import android.support.v7.widget.GridLayoutManager
-import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.SearchView
 import android.view.Menu
 import android.view.MenuItem
@@ -18,8 +18,7 @@ import kotlinx.android.synthetic.main.activity_news.*
 import javax.inject.Inject
 
 class NewsActivity : MvpViewStateActivity<NewsContract.View, NewsContract.Presenter, NewsViewState>(),
-        NewsContract.View,
-        NewsAdapter.OnArticleClickListener {
+        NewsContract.View {
 
     companion object {
         const val EMPTY_QUERY = ""
@@ -30,6 +29,14 @@ class NewsActivity : MvpViewStateActivity<NewsContract.View, NewsContract.Presen
     private lateinit var mNewsAdapter: NewsAdapter
     private var mQuery: String = EMPTY_QUERY
 
+    private val mOnArticleClickListener = object : NewsAdapter.OnArticleClickListener {
+        override fun onClick(articleUrl: String) {
+            intent = Intent(this@NewsActivity, WebViewActivity::class.java)
+            intent.putExtra(WebViewActivity.ARTICLE_URL_EXTRA, articleUrl)
+            startActivity(intent)
+        }
+    }
+
     override fun createPresenter() = mPresenter
 
     override fun createViewState() = NewsViewState()
@@ -38,7 +45,7 @@ class NewsActivity : MvpViewStateActivity<NewsContract.View, NewsContract.Presen
         App.appComponent.inject(this)
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_news)
-
+        setUpSwipeRefresh()
         setUpRecycler()
     }
 
@@ -119,16 +126,17 @@ class NewsActivity : MvpViewStateActivity<NewsContract.View, NewsContract.Presen
         mNewsAdapter.clearData();
     }
 
-    override fun onClick(articleUrl: String) {
-        intent = Intent(this, WebViewActivity::class.java)
-        intent.putExtra(WebViewActivity.ARTICLE_URL_EXTRA, articleUrl)
-        startActivity(intent)
-    }
-
     override fun onNewViewStateInstance() { /*NOP*/ }
 
+    private fun setUpSwipeRefresh() {
+        swipe_container.setOnRefreshListener {
+            swipe_container.isRefreshing = false
+            mPresenter.fetchNews(mQuery)
+        }
+    }
+
     private fun setUpRecycler() {
-        mNewsAdapter = NewsAdapter(this)
+        mNewsAdapter = NewsAdapter(mOnArticleClickListener)
         rv_news_container.adapter = mNewsAdapter
 
         val columnsNumber = resources.getInteger(R.integer.columns_number)
@@ -142,7 +150,7 @@ class NewsActivity : MvpViewStateActivity<NewsContract.View, NewsContract.Presen
                               empty: Boolean = false) {
 
         rv_news_container.visibility = if (container) View.VISIBLE else View.INVISIBLE
-        pb_loading.visibility = if (loading) View.VISIBLE else View.INVISIBLE
+        swipe_container.isRefreshing = loading
         tv_empty_view.visibility = if (empty) View.VISIBLE else View.INVISIBLE
     }
 
