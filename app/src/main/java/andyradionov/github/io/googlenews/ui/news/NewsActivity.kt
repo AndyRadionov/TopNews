@@ -3,6 +3,7 @@ package andyradionov.github.io.googlenews.ui.news
 import android.content.Intent
 import android.os.Bundle
 import android.support.v7.widget.GridLayoutManager
+import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.SearchView
 import android.view.Menu
 import android.view.MenuItem
@@ -45,10 +46,17 @@ class NewsActivity : MvpViewStateActivity<NewsContract.View, NewsContract.Presen
         super.onResume()
         mQuery = viewState.getQuery()
         if (mQuery.isEmpty()) {
-            mPresenter.getTopNews()
+            mPresenter.fetchNews(mQuery)
         } else {
             invalidateOptionsMenu()
         }
+    }
+
+    override fun onPause() {
+        super.onPause()
+        val listPosition = (rv_news_container.layoutManager as GridLayoutManager)
+                .findFirstVisibleItemPosition()
+        viewState.setListPosition(listPosition)
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -60,11 +68,9 @@ class NewsActivity : MvpViewStateActivity<NewsContract.View, NewsContract.Presen
         searchView.maxWidth = Integer.MAX_VALUE
         searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String): Boolean {
-                showLoading()
-                mQuery = query
-                viewState.setQuery(query)
-                mPresenter.searchNews(query)
-                return false
+                loadNews(query)
+                searchView.clearFocus()
+                return true
             }
 
             override fun onQueryTextChange(newText: String): Boolean {
@@ -79,9 +85,8 @@ class NewsActivity : MvpViewStateActivity<NewsContract.View, NewsContract.Presen
             }
 
             override fun onMenuItemActionCollapse(item: MenuItem): Boolean {
+                loadNews(EMPTY_QUERY)
                 invalidateOptionsMenu()
-                mPresenter.getTopNews()
-                showLoading()
                 return true
             }
         })
@@ -99,6 +104,7 @@ class NewsActivity : MvpViewStateActivity<NewsContract.View, NewsContract.Presen
         viewState.setData(articles)
         setVisibility(container = true)
         mNewsAdapter.updateData(articles)
+        rv_news_container.scrollToPosition(viewState.getListPosition())
     }
 
     override fun showError() {
@@ -138,5 +144,16 @@ class NewsActivity : MvpViewStateActivity<NewsContract.View, NewsContract.Presen
         rv_news_container.visibility = if (container) View.VISIBLE else View.INVISIBLE
         pb_loading.visibility = if (loading) View.VISIBLE else View.INVISIBLE
         tv_empty_view.visibility = if (empty) View.VISIBLE else View.INVISIBLE
+    }
+
+    private fun loadNews(query: String) {
+        showLoading()
+        setQuery(query)
+        mPresenter.fetchNews(query)
+    }
+
+    private fun setQuery(query: String) {
+        mQuery = query
+        viewState.setQuery(query)
     }
 }

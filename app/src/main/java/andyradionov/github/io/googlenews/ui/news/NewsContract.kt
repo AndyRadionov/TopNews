@@ -11,8 +11,7 @@ import com.hannesdorfmann.mosby3.mvp.MvpView
 interface NewsContract {
 
     interface Presenter : MvpPresenter<View> {
-        fun getTopNews()
-        fun searchNews(query: String)
+        fun fetchNews(query: String)
     }
 
     interface View : MvpView {

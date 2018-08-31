@@ -13,15 +13,7 @@ class NewsPresenter(private val newsRepository: NewsRepository) :
 
     private var mSubscription: Disposable? = null
 
-    override fun getTopNews() {
-        fetchNews()
-    }
-
-    override fun searchNews(query: String) {
-        fetchNews(query)
-    }
-
-    private fun fetchNews(query: String = "") {
+    override fun fetchNews(query: String) {
         unsubscribe()
 
         newsRepository.fetchNews(query)

@@ -19,16 +19,24 @@ class NewsViewState : ViewState<NewsContract.View> {
 
     private var query: String = EMPTY_QUERY
     private var data: List<Article>? = null
+    private var listPosition = 0
 
     fun getQuery() = query
 
     fun setQuery(query: String) {
         this.query = query
     }
+
     fun setData(data: List<Article>) {
         state = STATE_SHOW_DATA
         this.data = data
     }
+
+    fun setListPosition(position: Int) {
+        listPosition = position
+    }
+
+    fun getListPosition() = listPosition
 
     fun setShowLoading() {
         state = STATE_SHOW_LOADING
