@@ -14,6 +14,7 @@ import andyradionov.github.io.googlenews.app.App
 import andyradionov.github.io.googlenews.data.entities.Article
 import andyradionov.github.io.googlenews.ui.details.WebViewActivity
 import com.hannesdorfmann.mosby3.mvp.viewstate.MvpViewStateActivity
+import dagger.android.AndroidInjection
 import kotlinx.android.synthetic.main.activity_news.*
 import javax.inject.Inject
 
@@ -42,7 +43,7 @@ class NewsActivity : MvpViewStateActivity<NewsContract.View, NewsContract.Presen
     override fun createViewState() = NewsViewState()
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        App.appComponent.inject(this)
+        AndroidInjection.inject(this)
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_news)
         setUpSwipeRefresh()
