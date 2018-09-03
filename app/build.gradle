@@ -22,37 +22,60 @@ android {
     }
 }
 
+ext {
+    support_version = '27.1.1'
+    constraint_version = '1.1.2'
+    picasso_version = '2.71828'
+    rx_java_version = '2.1.16'
+    rx_android_version = '2.0.2'
+    gson_version = '2.8.5'
+    retrofit_version = '2.4.0'
+    dagger_version = '2.16'
+    mosby_version = '3.1.0'
+    junit_version = '4.12'
+    mockito_verion = '2.20.1'
+    espresso_verion = '3.0.2'
+    test_runner_verion = '1.0.2'
+}
+
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation"org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
-    implementation 'com.android.support:appcompat-v7:27.1.1'
-    implementation 'com.android.support:recyclerview-v7:27.1.1'
-    implementation 'com.android.support:cardview-v7:27.1.1'
-    implementation 'com.android.support:support-v4:27.1.1'
-    implementation 'com.android.support.constraint:constraint-layout:1.1.2'
+    implementation "com.android.support:appcompat-v7:$support_version"
+    implementation "com.android.support:recyclerview-v7:$support_version"
+    implementation "com.android.support:cardview-v7:$support_version"
+    implementation "com.android.support:support-v4:$support_version"
+    implementation "com.android.support.constraint:constraint-layout:$constraint_version"
 
-    implementation 'com.squareup.picasso:picasso:2.71828'
+    //picasso images
+    implementation "com.squareup.picasso:picasso:$picasso_version"
 
-    implementation 'io.reactivex.rxjava2:rxandroid:2.0.2'
-    implementation 'io.reactivex.rxjava2:rxjava:2.1.16'
-    implementation 'com.google.code.gson:gson:2.8.5'
-    implementation 'com.squareup.retrofit2:retrofit:2.4.0'
-    implementation 'com.squareup.retrofit2:converter-gson:2.4.0'
-    implementation 'com.squareup.retrofit2:adapter-rxjava2:2.4.0'
+    //rx
+    implementation "io.reactivex.rxjava2:rxandroid:$rx_android_version"
+    implementation "io.reactivex.rxjava2:rxjava:$rx_java_version"
 
-    implementation 'com.google.dagger:dagger:2.16'
-    implementation 'com.google.dagger:dagger-android-support:2.16'
-    kapt 'com.google.dagger:dagger-compiler:2.16'
-    kapt 'com.google.dagger:dagger-android-processor:2.16'
+    //retrofit
+    implementation "com.google.code.gson:gson:$gson_version"
+    implementation "com.squareup.retrofit2:retrofit:$retrofit_version"
+    implementation "com.squareup.retrofit2:converter-gson:$retrofit_version"
+    implementation "com.squareup.retrofit2:adapter-rxjava2:$retrofit_version"
 
-    implementation 'com.hannesdorfmann.mosby3:viewstate:3.1.0'
+    //di
+    implementation "com.google.dagger:dagger:$dagger_version"
+    implementation "com.google.dagger:dagger-android-support:$dagger_version"
+    kapt "com.google.dagger:dagger-compiler:$dagger_version"
+    kapt "com.google.dagger:dagger-android-processor:$dagger_version"
 
-    testImplementation 'junit:junit:4.12'
+    //mvp mosby
+    implementation "com.hannesdorfmann.mosby3:viewstate:$mosby_version"
+
+    //testing
+    testImplementation "junit:junit:$junit_version"
     testImplementation "org.jetbrains.kotlin:kotlin-test-junit:$kotlin_version"
-    testImplementation 'org.mockito:mockito-core:2.20.1'
-    testImplementation 'com.google.dagger:dagger:2.16'
-    testImplementation 'com.google.dagger:dagger-android-support:2.16'
-    kaptTest 'com.google.dagger:dagger-compiler:2.16'
-    androidTestImplementation 'com.android.support.test:runner:1.0.2'
-    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+    testImplementation "org.mockito:mockito-core:$mockito_verion"
+    testImplementation "com.google.dagger:dagger:$dagger_version"
+    testImplementation "com.google.dagger:dagger-android-support:$dagger_version"
+    kaptTest "com.google.dagger:dagger-compiler:$dagger_version"
+    androidTestImplementation "com.android.support.test:runner:$test_runner_verion"
+    androidTestImplementation "com.android.support.test.espresso:espresso-core:$espresso_verion"
 }
