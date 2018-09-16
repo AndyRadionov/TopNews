@@ -8,9 +8,9 @@ import io.reactivex.schedulers.Schedulers
 /**
  * @author Andrey Radionov
  */
-open class NewsRepository(private val newsApi: NewsApi) {
+class NewsRepository(private val newsApi: NewsApi) {
 
-    open fun fetchNews(query: String): Observable<List<Article>> {
+    fun fetchNews(query: String): Observable<List<Article>> {
 
         val newsObservable =
                 if (query.isEmpty()) {
