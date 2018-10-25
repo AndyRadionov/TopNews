@@ -7,7 +7,7 @@ android {
     compileSdkVersion 27
     defaultConfig {
         applicationId "io.github.andyradionov.googlenews"
-        minSdkVersion 19
+        minSdkVersion 21
         targetSdkVersion 27
         versionCode 1
         versionName "1.0"
@@ -22,62 +22,63 @@ android {
     }
 }
 
-ext {
-    support_version = '27.1.1'
-    paging_version = '1.0.1'
-    constraint_version = '1.1.3'
-    picasso_version = '2.71828'
-    rx_java_version = '2.1.16'
-    rx_android_version = '2.0.2'
-    gson_version = '2.8.5'
-    retrofit_version = '2.4.0'
-    dagger_version = '2.16'
-    mosby_version = '3.1.0'
-    junit_version = '4.12'
-    mockito_verion = '2.20.1'
-    espresso_verion = '3.0.2'
-    test_runner_verion = '1.0.2'
-}
+ext.versions = [ANDROID_SUPPORT    : "27.1.1",
+                CONSTRAINT_LAYOUT  : "1.1.3",
+                PICASSO            : "2.71828",
+                RX_JAVA            : "2.1.16",
+                RX_ANDROID         : "2.1.0",
+                GSON               : "2.8.5",
+                RETROFIT           : "2.4.0",
+                DAGGER             : "2.16",
+                DAGGER_SUPPORT     : "2.17",
+                MOXY               : "1.5.5",
+                CICERONE           : "3.0.0",
+                ROOM               : "1.1.1",
+                JUNIT              : "4.12",
+                TEST_RUNNER        : "1.0.2",
+                ESPRESSO           : "3.0.2"]
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation"org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
-    implementation "com.android.support:appcompat-v7:$support_version"
-    implementation "com.android.support:recyclerview-v7:$support_version"
-    implementation "com.android.support:cardview-v7:$support_version"
-    implementation "com.android.support:support-v4:$support_version"
-    implementation "com.android.support.constraint:constraint-layout:$constraint_version"
-    implementation "android.arch.paging:runtime:$paging_version"
+    implementation "com.android.support:appcompat-v7:$versions.ANDROID_SUPPORT"
+    implementation "com.android.support:recyclerview-v7:$versions.ANDROID_SUPPORT"
+    implementation "com.android.support:cardview-v7:$versions.ANDROID_SUPPORT"
+    implementation "com.android.support:support-v4:$versions.ANDROID_SUPPORT"
+    implementation "com.android.support.constraint:constraint-layout:$versions.CONSTRAINT_LAYOUT"
 
     //picasso images
-    implementation "com.squareup.picasso:picasso:$picasso_version"
+    implementation "com.squareup.picasso:picasso:$versions.PICASSO"
 
     //rx
-    implementation "io.reactivex.rxjava2:rxandroid:$rx_android_version"
-    implementation "io.reactivex.rxjava2:rxjava:$rx_java_version"
+    implementation "io.reactivex.rxjava2:rxandroid:$versions.RX_ANDROID"
+    implementation "io.reactivex.rxjava2:rxjava:$versions.RX_JAVA"
 
     //retrofit
-    implementation "com.google.code.gson:gson:$gson_version"
-    implementation "com.squareup.retrofit2:retrofit:$retrofit_version"
-    implementation "com.squareup.retrofit2:converter-gson:$retrofit_version"
-    implementation "com.squareup.retrofit2:adapter-rxjava2:$retrofit_version"
+    implementation "com.google.code.gson:gson:$versions.GSON"
+    implementation "com.squareup.retrofit2:retrofit:$versions.RETROFIT"
+    implementation "com.squareup.retrofit2:converter-gson:$versions.RETROFIT"
+    implementation "com.squareup.retrofit2:adapter-rxjava2:$versions.RETROFIT"
 
     //di
-    implementation "com.google.dagger:dagger:$dagger_version"
-    implementation "com.google.dagger:dagger-android-support:$dagger_version"
-    kapt "com.google.dagger:dagger-compiler:$dagger_version"
-    kapt "com.google.dagger:dagger-android-processor:$dagger_version"
+    implementation "com.google.dagger:dagger:$versions.DAGGER"
+    kapt "com.google.dagger:dagger-compiler:$versions.DAGGER"
 
-    //mvp mosby
-    implementation "com.hannesdorfmann.mosby3:viewstate:$mosby_version"
+    //mvp moxy
+    implementation "com.arello-mobile:moxy:$versions.MOXY"
+    implementation "com.arello-mobile:moxy-android:$versions.MOXY"
+    implementation "com.arello-mobile:moxy-app-compat:$versions.MOXY"
+    kapt "com.arello-mobile:moxy-compiler:$versions.MOXY"
+
+    //navigation
+    implementation "ru.terrakok.cicerone:cicerone:$versions.CICERONE"
+
+    implementation "android.arch.persistence.room:runtime:$versions.ROOM"
+    implementation "android.arch.persistence.room:rxjava2:$versions.ROOM"
+    kapt "android.arch.persistence.room:compiler:$versions.ROOM"
 
     //testing
-    testImplementation "junit:junit:$junit_version"
-    testImplementation "org.jetbrains.kotlin:kotlin-test-junit:$kotlin_version"
-    testImplementation "org.mockito:mockito-core:$mockito_verion"
-    testImplementation "com.google.dagger:dagger:$dagger_version"
-    testImplementation "com.google.dagger:dagger-android-support:$dagger_version"
-    kaptTest "com.google.dagger:dagger-compiler:$dagger_version"
-    androidTestImplementation "com.android.support.test:runner:$test_runner_verion"
-    androidTestImplementation "com.android.support.test.espresso:espresso-core:$espresso_verion"
+    testImplementation "junit:junit:$versions.JUNIT"
+    androidTestImplementation "com.android.support.test:runner:$versions.TEST_RUNNER"
+    androidTestImplementation "com.android.support.test.espresso:espresso-core:$versions.ESPRESSO"
 }

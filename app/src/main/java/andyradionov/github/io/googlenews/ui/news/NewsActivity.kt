@@ -2,8 +2,8 @@ package andyradionov.github.io.googlenews.ui.news
 
 import android.content.Intent
 import android.os.Bundle
-import android.support.v4.widget.SwipeRefreshLayout
 import android.support.v7.widget.GridLayoutManager
+import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.SearchView
 import android.view.Menu
 import android.view.MenuItem
@@ -13,22 +13,20 @@ import andyradionov.github.io.googlenews.R
 import andyradionov.github.io.googlenews.app.App
 import andyradionov.github.io.googlenews.data.entities.Article
 import andyradionov.github.io.googlenews.ui.details.WebViewActivity
-import com.hannesdorfmann.mosby3.mvp.viewstate.MvpViewStateActivity
-import dagger.android.AndroidInjection
+import com.arellomobile.mvp.MvpAppCompatActivity
+import com.arellomobile.mvp.presenter.InjectPresenter
+import com.arellomobile.mvp.presenter.ProvidePresenter
 import kotlinx.android.synthetic.main.activity_news.*
 import javax.inject.Inject
 
-class NewsActivity : MvpViewStateActivity<NewsContract.View, NewsContract.Presenter, NewsViewState>(),
-        NewsContract.View {
-
-    companion object {
-        const val EMPTY_QUERY = ""
-    }
+class NewsActivity : MvpAppCompatActivity(), NewsView {
 
     @Inject
-    lateinit var mPresenter: NewsContract.Presenter
-    private lateinit var mNewsAdapter: NewsAdapter
-    private var mQuery: String = EMPTY_QUERY
+    @InjectPresenter
+    lateinit var presenter: NewsPresenter
+    private lateinit var newsAdapter: NewsAdapter
+    private var query: String = EMPTY_QUERY
+    private var listPosition = 0
 
     private val mOnArticleClickListener = object : NewsAdapter.OnArticleClickListener {
         override fun onClick(articleUrl: String) {
@@ -38,33 +36,39 @@ class NewsActivity : MvpViewStateActivity<NewsContract.View, NewsContract.Presen
         }
     }
 
-    override fun createPresenter() = mPresenter
-
-    override fun createViewState() = NewsViewState()
+    @ProvidePresenter
+    fun providePresenter(): NewsPresenter {
+        return presenter
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        AndroidInjection.inject(this)
+        App.appComponent.inject(this)
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_news)
         setUpSwipeRefresh()
         setUpRecycler()
     }
 
-    override fun onResume() {
-        super.onResume()
-        mQuery = viewState.getQuery()
-        if (mQuery.isEmpty()) {
-            mPresenter.fetchNews(mQuery)
-        } else {
-            invalidateOptionsMenu()
-        }
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+        outState.putString(QUERY_KEY, query)
+        listPosition = (rv_news_container.layoutManager as LinearLayoutManager)
+                .findFirstVisibleItemPosition()
+        outState.putInt(LIST_POSITION_KEY, listPosition)
     }
 
-    override fun onPause() {
-        super.onPause()
-        val listPosition = (rv_news_container.layoutManager as GridLayoutManager)
-                .findFirstVisibleItemPosition()
-        viewState.setListPosition(listPosition)
+    override fun onRestoreInstanceState(savedInstanceState: Bundle) {
+        super.onRestoreInstanceState(savedInstanceState)
+        query = savedInstanceState.getString(QUERY_KEY)
+        listPosition = savedInstanceState.getInt(LIST_POSITION_KEY)
+        rv_news_container.scrollToPosition(listPosition)
+    }
+
+    override fun onResume() {
+        super.onResume()
+        if (newsAdapter.itemCount == 0) {
+            loadNews(query)
+        }
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -99,9 +103,9 @@ class NewsActivity : MvpViewStateActivity<NewsContract.View, NewsContract.Presen
             }
         })
 
-        if (!mQuery.isEmpty()) {
+        if (!query.isEmpty()) {
             searchAction.expandActionView()
-            searchView.setQuery(mQuery, true)
+            searchView.setQuery(query, true)
             searchView.clearFocus()
         }
 
@@ -109,36 +113,30 @@ class NewsActivity : MvpViewStateActivity<NewsContract.View, NewsContract.Presen
     }
 
     override fun showNews(articles: List<Article>) {
-        viewState.setData(articles)
         setVisibility(container = true)
-        mNewsAdapter.updateData(articles)
-        rv_news_container.scrollToPosition(viewState.getListPosition())
+        newsAdapter.updateData(articles)
     }
 
     override fun showError() {
-        viewState.setShowError()
         setVisibility(empty = true)
-        mNewsAdapter.clearData();
+        newsAdapter.clearData();
     }
 
     override fun showLoading() {
-        viewState.setShowLoading()
         setVisibility(loading = true)
-        mNewsAdapter.clearData();
+        newsAdapter.clearData();
     }
-
-    override fun onNewViewStateInstance() { /*NOP*/ }
 
     private fun setUpSwipeRefresh() {
         swipe_container.setOnRefreshListener {
             swipe_container.isRefreshing = false
-            mPresenter.fetchNews(mQuery)
+            presenter.fetchNews(query)
         }
     }
 
     private fun setUpRecycler() {
-        mNewsAdapter = NewsAdapter(mOnArticleClickListener)
-        rv_news_container.adapter = mNewsAdapter
+        newsAdapter = NewsAdapter(mOnArticleClickListener)
+        rv_news_container.adapter = newsAdapter
 
         val columnsNumber = resources.getInteger(R.integer.columns_number)
         val layoutManager = GridLayoutManager(this, columnsNumber)
@@ -157,12 +155,13 @@ class NewsActivity : MvpViewStateActivity<NewsContract.View, NewsContract.Presen
 
     private fun loadNews(query: String) {
         showLoading()
-        setQuery(query)
-        mPresenter.fetchNews(query)
+        this.query = query
+        presenter.fetchNews(query)
     }
 
-    private fun setQuery(query: String) {
-        mQuery = query
-        viewState.setQuery(query)
+    companion object {
+        const val EMPTY_QUERY = ""
+        const val QUERY_KEY = "query_key"
+        const val LIST_POSITION_KEY = "list_position_key"
     }
 }

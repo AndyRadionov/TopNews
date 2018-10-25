@@ -1,36 +1,37 @@
 package andyradionov.github.io.googlenews.ui.news
 
 import andyradionov.github.io.googlenews.data.NewsRepository
-import com.hannesdorfmann.mosby3.mvp.MvpBasePresenter
+import com.arellomobile.mvp.InjectViewState
+import com.arellomobile.mvp.MvpPresenter
 import io.reactivex.disposables.Disposable
 
 /**
  * @author Andrey Radionov
  */
-class NewsPresenter(private val newsRepository: NewsRepository) :
-        MvpBasePresenter<NewsContract.View>(),
-        NewsContract.Presenter {
+@InjectViewState
+class NewsPresenter (private val newsRepository: NewsRepository) :
+        MvpPresenter<NewsView>() {
 
     private var mSubscription: Disposable? = null
 
-    override fun fetchNews(query: String) {
+    fun fetchNews(query: String) {
         unsubscribe()
 
         newsRepository.fetchNews(query)
                 .subscribe({ articles ->
                     if (articles.isEmpty()) {
-                        ifViewAttached { it.showError() }
+                        viewState.showError()
                     } else {
-                        ifViewAttached { it.showNews(articles) }
+                        viewState.showNews(articles)
 
                     }
                 }, {
-                    ifViewAttached { it.showError() }
+                    viewState.showError()
                 })
     }
 
-    override fun destroy() {
-        super.destroy()
+    override fun onDestroy() {
+        super.onDestroy()
         unsubscribe()
     }
 

@@ -7,7 +7,6 @@ import andyradionov.github.io.googlenews.app.App
 import andyradionov.github.io.googlenews.app.BASE_URL
 import andyradionov.github.io.googlenews.data.NewsApi
 import andyradionov.github.io.googlenews.data.NewsRepository
-import andyradionov.github.io.googlenews.ui.news.NewsContract
 import andyradionov.github.io.googlenews.ui.news.NewsPresenter
 import com.google.gson.Gson
 import dagger.Module
@@ -28,12 +27,12 @@ import javax.inject.Singleton
  */
 
 @Module
-class NewsModule(val app: App) {
+class AppModule(val app: App) {
 
     @NonNull
     @Provides
     @Singleton
-    fun provideNewsPresenter(newsRepository: NewsRepository): NewsContract.Presenter
+    fun provideNewsPresenter(newsRepository: NewsRepository): NewsPresenter
             = NewsPresenter(newsRepository)
 
     @NonNull
@@ -132,7 +131,7 @@ class NewsModule(val app: App) {
     }
 
     companion object {
-        private const val TAG = "NewsModule"
+        private const val TAG = "AppModule"
         private val CACHE_CONTROL_HEADER = "Cache-Control"
         private val PRAGMA_HEADER = "Pragma"
         private val ACCESS_CONTROL_ALLOW_ORIGIN_HEADER = "Access-Control-Allow-Origin"
