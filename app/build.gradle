@@ -13,6 +13,7 @@ android {
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         buildConfigField 'String', "ApiKey", news_api_key
+        buildConfigField 'String', "ApiUrl", news_api_url
     }
     buildTypes {
         release {

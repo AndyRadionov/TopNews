@@ -8,6 +8,7 @@ import andyradionov.github.io.googlenews.app.BASE_URL
 import andyradionov.github.io.googlenews.data.NewsApi
 import andyradionov.github.io.googlenews.data.NewsRepository
 import andyradionov.github.io.googlenews.ui.news.NewsPresenter
+import andyradionov.github.io.googlenews.utils.isInternetAvailable
 import com.google.gson.Gson
 import dagger.Module
 import dagger.Provides
@@ -46,7 +47,7 @@ class AppModule(val app: App) {
     fun provideNewsApi(httpClient: OkHttpClient): NewsApi {
 
         return Retrofit.Builder()
-                .baseUrl(BASE_URL)
+                .baseUrl(BuildConfig.ApiUrl)
                 .addConverterFactory(GsonConverterFactory.create(Gson()))
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                 .client(httpClient)
@@ -116,7 +117,7 @@ class AppModule(val app: App) {
         return Interceptor { chain ->
             var request = chain.request()
 
-            if (!app.isInternetAvailable()) {
+            if (!isInternetAvailable(app)) {
                 val cacheControl = CacheControl.Builder()
                         .maxStale(7, TimeUnit.DAYS)
                         .build()

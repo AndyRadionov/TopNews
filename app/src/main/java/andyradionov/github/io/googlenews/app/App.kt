@@ -23,17 +23,4 @@ class App : Application() {
                 .appModule(AppModule(this))
                 .build();
     }
-
-    fun isInternetAvailable(): Boolean {
-        val connectivityManager = getSystemService(Context.CONNECTIVITY_SERVICE)
-                as ConnectivityManager
-
-        return connectivityManager?.let {
-            with(connectivityManager) {
-                activeNetworkInfo != null
-                        && activeNetworkInfo.isAvailable
-                        && activeNetworkInfo.isConnected
-            }
-        }
-    }
 }
