@@ -46,6 +46,7 @@ dependencies {
     implementation "com.android.support:recyclerview-v7:$versions.ANDROID_SUPPORT"
     implementation "com.android.support:cardview-v7:$versions.ANDROID_SUPPORT"
     implementation "com.android.support:support-v4:$versions.ANDROID_SUPPORT"
+    implementation "com.android.support:design:$versions.ANDROID_SUPPORT"
     implementation "com.android.support.constraint:constraint-layout:$versions.CONSTRAINT_LAYOUT"
 
     //picasso images
