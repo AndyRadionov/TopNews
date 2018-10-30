@@ -4,7 +4,6 @@ import android.support.annotation.NonNull
 import android.util.Log
 import andyradionov.github.io.googlenews.BuildConfig
 import andyradionov.github.io.googlenews.app.App
-import andyradionov.github.io.googlenews.app.BASE_URL
 import andyradionov.github.io.googlenews.data.NewsApi
 import andyradionov.github.io.googlenews.data.NewsRepository
 import andyradionov.github.io.googlenews.ui.news.NewsPresenter
