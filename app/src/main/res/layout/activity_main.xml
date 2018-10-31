@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@android:color/white"
     android:minHeight="?attr/actionBarSize"
-    tools:context=".ui.MainActivity">
+    tools:context=".ui.main.MainActivity">
 
     <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"

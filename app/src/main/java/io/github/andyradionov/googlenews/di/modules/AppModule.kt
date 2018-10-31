@@ -1,4 +1,4 @@
-package io.github.andyradionov.googlenews.di
+package io.github.andyradionov.googlenews.di.modules
 
 import android.support.annotation.NonNull
 import android.util.Log
@@ -6,7 +6,7 @@ import com.google.gson.Gson
 import dagger.Module
 import dagger.Provides
 import io.github.andyradionov.googlenews.BuildConfig
-import io.github.andyradionov.googlenews.app.App
+import io.github.andyradionov.googlenews.app.NewsApp
 import io.github.andyradionov.googlenews.data.NewsApi
 import io.github.andyradionov.googlenews.data.NewsRepository
 import io.github.andyradionov.googlenews.ui.topnews.TopNewsPresenter
@@ -27,7 +27,7 @@ import javax.inject.Singleton
  */
 
 @Module
-class AppModule(val app: App) {
+class AppModule(val newsApp: NewsApp) {
 
     @NonNull
     @Provides
@@ -83,7 +83,7 @@ class AppModule(val app: App) {
     private fun initCache(): Cache? {
         var cache: Cache? = null
         try {
-            cache = Cache(File(app.cacheDir, "http-cache"),
+            cache = Cache(File(newsApp.cacheDir, "http-cache"),
                     (10 * 1024 * 1024).toLong()) // 10 MB
         } catch (e: Exception) {
             Log.e(TAG, "Could not create Cache!")
@@ -115,7 +115,7 @@ class AppModule(val app: App) {
         return Interceptor { chain ->
             var request = chain.request()
 
-            if (!isInternetAvailable(app)) {
+            if (!isInternetAvailable(newsApp)) {
                 val cacheControl = CacheControl.Builder()
                         .maxStale(7, TimeUnit.DAYS)
                         .build()

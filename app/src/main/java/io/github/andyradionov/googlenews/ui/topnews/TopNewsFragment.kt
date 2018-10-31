@@ -1,6 +1,5 @@
 package io.github.andyradionov.googlenews.ui.topnews
 
-import android.content.Context
 import android.os.Bundle
 import android.support.v7.widget.GridLayoutManager
 import android.view.LayoutInflater
@@ -9,7 +8,6 @@ import android.view.ViewGroup
 import com.arellomobile.mvp.presenter.InjectPresenter
 import com.arellomobile.mvp.presenter.ProvidePresenter
 import io.github.andyradionov.googlenews.R
-import io.github.andyradionov.googlenews.app.App
 import io.github.andyradionov.googlenews.data.entities.Article
 import io.github.andyradionov.googlenews.ui.common.BaseFragment
 import kotlinx.android.synthetic.main.fragment_top_news.*
@@ -38,11 +36,6 @@ class TopNewsFragment : BaseFragment(), NewsView {
         setUpSwipeRefresh()
         setUpRecycler()
 
-    }
-
-    override fun onAttach(context: Context) {
-        App.appComponent.inject(this)
-        super.onAttach(context)
     }
 
     override fun onResume() {

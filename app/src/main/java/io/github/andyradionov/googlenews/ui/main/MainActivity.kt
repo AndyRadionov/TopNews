@@ -1,16 +1,15 @@
-package io.github.andyradionov.googlenews.ui
+package io.github.andyradionov.googlenews.ui.main
 
 import android.os.Bundle
-import com.arellomobile.mvp.MvpAppCompatActivity
 import io.github.andyradionov.googlenews.R
+import io.github.andyradionov.googlenews.ui.common.BaseActivity
 import io.github.andyradionov.googlenews.ui.common.BaseFragment
 import io.github.andyradionov.googlenews.ui.topnews.TopNewsFragment
 import kotlinx.android.synthetic.main.activity_main.*
 
-class MainActivity : MvpAppCompatActivity() {
+class MainActivity : BaseActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
-//        App.appComponent.inject(this)
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         setSupportActionBar(toolbar)

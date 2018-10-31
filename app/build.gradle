@@ -65,6 +65,8 @@ dependencies {
     //di
     implementation "com.google.dagger:dagger:$versions.DAGGER"
     implementation 'com.android.support:support-v4:27.1.1'
+    implementation "com.google.dagger:dagger-android-support:$versions.DAGGER"
+    kapt "com.google.dagger:dagger-android-processor:$versions.DAGGER"
     kapt "com.google.dagger:dagger-compiler:$versions.DAGGER"
 
     //mvp moxy

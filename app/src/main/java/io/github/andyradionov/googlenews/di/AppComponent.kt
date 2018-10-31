@@ -1,18 +1,24 @@
 package io.github.andyradionov.googlenews.di
 
 import dagger.Component
-import io.github.andyradionov.googlenews.ui.MainActivity
-import io.github.andyradionov.googlenews.ui.common.BaseFragment
-import io.github.andyradionov.googlenews.ui.topnews.TopNewsFragment
+import dagger.android.AndroidInjector
+import dagger.android.support.AndroidSupportInjectionModule
+import io.github.andyradionov.googlenews.app.NewsApp
+import io.github.andyradionov.googlenews.di.modules.ActivityBuilderModule
+import io.github.andyradionov.googlenews.di.modules.AppModule
+import io.github.andyradionov.googlenews.di.modules.FragmentBuilderModule
 import javax.inject.Singleton
 
 /**
  * @author Andrey Radionov
  */
 @Singleton
-@Component(modules = [AppModule::class])
-interface AppComponent {
-    fun inject(mainActivity: MainActivity)
-    fun inject(baseFragment: BaseFragment)
-    fun inject(topNewsFragment: TopNewsFragment)
+@Component(modules = [
+    AppModule::class,
+    AndroidSupportInjectionModule::class,
+    ActivityBuilderModule::class,
+    FragmentBuilderModule::class])
+interface AppComponent : AndroidInjector<NewsApp> {
+
+    override fun inject(newsApp: NewsApp)
 }
