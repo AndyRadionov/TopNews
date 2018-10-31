@@ -6,7 +6,7 @@ import andyradionov.github.io.googlenews.BuildConfig
 import andyradionov.github.io.googlenews.app.App
 import andyradionov.github.io.googlenews.data.NewsApi
 import andyradionov.github.io.googlenews.data.NewsRepository
-import andyradionov.github.io.googlenews.ui.news.NewsPresenter
+import andyradionov.github.io.googlenews.ui.news.TopNewsPresenter
 import andyradionov.github.io.googlenews.utils.isInternetAvailable
 import com.google.gson.Gson
 import dagger.Module
@@ -32,13 +32,12 @@ class AppModule(val app: App) {
     @NonNull
     @Provides
     @Singleton
-    fun provideNewsPresenter(newsRepository: NewsRepository): NewsPresenter
-            = NewsPresenter(newsRepository)
+    fun provideNewsPresenter(newsRepository: NewsRepository) = TopNewsPresenter(newsRepository)
 
     @NonNull
     @Provides
     @Singleton
-    fun provideNewsStore(newsApi: NewsApi) = NewsRepository(newsApi)
+    fun provideNewsRepository(newsApi: NewsApi) = NewsRepository(newsApi)
 
     @NonNull
     @Provides

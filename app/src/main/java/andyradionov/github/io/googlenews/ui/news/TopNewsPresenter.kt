@@ -9,15 +9,15 @@ import io.reactivex.disposables.Disposable
  * @author Andrey Radionov
  */
 @InjectViewState
-class NewsPresenter (private val newsRepository: NewsRepository) :
+class TopNewsPresenter (private val newsRepository: NewsRepository) :
         MvpPresenter<NewsView>() {
 
-    private var mSubscription: Disposable? = null
+    private var subscription: Disposable? = null
 
-    fun fetchNews(query: String) {
+    fun fetchNews() {
         unsubscribe()
 
-        newsRepository.fetchNews(query)
+        newsRepository.fetchNews()
                 .subscribe({ articles ->
                     if (articles.isEmpty()) {
                         viewState.showError()
@@ -36,9 +36,9 @@ class NewsPresenter (private val newsRepository: NewsRepository) :
     }
 
     fun unsubscribe() {
-        if (mSubscription?.isDisposed == true) {
-            mSubscription?.dispose()
-            mSubscription = null
+        if (subscription?.isDisposed == true) {
+            subscription?.dispose()
+            subscription = null
         }
     }
 }

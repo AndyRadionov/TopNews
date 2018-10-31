@@ -10,18 +10,14 @@ import io.reactivex.schedulers.Schedulers
  */
 class NewsRepository(private val newsApi: NewsApi) {
 
-    fun fetchNews(query: String): Observable<List<Article>> {
+    fun fetchNews() = newsApi.getTopNews()
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .map { it.articles }
 
-        val newsObservable =
-                if (query.isEmpty()) {
-                    newsApi.getTopNews()
-                } else {
-                    newsApi.searchNews(query)
-                }
+    fun searchNews(query: String) = newsApi.searchNews(query)
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .map { it.articles }
 
-        return newsObservable
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .map { it.articles }
-    }
 }
