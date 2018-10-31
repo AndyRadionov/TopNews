@@ -1,8 +1,6 @@
 package andyradionov.github.io.googlenews.ui
 
 import android.os.Bundle
-import android.support.design.widget.BottomNavigationView
-import android.view.MenuItem
 import andyradionov.github.io.googlenews.R
 import andyradionov.github.io.googlenews.ui.common.BaseFragment
 import andyradionov.github.io.googlenews.ui.news.TopNewsFragment
@@ -30,6 +28,7 @@ class MainActivity : MvpAppCompatActivity() {
                 else -> false
             }
         }
+        bottom_navigation.selectedItemId = R.id.action_top_news
     }
 
     private fun replaceFragment(fragment: BaseFragment) {
