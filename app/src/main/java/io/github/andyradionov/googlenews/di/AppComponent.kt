@@ -7,6 +7,7 @@ import io.github.andyradionov.googlenews.app.NewsApp
 import io.github.andyradionov.googlenews.di.modules.ActivityBuilderModule
 import io.github.andyradionov.googlenews.di.modules.AppModule
 import io.github.andyradionov.googlenews.di.modules.FragmentBuilderModule
+import io.github.andyradionov.googlenews.di.modules.NetworkModule
 import javax.inject.Singleton
 
 /**
@@ -15,6 +16,7 @@ import javax.inject.Singleton
 @Singleton
 @Component(modules = [
     AppModule::class,
+    NetworkModule::class,
     AndroidSupportInjectionModule::class,
     ActivityBuilderModule::class,
     FragmentBuilderModule::class])
