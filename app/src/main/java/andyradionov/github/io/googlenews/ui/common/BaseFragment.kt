@@ -1,10 +1,8 @@
 package andyradionov.github.io.googlenews.ui.common
 
-import android.content.Context
 import android.content.Intent
-import andyradionov.github.io.googlenews.app.App
 import andyradionov.github.io.googlenews.ui.details.WebViewActivity
-import andyradionov.github.io.googlenews.ui.news.NewsAdapter
+import andyradionov.github.io.googlenews.ui.topnews.NewsAdapter
 import com.arellomobile.mvp.MvpAppCompatFragment
 
 /**

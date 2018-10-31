@@ -3,7 +3,7 @@ package andyradionov.github.io.googlenews.ui
 import android.os.Bundle
 import andyradionov.github.io.googlenews.R
 import andyradionov.github.io.googlenews.ui.common.BaseFragment
-import andyradionov.github.io.googlenews.ui.news.TopNewsFragment
+import andyradionov.github.io.googlenews.ui.topnews.TopNewsFragment
 import com.arellomobile.mvp.MvpAppCompatActivity
 import kotlinx.android.synthetic.main.activity_main.*
 

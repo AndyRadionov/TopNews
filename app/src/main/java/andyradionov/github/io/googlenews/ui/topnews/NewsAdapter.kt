@@ -1,4 +1,4 @@
-package andyradionov.github.io.googlenews.ui.news
+package andyradionov.github.io.googlenews.ui.topnews
 
 import android.support.v7.widget.CardView
 import android.support.v7.widget.RecyclerView

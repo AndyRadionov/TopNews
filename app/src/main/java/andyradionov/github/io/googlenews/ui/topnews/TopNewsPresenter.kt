@@ -1,4 +1,4 @@
-package andyradionov.github.io.googlenews.ui.news
+package andyradionov.github.io.googlenews.ui.topnews
 
 import andyradionov.github.io.googlenews.data.NewsRepository
 import com.arellomobile.mvp.InjectViewState

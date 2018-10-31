@@ -2,7 +2,7 @@ package andyradionov.github.io.googlenews.di
 
 import andyradionov.github.io.googlenews.ui.common.BaseFragment
 import andyradionov.github.io.googlenews.ui.MainActivity
-import andyradionov.github.io.googlenews.ui.news.TopNewsFragment
+import andyradionov.github.io.googlenews.ui.topnews.TopNewsFragment
 import dagger.Component
 import javax.inject.Singleton
 

@@ -6,7 +6,7 @@ import andyradionov.github.io.googlenews.BuildConfig
 import andyradionov.github.io.googlenews.app.App
 import andyradionov.github.io.googlenews.data.NewsApi
 import andyradionov.github.io.googlenews.data.NewsRepository
-import andyradionov.github.io.googlenews.ui.news.TopNewsPresenter
+import andyradionov.github.io.googlenews.ui.topnews.TopNewsPresenter
 import andyradionov.github.io.googlenews.utils.isInternetAvailable
 import com.google.gson.Gson
 import dagger.Module

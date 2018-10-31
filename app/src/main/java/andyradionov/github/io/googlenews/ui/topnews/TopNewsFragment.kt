@@ -1,4 +1,4 @@
-package andyradionov.github.io.googlenews.ui.news
+package andyradionov.github.io.googlenews.ui.topnews
 
 import android.content.Context
 import android.os.Bundle
