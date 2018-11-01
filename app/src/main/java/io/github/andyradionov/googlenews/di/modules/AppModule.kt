@@ -27,7 +27,7 @@ import javax.inject.Singleton
  */
 
 @Module
-class AppModule(val newsApp: NewsApp) {
+class AppModule {
 
     @NonNull
     @Provides

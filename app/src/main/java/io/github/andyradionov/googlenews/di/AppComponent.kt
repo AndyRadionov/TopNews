@@ -4,10 +4,7 @@ import dagger.Component
 import dagger.android.AndroidInjector
 import dagger.android.support.AndroidSupportInjectionModule
 import io.github.andyradionov.googlenews.app.NewsApp
-import io.github.andyradionov.googlenews.di.modules.ActivityBuilderModule
-import io.github.andyradionov.googlenews.di.modules.AppModule
-import io.github.andyradionov.googlenews.di.modules.FragmentBuilderModule
-import io.github.andyradionov.googlenews.di.modules.NetworkModule
+import io.github.andyradionov.googlenews.di.modules.*
 import javax.inject.Singleton
 
 /**
