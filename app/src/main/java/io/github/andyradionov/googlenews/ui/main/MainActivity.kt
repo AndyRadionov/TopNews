@@ -34,7 +34,7 @@ class MainActivity : BaseActivity() {
     }
 
     private fun setupListeners() {
-        action_search.setOnClickListener {
+        iv_search.setOnClickListener {
             SearchDialogFragment().show(supportFragmentManager, SearchDialogFragment.TAG)
         }
     }

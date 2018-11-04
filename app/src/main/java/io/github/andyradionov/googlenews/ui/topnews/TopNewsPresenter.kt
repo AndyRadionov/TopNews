@@ -9,7 +9,7 @@ import io.reactivex.disposables.Disposable
  * @author Andrey Radionov
  */
 @InjectViewState
-class TopNewsPresenter (private val newsRepository: NewsRepository) :
+class TopNewsPresenter(private val newsRepository: NewsRepository) :
         MvpPresenter<NewsView>() {
 
     private var subscription: Disposable? = null

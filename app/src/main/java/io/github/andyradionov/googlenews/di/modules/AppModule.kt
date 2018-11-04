@@ -9,6 +9,7 @@ import io.github.andyradionov.googlenews.BuildConfig
 import io.github.andyradionov.googlenews.app.NewsApp
 import io.github.andyradionov.googlenews.data.NewsApi
 import io.github.andyradionov.googlenews.data.NewsRepository
+import io.github.andyradionov.googlenews.ui.search.SearchPresenter
 import io.github.andyradionov.googlenews.ui.topnews.TopNewsPresenter
 import io.github.andyradionov.googlenews.utils.isInternetAvailable
 import okhttp3.Cache
@@ -28,6 +29,11 @@ import javax.inject.Singleton
 
 @Module
 class AppModule {
+
+    @NonNull
+    @Provides
+    @Singleton
+    fun provideSearchPresenter(newsRepository: NewsRepository) = SearchPresenter(newsRepository)
 
     @NonNull
     @Provides

@@ -27,7 +27,6 @@ class TopNewsFragment : BaseFragment(), NewsView {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
-        // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_top_news, container, false)
     }
 
@@ -35,7 +34,6 @@ class TopNewsFragment : BaseFragment(), NewsView {
         super.onViewCreated(view, savedInstanceState)
         setUpSwipeRefresh()
         setUpRecycler()
-
     }
 
     override fun onResume() {
@@ -52,12 +50,11 @@ class TopNewsFragment : BaseFragment(), NewsView {
 
     override fun showError() {
         setVisibility(empty = true)
-        newsAdapter.clearData();
+        newsAdapter.clearData()
     }
 
     override fun showLoading() {
-        setVisibility(loading = true)
-        newsAdapter.clearData();
+        setVisibility(container = false, loading = true)
     }
 
     private fun setUpSwipeRefresh() {
