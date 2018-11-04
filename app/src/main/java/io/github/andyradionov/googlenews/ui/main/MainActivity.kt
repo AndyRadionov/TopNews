@@ -13,6 +13,7 @@ class MainActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         setSupportActionBar(toolbar)
+        supportActionBar?.setDisplayShowTitleEnabled(false)
         setupBottomNavigation()
     }
 
@@ -38,6 +39,6 @@ class MainActivity : BaseActivity() {
     }
 
     private fun setToolbarTitle(title: String) {
-        supportActionBar?.title = title
+        toolbar_title.text = title
     }
 }
