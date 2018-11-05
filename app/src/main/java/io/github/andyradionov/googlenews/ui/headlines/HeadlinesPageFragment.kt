@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.arellomobile.mvp.presenter.InjectPresenter
+import com.arellomobile.mvp.presenter.PresenterType
 import com.arellomobile.mvp.presenter.ProvidePresenter
 import io.github.andyradionov.googlenews.R
 import io.github.andyradionov.googlenews.data.entities.Article
@@ -21,11 +22,10 @@ private const val ARG_PAGE_HEADLINE = "page_headline"
 class HeadlinesPageFragment : BaseFragment(), BaseNewsView {
 
     @Inject
-    @InjectPresenter
+    @InjectPresenter(type = PresenterType.LOCAL)
     lateinit var presenter: HeadlinesPresenter
     private lateinit var newsAdapter: NewsAdapter
     private lateinit var pageHeadline: String
-    private var isFragmentVisible: Boolean = false
 
     @ProvidePresenter
     fun providePresenter(): HeadlinesPresenter = presenter
@@ -52,13 +52,6 @@ class HeadlinesPageFragment : BaseFragment(), BaseNewsView {
     override fun onResume() {
         super.onResume()
         loadNews()
-    }
-
-    override fun setUserVisibleHint(isVisibleToUser: Boolean) {
-        super.setUserVisibleHint(isVisibleToUser)
-        if (isVisibleToUser) {
-            isFragmentVisible = true
-        }
     }
 
     override fun showNews(articles: List<Article>) {

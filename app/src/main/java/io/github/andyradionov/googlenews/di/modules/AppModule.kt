@@ -39,7 +39,6 @@ class AppModule {
 
     @NonNull
     @Provides
-    @Singleton
     fun provideHeadlinesPresenter(newsRepository: NewsRepository) = HeadlinesPresenter(newsRepository)
 
     @NonNull

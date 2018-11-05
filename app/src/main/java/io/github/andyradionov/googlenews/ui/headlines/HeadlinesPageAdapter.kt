@@ -22,6 +22,8 @@ class HeadlinesPageAdapter(private val context: Context, manager: FragmentManage
 
     override fun getCount() = titles.size
 
+    override fun getPageTitle(position: Int) = titles[position]
+
     private fun getEnglishHeadlines(): Array<String> {
         val configuration = getEnglishConfiguration()
 
