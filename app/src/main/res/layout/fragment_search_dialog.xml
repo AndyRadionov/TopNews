@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@android:color/white"
     android:minHeight="?attr/actionBarSize"
-    tools:context=".ui.main.MainActivity">
+    tools:context=".ui.search.SearchDialogFragment">
 
     <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
@@ -17,14 +17,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@android:color/white"
-            app:layout_scrollFlags="scroll|enterAlways">
-
-            <ImageView
-                android:id="@+id/iv_back"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/ic_back_arrow" />
-        </android.support.v7.widget.Toolbar>
+            app:contentInsetStartWithNavigation="0dp"
+            app:layout_scrollFlags="scroll|enterAlways" />
     </android.support.design.widget.AppBarLayout>
 
     <include

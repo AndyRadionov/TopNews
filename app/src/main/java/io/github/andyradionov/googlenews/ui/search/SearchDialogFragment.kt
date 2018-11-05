@@ -8,6 +8,7 @@ import android.support.v7.widget.GridLayoutManager
 import android.support.v7.widget.SearchView
 import android.view.*
 import android.view.inputmethod.EditorInfo
+import android.widget.ImageView
 import com.arellomobile.mvp.MvpAppCompatDialogFragment
 import com.arellomobile.mvp.presenter.InjectPresenter
 import com.arellomobile.mvp.presenter.ProvidePresenter
@@ -59,7 +60,7 @@ class SearchDialogFragment : MvpAppCompatDialogFragment(), SearchNewsView {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        setHasOptionsMenu(true)
+        dialog.window.attributes.windowAnimations = R.style.DialogAnimation;
     }
 
     override fun onAttach(context: Context?) {
@@ -82,12 +83,22 @@ class SearchDialogFragment : MvpAppCompatDialogFragment(), SearchNewsView {
     }
 
     private fun createMenu() {
+
         toolbar.inflateMenu(R.menu.search)
+        toolbar.setNavigationIcon(R.drawable.ic_back_arrow)
+        toolbar.setNavigationOnClickListener {
+            dismiss()
+        }
 
         val searchAction = toolbar.menu.findItem(R.id.action_search)
         val searchView = searchAction.actionView as SearchView
+        searchView.setIconifiedByDefault(false)
+        searchView.imeOptions = EditorInfo.IME_FLAG_FORCE_ASCII
+        val magImage = searchView
+                .findViewById(android.support.v7.appcompat.R.id.search_mag_icon) as ImageView?
+        magImage?.visibility = View.GONE
+        magImage?.setImageDrawable(null)
 
-        searchView.maxWidth = Integer.MAX_VALUE
         searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String): Boolean {
                 presenter.searchNews(query)
@@ -100,49 +111,9 @@ class SearchDialogFragment : MvpAppCompatDialogFragment(), SearchNewsView {
             }
         })
 
-        searchAction.setOnActionExpandListener(object : MenuItem.OnActionExpandListener {
-            override fun onMenuItemActionExpand(item: MenuItem): Boolean {
-                searchView.imeOptions = EditorInfo.IME_FLAG_FORCE_ASCII
-                return true
-            }
-
-            override fun onMenuItemActionCollapse(item: MenuItem): Boolean {
-                dismiss()
-                return true
-            }
-        })
-    }
-
-    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
-        inflater.inflate(R.menu.search, menu)
-
-        val searchAction = menu.findItem(R.id.action_search)
-        val searchView = searchAction.actionView as SearchView
-
-        searchView.maxWidth = Integer.MAX_VALUE
-        searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
-            override fun onQueryTextSubmit(query: String): Boolean {
-                presenter.searchNews(query)
-                searchView.clearFocus()
-                return true
-            }
-
-            override fun onQueryTextChange(newText: String): Boolean {
-                return false
-            }
-        })
-
-        searchAction.setOnActionExpandListener(object : MenuItem.OnActionExpandListener {
-            override fun onMenuItemActionExpand(item: MenuItem): Boolean {
-                searchView.imeOptions = EditorInfo.IME_FLAG_FORCE_ASCII
-                return true
-            }
-
-            override fun onMenuItemActionCollapse(item: MenuItem): Boolean {
-                dismiss()
-                return true
-            }
-        })
+//        iv_back.setOnClickListener {
+//            dismiss()
+//        }
     }
 
     private fun setUpSwipeRefresh() {
