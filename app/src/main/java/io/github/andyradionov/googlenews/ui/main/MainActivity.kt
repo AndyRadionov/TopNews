@@ -4,6 +4,7 @@ import android.os.Bundle
 import io.github.andyradionov.googlenews.R
 import io.github.andyradionov.googlenews.ui.common.BaseActivity
 import io.github.andyradionov.googlenews.ui.common.BaseFragment
+import io.github.andyradionov.googlenews.ui.headlines.HeadlinesFragment
 import io.github.andyradionov.googlenews.ui.search.SearchDialogFragment
 import io.github.andyradionov.googlenews.ui.topnews.TopNewsFragment
 import kotlinx.android.synthetic.main.activity_main.*
@@ -25,6 +26,11 @@ class MainActivity : BaseActivity() {
                 R.id.action_top_news -> {
                     replaceFragment(TopNewsFragment())
                     setToolbarTitle("Top News")
+                    true
+                }
+                R.id.action_headlines -> {
+                    replaceFragment(HeadlinesFragment())
+                    setToolbarTitle("Headlines")
                     true
                 }
                 else -> false

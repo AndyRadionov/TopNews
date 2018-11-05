@@ -8,14 +8,22 @@ import io.reactivex.schedulers.Schedulers
  */
 class NewsRepository(private val newsApi: NewsApi) {
 
-    fun fetchNews() = newsApi.getTopNews()
-            .subscribeOn(Schedulers.io())
-            .observeOn(AndroidSchedulers.mainThread())
-            .map { it.articles }
+    fun fetchNews() =
+            newsApi.getTopNews()
+                    .subscribeOn(Schedulers.io())
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .map { it.articles }
 
-    fun searchNews(query: String) = newsApi.searchNews(query)
-            .subscribeOn(Schedulers.io())
-            .observeOn(AndroidSchedulers.mainThread())
-            .map { it.articles }
+    fun fetchNewsForHeadline(headline: String) =
+            newsApi.getHeadlinesNews(headline)
+                    .subscribeOn(Schedulers.io())
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .map { it.articles }
+
+    fun searchNews(query: String) =
+            newsApi.searchNews(query)
+                    .subscribeOn(Schedulers.io())
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .map { it.articles }
 
 }

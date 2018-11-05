@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="headlines">
+        <item>главное</item>
+        <item>развлечения</item>
+        <item>спорт</item>
+        <item>технологии</item>
+        <item>наука</item>
+        <item>здоровье</item>
+        <item>бизнес</item>
+    </string-array>
+</resources>
