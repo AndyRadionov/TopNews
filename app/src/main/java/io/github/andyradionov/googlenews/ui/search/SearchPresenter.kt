@@ -4,13 +4,15 @@ import com.arellomobile.mvp.InjectViewState
 import com.arellomobile.mvp.MvpPresenter
 import io.github.andyradionov.googlenews.data.repositories.NewsRepository
 import io.github.andyradionov.googlenews.interactors.NewsInteractor
+import io.github.andyradionov.googlenews.utils.RxComposers
 import io.reactivex.disposables.Disposable
 
 /**
  * @author Andrey Radionov
  */
 @InjectViewState
-class SearchPresenter(private val newsInteractor: NewsInteractor) : MvpPresenter<SearchNewsView>() {
+class SearchPresenter(private val newsInteractor: NewsInteractor,
+                      private val rxComposers: RxComposers) : MvpPresenter<SearchNewsView>() {
 
     private var subscription: Disposable? = null
 
@@ -18,6 +20,7 @@ class SearchPresenter(private val newsInteractor: NewsInteractor) : MvpPresenter
         unsubscribe()
 
         newsInteractor.searchNews(query)
+                .compose(rxComposers.getObservableComposer())
                 .subscribe({ articles ->
                     if (articles.isEmpty()) {
                         viewState.showError()

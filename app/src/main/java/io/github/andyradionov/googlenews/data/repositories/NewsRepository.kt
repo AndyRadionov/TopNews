@@ -1,6 +1,8 @@
 package io.github.andyradionov.googlenews.data.repositories
 
 import io.github.andyradionov.googlenews.data.datasource.remote.NewsApi
+import io.github.andyradionov.googlenews.data.entities.Article
+import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 
@@ -9,22 +11,16 @@ import io.reactivex.schedulers.Schedulers
  */
 class NewsRepository(private val newsApi: NewsApi) {
 
-    fun fetchNews() =
+    fun fetchNews(): Observable<List<Article>> =
             newsApi.getTopNews()
-                    .subscribeOn(Schedulers.io())
-                    .observeOn(AndroidSchedulers.mainThread())
                     .map { it.articles }
 
-    fun fetchNewsForHeadline(headline: String) =
+    fun fetchNewsForHeadline(headline: String): Observable<List<Article>> =
             newsApi.getHeadlinesNews(headline)
-                    .subscribeOn(Schedulers.io())
-                    .observeOn(AndroidSchedulers.mainThread())
                     .map { it.articles }
 
-    fun searchNews(query: String) =
+    fun searchNews(query: String): Observable<List<Article>> =
             newsApi.searchNews(query)
-                    .subscribeOn(Schedulers.io())
-                    .observeOn(AndroidSchedulers.mainThread())
                     .map { it.articles }
 
 }

@@ -9,6 +9,9 @@ import io.github.andyradionov.googlenews.interactors.NewsInteractor
 import io.github.andyradionov.googlenews.ui.headlines.HeadlinesPresenter
 import io.github.andyradionov.googlenews.ui.search.SearchPresenter
 import io.github.andyradionov.googlenews.ui.topnews.TopNewsPresenter
+import io.github.andyradionov.googlenews.utils.RxComposers
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.schedulers.Schedulers
 import javax.inject.Singleton
 
 /**
@@ -16,21 +19,24 @@ import javax.inject.Singleton
  */
 
 @Module
-class AppModule {
+class MainModule {
 
     @NonNull
     @Provides
     @Singleton
-    fun provideTopNewsPresenter(interactor: NewsInteractor) = TopNewsPresenter(interactor)
+    fun provideTopNewsPresenter(interactor: NewsInteractor, rxComposers: RxComposers) =
+            TopNewsPresenter(interactor, rxComposers)
 
     @NonNull
     @Provides
-    fun provideHeadlinesPresenter(interactor: NewsInteractor) = HeadlinesPresenter(interactor)
+    fun provideHeadlinesPresenter(interactor: NewsInteractor, rxComposers: RxComposers) =
+            HeadlinesPresenter(interactor, rxComposers)
 
     @NonNull
     @Provides
     @Singleton
-    fun provideSearchPresenter(interactor: NewsInteractor) = SearchPresenter(interactor)
+    fun provideSearchPresenter(interactor: NewsInteractor, rxComposers: RxComposers) =
+            SearchPresenter(interactor, rxComposers)
 
     @NonNull
     @Provides
@@ -41,4 +47,9 @@ class AppModule {
     @Provides
     @Singleton
     fun provideNewsRepository(newsApi: NewsApi) = NewsRepository(newsApi)
+
+    @NonNull
+    @Provides
+    @Singleton
+    fun provideRxSchedulers() = RxComposers(Schedulers.io(), AndroidSchedulers.mainThread())
 }

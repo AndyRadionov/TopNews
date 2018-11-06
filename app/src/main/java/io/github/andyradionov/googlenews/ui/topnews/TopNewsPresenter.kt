@@ -2,15 +2,16 @@ package io.github.andyradionov.googlenews.ui.topnews
 
 import com.arellomobile.mvp.InjectViewState
 import com.arellomobile.mvp.MvpPresenter
-import io.github.andyradionov.googlenews.data.repositories.NewsRepository
 import io.github.andyradionov.googlenews.interactors.NewsInteractor
+import io.github.andyradionov.googlenews.utils.RxComposers
 import io.reactivex.disposables.Disposable
 
 /**
  * @author Andrey Radionov
  */
 @InjectViewState
-class TopNewsPresenter(private val newsInteractor: NewsInteractor) :
+class TopNewsPresenter(private val newsInteractor: NewsInteractor,
+                       private val rxSchedulers: RxComposers) :
         MvpPresenter<NewsView>() {
 
     private var subscription: Disposable? = null
@@ -19,6 +20,7 @@ class TopNewsPresenter(private val newsInteractor: NewsInteractor) :
         unsubscribe()
 
         newsInteractor.fetchNews()
+                .compose(rxSchedulers.getObservableComposer())
                 .subscribe({ articles ->
                     if (articles.isEmpty()) {
                         viewState.showError()
