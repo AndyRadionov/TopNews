@@ -1,5 +1,6 @@
-package io.github.andyradionov.googlenews.data
+package io.github.andyradionov.googlenews.data.repositories
 
+import io.github.andyradionov.googlenews.data.datasource.remote.NewsApi
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 

@@ -7,7 +7,7 @@ import dagger.Module
 import dagger.Provides
 import io.github.andyradionov.googlenews.BuildConfig
 import io.github.andyradionov.googlenews.app.NewsApp
-import io.github.andyradionov.googlenews.data.NewsApi
+import io.github.andyradionov.googlenews.data.datasource.remote.NewsApi
 import io.github.andyradionov.googlenews.utils.isInternetAvailable
 import okhttp3.Cache
 import okhttp3.CacheControl

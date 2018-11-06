@@ -2,7 +2,7 @@ package io.github.andyradionov.googlenews.ui.headlines
 
 import com.arellomobile.mvp.InjectViewState
 import com.arellomobile.mvp.MvpPresenter
-import io.github.andyradionov.googlenews.data.NewsRepository
+import io.github.andyradionov.googlenews.data.repositories.NewsRepository
 import io.github.andyradionov.googlenews.ui.common.BaseNewsView
 import io.reactivex.disposables.Disposable
 
