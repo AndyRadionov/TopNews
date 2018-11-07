@@ -31,10 +31,6 @@ class NewsBottomSheetDialog : BottomSheetDialogFragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
-        return inflater.inflate(R.layout.fragment_dialog_bottom, container, false)
-    }
-
-    override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         dialog.setOnShowListener { dialog ->
             val d = dialog as BottomSheetDialog
             val bottomSheet = d
@@ -45,7 +41,7 @@ class NewsBottomSheetDialog : BottomSheetDialogFragment() {
                         .state = BottomSheetBehavior.STATE_EXPANDED
             }
         }
-        return dialog
+        return inflater.inflate(R.layout.fragment_dialog_bottom, container, false)
     }
 
     override fun getTheme(): Int {
