@@ -5,6 +5,7 @@ import android.content.Intent
 import com.arellomobile.mvp.MvpAppCompatFragment
 import dagger.android.support.AndroidSupportInjection
 import io.github.andyradionov.googlenews.ui.details.WebViewActivity
+import io.github.andyradionov.googlenews.ui.dialogs.NewsBottomSheetDialog
 import io.github.andyradionov.googlenews.ui.topnews.NewsAdapter
 
 /**
@@ -17,6 +18,12 @@ abstract class BaseFragment : MvpAppCompatFragment() {
             val intent = Intent(activity, WebViewActivity::class.java)
             intent.putExtra(WebViewActivity.ARTICLE_URL_EXTRA, articleUrl)
             startActivity(intent)
+        }
+
+        override fun onOpenDialogClick(articleUrl: String) {
+            NewsBottomSheetDialog
+                    .newInstance()
+                    .show(fragmentManager, NewsBottomSheetDialog.TAG)
         }
     }
 

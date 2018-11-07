@@ -16,6 +16,7 @@ import dagger.android.support.AndroidSupportInjection
 import io.github.andyradionov.googlenews.R
 import io.github.andyradionov.googlenews.data.entities.Article
 import io.github.andyradionov.googlenews.ui.details.WebViewActivity
+import io.github.andyradionov.googlenews.ui.dialogs.NewsBottomSheetDialog
 import io.github.andyradionov.googlenews.ui.topnews.NewsAdapter
 import kotlinx.android.synthetic.main.content_layout.*
 import kotlinx.android.synthetic.main.fragment_search_dialog.*
@@ -37,6 +38,12 @@ class SearchDialogFragment : MvpAppCompatDialogFragment(), SearchNewsView {
             val intent = Intent(activity, WebViewActivity::class.java)
             intent.putExtra(WebViewActivity.ARTICLE_URL_EXTRA, articleUrl)
             startActivity(intent)
+        }
+
+        override fun onOpenDialogClick(articleUrl: String) {
+            NewsBottomSheetDialog
+                    .newInstance()
+                    .show(childFragmentManager, NewsBottomSheetDialog.TAG)
         }
     }
 
@@ -60,7 +67,7 @@ class SearchDialogFragment : MvpAppCompatDialogFragment(), SearchNewsView {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        dialog.window.attributes.windowAnimations = R.style.DialogAnimation;
+        dialog.window.attributes.windowAnimations = R.style.SearchDialogAnimation;
     }
 
     override fun onAttach(context: Context?) {

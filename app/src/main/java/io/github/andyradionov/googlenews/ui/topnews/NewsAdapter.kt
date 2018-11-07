@@ -13,12 +13,13 @@ import kotlinx.android.synthetic.main.item_article.view.*
 /**
  * @author Andrey Radionov
  */
-class NewsAdapter(private val mClickListener: OnArticleClickListener) : RecyclerView.Adapter<NewsAdapter.ArticleViewHolder>() {
+class NewsAdapter(private val clickListener: OnArticleClickListener) : RecyclerView.Adapter<NewsAdapter.ArticleViewHolder>() {
 
     private val mArticles = ArrayList<Article>()
 
     interface OnArticleClickListener {
         fun onClick(articleUrl: String)
+        fun onOpenDialogClick(articleUrl: String)
     }
 
     fun clearData() {
@@ -51,6 +52,7 @@ class NewsAdapter(private val mClickListener: OnArticleClickListener) : Recycler
 
         fun bind(position: Int) {
             itemView.setOnClickListener(this)
+            itemView.iv_open_dialog.setOnClickListener(this)
             val article = mArticles[position]
 
             itemView.tv_article_title.text = article.title
@@ -64,8 +66,11 @@ class NewsAdapter(private val mClickListener: OnArticleClickListener) : Recycler
         }
 
         override fun onClick(v: View) {
-            val url = mArticles[adapterPosition].url
-            if (url != null) mClickListener.onClick(url)
+            val url = mArticles[adapterPosition].url ?: return
+            when(v) {
+                itemView.iv_open_dialog -> clickListener.onOpenDialogClick(url)
+                else -> clickListener.onClick(url)
+            }
         }
     }
 }
