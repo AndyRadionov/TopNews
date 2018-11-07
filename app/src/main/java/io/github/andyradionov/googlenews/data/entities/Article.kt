@@ -1,11 +1,16 @@
 package io.github.andyradionov.googlenews.data.entities
 
+import android.arch.persistence.room.Entity
+import android.arch.persistence.room.PrimaryKey
 import java.util.*
 
-data class Article(var publishedAt: Date? = null,
-                   var author: Any? = null,
-                   var urlToImage: String? = null,
-                   var description: String? = null,
-                   var title: String? = null,
-                   var url: String? = null,
+@Entity(tableName = "articles")
+data class Article(@PrimaryKey(autoGenerate = true)
+                   var articleId: Int,
+                   val publishedAt: Date?,
+                   val author: String?,
+                   val urlToImage: String?,
+                   val description: String?,
+                   val title: String?,
+                   val url: String?,
                    var isFavourite: Boolean = false)
