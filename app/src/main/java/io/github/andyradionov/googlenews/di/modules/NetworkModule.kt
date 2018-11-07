@@ -1,12 +1,12 @@
 package io.github.andyradionov.googlenews.di.modules
 
+import android.app.Application
 import android.support.annotation.NonNull
 import android.util.Log
 import com.google.gson.Gson
 import dagger.Module
 import dagger.Provides
 import io.github.andyradionov.googlenews.BuildConfig
-import io.github.andyradionov.googlenews.app.NewsApp
 import io.github.andyradionov.googlenews.data.datasource.remote.NewsApi
 import io.github.andyradionov.googlenews.utils.isInternetAvailable
 import okhttp3.Cache
@@ -24,7 +24,7 @@ import javax.inject.Singleton
  * @author Andrey Radionov
  */
 @Module
-class NetworkModule(private val newsApp: NewsApp) {
+class NetworkModule() {
 
     @NonNull
     @Provides
@@ -43,12 +43,12 @@ class NetworkModule(private val newsApp: NewsApp) {
     @NonNull
     @Provides
     @Singleton
-    fun provideOkHttp(): OkHttpClient {
+    fun provideOkHttp(app: Application): OkHttpClient {
         return OkHttpClient.Builder()
                 .addInterceptor(initApiKeyInterceptor())
-                .addInterceptor(initOfflineCacheInterceptor())
+                .addInterceptor(initOfflineCacheInterceptor(app))
                 .addNetworkInterceptor(initCacheInterceptor())
-                .cache(initCache())
+                .cache(initCache(app))
                 .build()
     }
 
@@ -67,10 +67,10 @@ class NetworkModule(private val newsApp: NewsApp) {
         }
     }
 
-    private fun initCache(): Cache? {
+    private fun initCache(app: Application): Cache? {
         var cache: Cache? = null
         try {
-            cache = Cache(File(newsApp.cacheDir, "http-cache"),
+            cache = Cache(File(app.cacheDir, "http-cache"),
                     (10 * 1024 * 1024).toLong()) // 10 MB
         } catch (e: Exception) {
             Log.e(TAG, "Could not create Cache!")
@@ -98,11 +98,11 @@ class NetworkModule(private val newsApp: NewsApp) {
         }
     }
 
-    private fun initOfflineCacheInterceptor(): Interceptor {
+    private fun initOfflineCacheInterceptor(app: Application): Interceptor {
         return Interceptor { chain ->
             var request = chain.request()
 
-            if (!isInternetAvailable(newsApp)) {
+            if (!isInternetAvailable(app)) {
                 val cacheControl = CacheControl.Builder()
                         .maxStale(7, TimeUnit.DAYS)
                         .build()

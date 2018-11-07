@@ -19,7 +19,7 @@ import javax.inject.Singleton
  */
 
 @Module
-class MainModule {
+class AppModule {
 
     @NonNull
     @Provides
