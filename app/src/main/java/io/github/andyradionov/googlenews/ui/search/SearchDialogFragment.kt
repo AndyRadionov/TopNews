@@ -15,7 +15,7 @@ import com.arellomobile.mvp.presenter.ProvidePresenter
 import dagger.android.support.AndroidSupportInjection
 import io.github.andyradionov.googlenews.R
 import io.github.andyradionov.googlenews.data.entities.Article
-import io.github.andyradionov.googlenews.ui.details.WebViewActivity
+import io.github.andyradionov.googlenews.ui.details.DetailsWebViewActivity
 import io.github.andyradionov.googlenews.ui.dialogs.NewsBottomSheetDialog
 import io.github.andyradionov.googlenews.ui.topnews.NewsAdapter
 import kotlinx.android.synthetic.main.content_layout.*
@@ -35,8 +35,8 @@ class SearchDialogFragment : MvpAppCompatDialogFragment(), SearchNewsView {
 
     protected val onArticleClickListener = object : NewsAdapter.OnArticleClickListener {
         override fun onClick(articleUrl: String) {
-            val intent = Intent(activity, WebViewActivity::class.java)
-            intent.putExtra(WebViewActivity.ARTICLE_URL_EXTRA, articleUrl)
+            val intent = Intent(activity, DetailsWebViewActivity::class.java)
+            intent.putExtra(DetailsWebViewActivity.ARTICLE_URL_EXTRA, articleUrl)
             startActivity(intent)
         }
 

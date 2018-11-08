@@ -3,6 +3,7 @@ package io.github.andyradionov.googlenews.ui.details
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.util.Log
+import android.view.Menu
 import android.view.MenuItem
 import android.webkit.WebResourceRequest
 import android.webkit.WebView
@@ -12,10 +13,10 @@ import io.github.andyradionov.googlenews.R
 /**
  * @author Andrey Radionov
  */
-class WebViewActivity: AppCompatActivity() {
+class DetailsWebViewActivity: AppCompatActivity() {
 
     companion object {
-        private val TAG = WebViewActivity::class.java.simpleName
+        private val TAG = DetailsWebViewActivity::class.java.simpleName
 
         const val ARTICLE_URL_EXTRA = "article_url_extra"
     }
@@ -44,6 +45,12 @@ class WebViewActivity: AppCompatActivity() {
         mWebView?.loadUrl(siteUrl)
 
         setContentView(mWebView)
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.details, menu);
+        var a:Boolean? = false
+        return true
     }
 
     override fun onOptionsItemSelected(menuItem: MenuItem): Boolean {
