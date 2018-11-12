@@ -1,5 +1,5 @@
 # GoogleNews
-Android Sample News App. Kotlin+Dagger+MVP test
+Android Sample News App. Kotlin+Dagger+MVP
 
 Work in progress.
 
