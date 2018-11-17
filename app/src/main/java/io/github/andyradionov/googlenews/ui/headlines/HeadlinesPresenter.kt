@@ -20,7 +20,7 @@ class HeadlinesPresenter(private val newsInteractor: NewsInteractor,
     fun fetchNewsForHeadline(headline: String) {
         unsubscribe()
 
-        newsInteractor.fetchNewsForHeadline(headline)
+        subscription = newsInteractor.fetchNewsForHeadline(headline)
                 .compose(rxComposers.getObservableComposer())
                 .subscribe({ articles ->
                     if (articles.isEmpty()) {
