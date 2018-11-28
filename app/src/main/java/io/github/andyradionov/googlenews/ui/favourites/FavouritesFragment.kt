@@ -5,10 +5,21 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.arellomobile.mvp.presenter.InjectPresenter
+import com.arellomobile.mvp.presenter.PresenterType
+import com.arellomobile.mvp.presenter.ProvidePresenter
 import io.github.andyradionov.googlenews.R
 import io.github.andyradionov.googlenews.ui.common.BaseFragment
+import io.github.andyradionov.googlenews.ui.headlines.HeadlinesPresenter
+import javax.inject.Inject
 
-class FavouritesFragment : BaseFragment() {
+class FavouritesFragment : BaseFragment(), FavouritesView {
+
+    @Inject
+    lateinit var presenter: FavouritesPresenter
+
+    @ProvidePresenter
+    fun providePresenter(): FavouritesPresenter = presenter
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {

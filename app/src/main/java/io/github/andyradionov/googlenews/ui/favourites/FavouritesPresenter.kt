@@ -1,7 +1,11 @@
 package io.github.andyradionov.googlenews.ui.favourites
 
+import com.arellomobile.mvp.InjectViewState
+import com.arellomobile.mvp.MvpPresenter
+
 /**
  * @author Andrey Radionov
  */
-class FavouritesPresenter {
+@InjectViewState
+class FavouritesPresenter: MvpPresenter<FavouritesView>() {
 }
