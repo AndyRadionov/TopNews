@@ -19,14 +19,13 @@ class TopNewsPresenter(private val newsInteractor: NewsInteractor,
     fun fetchNews() {
         unsubscribe()
 
-        newsInteractor.fetchNews()
+        subscription = newsInteractor.fetchNews()
                 .compose(rxSchedulers.getObservableComposer())
                 .subscribe({ articles ->
                     if (articles.isEmpty()) {
                         viewState.showError()
                     } else {
                         viewState.showNews(articles)
-
                     }
                 }, {
                     viewState.showError()
