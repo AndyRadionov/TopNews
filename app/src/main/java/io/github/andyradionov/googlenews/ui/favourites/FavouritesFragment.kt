@@ -27,6 +27,11 @@ class FavouritesFragment : BaseFragment(), FavouritesView {
         return inflater.inflate(R.layout.fragment_favourites, container, false)
     }
 
+    override fun onResume() {
+        super.onResume()
+        presenter.
+    }
+
     override fun onAttach(context: Context) {
         super.onAttach(context)
     }

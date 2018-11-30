@@ -6,20 +6,21 @@ import io.github.andyradionov.googlenews.data.repositories.NewsRepository
 import io.github.andyradionov.googlenews.interactors.NewsInteractor
 import io.github.andyradionov.googlenews.utils.RxComposers
 import io.reactivex.disposables.Disposable
+import javax.inject.Inject
 
 /**
  * @author Andrey Radionov
  */
 @InjectViewState
-class SearchPresenter(private val newsInteractor: NewsInteractor,
-                      private val rxComposers: RxComposers) : MvpPresenter<SearchNewsView>() {
+class SearchPresenter @Inject constructor(private val newsInteractor: NewsInteractor,
+                                          private val rxComposers: RxComposers) : MvpPresenter<SearchNewsView>() {
 
     private var subscription: Disposable? = null
 
     fun searchNews(query: String) {
         unsubscribe()
 
-        newsInteractor.searchNews(query)
+        subscription = newsInteractor.searchNews(query)
                 .compose(rxComposers.getObservableComposer())
                 .subscribe({ articles ->
                     if (articles.isEmpty()) {
