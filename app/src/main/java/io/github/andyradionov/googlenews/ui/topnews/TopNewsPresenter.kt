@@ -15,12 +15,12 @@ class TopNewsPresenter @Inject constructor(private val newsInteractor: NewsInter
                                            private val rxSchedulers: RxComposers) :
         MvpPresenter<NewsView>() {
 
-    private var subscription: Disposable? = null
+    private var disposable: Disposable? = null
 
     fun fetchNews() {
         unsubscribe()
 
-        subscription = newsInteractor.fetchNews()
+        disposable = newsInteractor.fetchNews()
                 .compose(rxSchedulers.getObservableComposer())
                 .subscribe({ articles ->
                     if (articles.isEmpty()) {
@@ -39,9 +39,9 @@ class TopNewsPresenter @Inject constructor(private val newsInteractor: NewsInter
     }
 
     fun unsubscribe() {
-        if (subscription?.isDisposed == true) {
-            subscription?.dispose()
-            subscription = null
+        if (disposable?.isDisposed == true) {
+            disposable?.dispose()
+            disposable = null
         }
     }
 }
