@@ -29,7 +29,6 @@ class FavouritesFragment : BaseFragment(), FavouritesView {
 
     override fun onResume() {
         super.onResume()
-        presenter.
     }
 
     override fun onAttach(context: Context) {

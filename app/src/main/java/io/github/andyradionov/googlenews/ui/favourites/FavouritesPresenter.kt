@@ -10,8 +10,10 @@ import javax.inject.Inject
  * @author Andrey Radionov
  */
 @InjectViewState
-class FavouritesPresenter @Inject constructor(private val newsInteractor: NewsInteractor,
-                                              private val rxSchedulers: RxComposers): MvpPresenter<FavouritesView>() {
+class FavouritesPresenter @Inject constructor(
+        private val newsInteractor: NewsInteractor,
+        private val rxSchedulers: RxComposers)
+    : MvpPresenter<FavouritesView>() {
 
     fun loadFavourites() {
 

@@ -11,8 +11,10 @@ import javax.inject.Inject
  * @author Andrey Radionov
  */
 @InjectViewState
-class SearchPresenter @Inject constructor(private val newsInteractor: NewsInteractor,
-                                          private val rxComposers: RxComposers) : MvpPresenter<SearchNewsView>() {
+class SearchPresenter @Inject constructor(
+        private val newsInteractor: NewsInteractor,
+        private val rxComposers: RxComposers)
+    : MvpPresenter<SearchNewsView>() {
 
     private var disposable: Disposable? = null
 

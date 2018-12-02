@@ -12,8 +12,9 @@ import javax.inject.Inject
  * @author Andrey Radionov
  */
 @InjectViewState
-class HeadlinesPresenter @Inject constructor(private val newsInteractor: NewsInteractor,
-                                             private val rxComposers: RxComposers) :
+class HeadlinesPresenter @Inject constructor(
+        private val newsInteractor: NewsInteractor,
+        private val rxComposers: RxComposers) :
         MvpPresenter<BaseNewsView>() {
 
     private var disposable: Disposable? = null
