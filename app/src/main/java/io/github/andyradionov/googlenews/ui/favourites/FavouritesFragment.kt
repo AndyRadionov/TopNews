@@ -31,8 +31,4 @@ class FavouritesFragment : BaseFragment(), FavouritesView {
         super.onResume()
         presenter.loadFavourites()
     }
-
-    override fun onAttach(context: Context) {
-        super.onAttach(context)
-    }
 }
