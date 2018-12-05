@@ -16,6 +16,7 @@ import javax.inject.Inject
 class FavouritesFragment : BaseFragment(), FavouritesView {
 
     @Inject
+    @InjectPresenter
     lateinit var presenter: FavouritesPresenter
 
     @ProvidePresenter
