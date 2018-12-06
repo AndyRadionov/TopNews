@@ -9,11 +9,13 @@ import com.arellomobile.mvp.presenter.InjectPresenter
 import com.arellomobile.mvp.presenter.PresenterType
 import com.arellomobile.mvp.presenter.ProvidePresenter
 import io.github.andyradionov.googlenews.R
+import io.github.andyradionov.googlenews.data.entities.Article
 import io.github.andyradionov.googlenews.ui.common.BaseFragment
+import io.github.andyradionov.googlenews.ui.common.BaseNewsView
 import io.github.andyradionov.googlenews.ui.headlines.HeadlinesPresenter
 import javax.inject.Inject
 
-class FavouritesFragment : BaseFragment(), FavouritesView {
+class FavouritesFragment : BaseFragment(), BaseNewsView {
 
     @Inject
     @InjectPresenter
@@ -31,5 +33,17 @@ class FavouritesFragment : BaseFragment(), FavouritesView {
     override fun onResume() {
         super.onResume()
         presenter.loadFavourites()
+    }
+
+    override fun showNews(articles: List<Article>) {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
+
+    override fun showError() {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
+
+    override fun showLoading() {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 }
