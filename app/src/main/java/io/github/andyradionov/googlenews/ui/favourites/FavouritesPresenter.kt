@@ -18,14 +18,20 @@ class FavouritesPresenter @Inject constructor(
     : MvpPresenter<BaseNewsView>() {
 
     fun loadFavourites() {
-
+        newsInteractor.getFavourites()
+                .compose(rxSchedulers.getFlowableComposer())
+                .subscribe(/*todo*/)
     }
 
     fun addToFavourites(article: Article) {
-
+        newsInteractor.addToFavourites(article)
+                .compose(rxSchedulers.getCompletableComposer())
+                .subscribe(/*todo*/)
     }
 
     fun removeFromFavourites(articleId: Int) {
-
+        newsInteractor.removeFromFavourites(articleId)
+                .compose(rxSchedulers.getCompletableComposer())
+                .subscribe(/*todo*/)
     }
 }

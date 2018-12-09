@@ -3,6 +3,7 @@ package io.github.andyradionov.googlenews.data.repositories
 import io.github.andyradionov.googlenews.data.datasource.local.NewsDao
 import io.github.andyradionov.googlenews.data.datasource.remote.NewsApi
 import io.github.andyradionov.googlenews.data.entities.Article
+import io.reactivex.Completable
 import io.reactivex.Observable
 
 /**
@@ -25,7 +26,14 @@ class NewsRepository(private val newsApi: NewsApi,
 
     fun getFavourites() = newsDao.getFavouriteNews()
 
-    fun addToFavourites(article: Article) = newsDao.addToFavourites(article)
+    fun addToFavourites(article: Article): Completable =
+        Completable.fromAction {
+            newsDao.addToFavourites(article)
+        }
 
-    fun removeFromFavourites(articleId: Int) = newsDao.removeFromFavouritesById(articleId)
+
+    fun removeFromFavourites(articleId: Int): Completable =
+        Completable.fromAction {
+            newsDao.removeFromFavouritesById(articleId)
+        }
 }
