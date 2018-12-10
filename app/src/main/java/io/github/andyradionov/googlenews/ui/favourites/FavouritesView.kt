@@ -9,4 +9,8 @@ import io.github.andyradionov.googlenews.data.entities.Article
 interface FavouritesView: MvpView {
 
     fun showFavourites(articles: List<Article>)
+
+    fun onFavouriteRemove(position: Int)
+
+    fun onLoadError()
 }

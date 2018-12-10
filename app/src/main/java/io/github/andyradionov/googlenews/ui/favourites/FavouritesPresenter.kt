@@ -2,10 +2,9 @@ package io.github.andyradionov.googlenews.ui.favourites
 
 import com.arellomobile.mvp.InjectViewState
 import com.arellomobile.mvp.MvpPresenter
-import io.github.andyradionov.googlenews.data.entities.Article
 import io.github.andyradionov.googlenews.interactors.NewsInteractor
-import io.github.andyradionov.googlenews.ui.common.BaseNewsView
 import io.github.andyradionov.googlenews.utils.RxComposers
+import io.reactivex.disposables.Disposable
 import javax.inject.Inject
 
 /**
@@ -15,23 +14,31 @@ import javax.inject.Inject
 class FavouritesPresenter @Inject constructor(
         private val newsInteractor: NewsInteractor,
         private val rxSchedulers: RxComposers)
-    : MvpPresenter<BaseNewsView>() {
+    : MvpPresenter<FavouritesView>() {
+
+    private var disposable: Disposable? = null
 
     fun loadFavourites() {
-        newsInteractor.getFavourites()
+        disposable?.dispose()
+        disposable = newsInteractor.getFavourites()
                 .compose(rxSchedulers.getFlowableComposer())
-                .subscribe(/*todo*/)
+                .subscribe({articles ->
+                    if (articles.isEmpty()) {
+                        viewState.onLoadError()
+                    } else {
+                        viewState.showFavourites(articles)
+                    }
+                }, {
+                    viewState.onLoadError()
+                })
     }
 
-    fun addToFavourites(article: Article) {
-        newsInteractor.addToFavourites(article)
+    fun removeFromFavourites(articleId: Int, position: Int) {
+        disposable?.dispose()
+        disposable = newsInteractor.removeFromFavourites(articleId)
                 .compose(rxSchedulers.getCompletableComposer())
-                .subscribe(/*todo*/)
-    }
-
-    fun removeFromFavourites(articleId: Int) {
-        newsInteractor.removeFromFavourites(articleId)
-                .compose(rxSchedulers.getCompletableComposer())
-                .subscribe(/*todo*/)
+                .subscribe {
+                    viewState.onFavouriteRemove(position)
+                }
     }
 }
