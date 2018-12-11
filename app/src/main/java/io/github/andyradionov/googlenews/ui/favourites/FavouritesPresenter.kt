@@ -24,12 +24,12 @@ class FavouritesPresenter @Inject constructor(
                 .compose(rxSchedulers.getFlowableComposer())
                 .subscribe({articles ->
                     if (articles.isEmpty()) {
-                        viewState.onLoadError()
+                        viewState.showError()
                     } else {
-                        viewState.showFavourites(articles)
+                        viewState.showNews(articles)
                     }
                 }, {
-                    viewState.onLoadError()
+                    viewState.showError()
                 })
     }
 

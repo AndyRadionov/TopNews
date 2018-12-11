@@ -1,16 +1,11 @@
 package io.github.andyradionov.googlenews.ui.favourites
 
-import com.arellomobile.mvp.MvpView
-import io.github.andyradionov.googlenews.data.entities.Article
+import io.github.andyradionov.googlenews.ui.common.BaseNewsView
 
 /**
  * @author Andrey Radionov
  */
-interface FavouritesView: MvpView {
-
-    fun showFavourites(articles: List<Article>)
+interface FavouritesView: BaseNewsView {
 
     fun onFavouriteRemove(position: Int)
-
-    fun onLoadError()
 }

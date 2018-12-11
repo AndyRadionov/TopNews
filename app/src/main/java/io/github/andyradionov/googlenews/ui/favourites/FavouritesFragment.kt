@@ -1,21 +1,17 @@
 package io.github.andyradionov.googlenews.ui.favourites
 
-import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.arellomobile.mvp.presenter.InjectPresenter
-import com.arellomobile.mvp.presenter.PresenterType
 import com.arellomobile.mvp.presenter.ProvidePresenter
 import io.github.andyradionov.googlenews.R
 import io.github.andyradionov.googlenews.data.entities.Article
 import io.github.andyradionov.googlenews.ui.common.BaseFragment
-import io.github.andyradionov.googlenews.ui.common.BaseNewsView
-import io.github.andyradionov.googlenews.ui.headlines.HeadlinesPresenter
 import javax.inject.Inject
 
-class FavouritesFragment : BaseFragment(), BaseNewsView {
+class FavouritesFragment : BaseFragment(), FavouritesView {
 
     @Inject
     @InjectPresenter
@@ -44,6 +40,10 @@ class FavouritesFragment : BaseFragment(), BaseNewsView {
     }
 
     override fun showLoading() {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
+
+    override fun onFavouriteRemove(position: Int) {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 }
