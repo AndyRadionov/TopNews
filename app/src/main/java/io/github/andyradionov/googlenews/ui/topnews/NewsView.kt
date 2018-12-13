@@ -8,8 +8,5 @@ import io.github.andyradionov.googlenews.data.entities.Article
  */
 
 interface NewsView : MvpView {
-
-    fun showNews(articles: List<Article>)
-    fun showError()
-    fun showLoading()
+    //todo remove interface
 }

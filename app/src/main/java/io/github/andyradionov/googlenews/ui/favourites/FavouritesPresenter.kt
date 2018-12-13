@@ -1,10 +1,8 @@
 package io.github.andyradionov.googlenews.ui.favourites
 
 import com.arellomobile.mvp.InjectViewState
-import com.arellomobile.mvp.MvpPresenter
 import io.github.andyradionov.googlenews.interactors.NewsInteractor
-import io.github.andyradionov.googlenews.utils.RxComposers
-import io.reactivex.disposables.Disposable
+import io.github.andyradionov.googlenews.ui.common.BasePresenter
 import javax.inject.Inject
 
 /**
@@ -12,17 +10,14 @@ import javax.inject.Inject
  */
 @InjectViewState
 class FavouritesPresenter @Inject constructor(
-        private val newsInteractor: NewsInteractor,
-        private val rxSchedulers: RxComposers)
-    : MvpPresenter<FavouritesView>() {
-
-    private var disposable: Disposable? = null
+        private val newsInteractor: NewsInteractor) :
+        BasePresenter<FavouritesView>() {
 
     fun loadFavourites() {
-        disposable?.dispose()
+        if (checkNotConnected()) return
         disposable = newsInteractor.getFavourites()
-                .compose(rxSchedulers.getFlowableComposer())
-                .subscribe({articles ->
+                .compose(rxComposers.getFlowableComposer())
+                .subscribe({ articles ->
                     if (articles.isEmpty()) {
                         viewState.showError()
                     } else {
@@ -34,9 +29,9 @@ class FavouritesPresenter @Inject constructor(
     }
 
     fun removeFromFavourites(articleId: Int, position: Int) {
-        disposable?.dispose()
+        if (checkNotConnected()) return
         disposable = newsInteractor.removeFromFavourites(articleId)
-                .compose(rxSchedulers.getCompletableComposer())
+                .compose(rxComposers.getCompletableComposer())
                 .subscribe {
                     viewState.onFavouriteRemove(position)
                 }

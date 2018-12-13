@@ -3,6 +3,7 @@ package io.github.andyradionov.googlenews.ui.search
 import com.arellomobile.mvp.InjectViewState
 import com.arellomobile.mvp.MvpPresenter
 import io.github.andyradionov.googlenews.interactors.NewsInteractor
+import io.github.andyradionov.googlenews.ui.common.BasePresenter
 import io.github.andyradionov.googlenews.utils.RxComposers
 import io.reactivex.disposables.Disposable
 import javax.inject.Inject
@@ -12,15 +13,11 @@ import javax.inject.Inject
  */
 @InjectViewState
 class SearchPresenter @Inject constructor(
-        private val newsInteractor: NewsInteractor,
-        private val rxComposers: RxComposers)
-    : MvpPresenter<SearchNewsView>() {
-
-    private var disposable: Disposable? = null
+        private val newsInteractor: NewsInteractor) :
+        BasePresenter<SearchNewsView>() {
 
     fun searchNews(query: String) {
-        unsubscribe()
-
+        if (checkNotConnected()) return
         disposable = newsInteractor.searchNews(query)
                 .compose(rxComposers.getObservableComposer())
                 .subscribe({ articles ->
@@ -32,17 +29,5 @@ class SearchPresenter @Inject constructor(
                 }, {
                     viewState.showError()
                 })
-    }
-
-    override fun onDestroy() {
-        super.onDestroy()
-        unsubscribe()
-    }
-
-    fun unsubscribe() {
-        if (disposable?.isDisposed == true) {
-            disposable?.dispose()
-            disposable = null
-        }
     }
 }

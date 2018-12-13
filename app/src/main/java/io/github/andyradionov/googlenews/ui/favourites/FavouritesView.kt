@@ -1,6 +1,6 @@
 package io.github.andyradionov.googlenews.ui.favourites
 
-import io.github.andyradionov.googlenews.ui.common.BaseNewsView
+import io.github.andyradionov.googlenews.ui.common.views.BaseNewsView
 
 /**
  * @author Andrey Radionov

@@ -1,9 +1,10 @@
 package io.github.andyradionov.googlenews.ui.search
 
-import io.github.andyradionov.googlenews.ui.common.BaseNewsView
+import io.github.andyradionov.googlenews.ui.common.views.BaseNewsView
 
 /**
  * @author Andrey Radionov
  */
 interface SearchNewsView : BaseNewsView {
+    //todo remove interface
 }

@@ -7,11 +7,12 @@ import dagger.android.support.AndroidSupportInjection
 import io.github.andyradionov.googlenews.ui.details.DetailsWebViewActivity
 import io.github.andyradionov.googlenews.ui.dialogs.NewsBottomSheetDialog
 import io.github.andyradionov.googlenews.ui.common.adapter.NewsAdapter
+import io.github.andyradionov.googlenews.ui.common.views.BaseView
 
 /**
  * @author Andrey Radionov
  */
-abstract class BaseFragment : MvpAppCompatFragment() {
+abstract class BaseFragment : MvpAppCompatFragment(), BaseView {
 
     protected val onArticleClickListener = object : NewsAdapter.OnArticleClickListener {
         override fun onClick(articleUrl: String) {
@@ -29,5 +30,9 @@ abstract class BaseFragment : MvpAppCompatFragment() {
     override fun onAttach(context: Context) {
         AndroidSupportInjection.inject(this)
         super.onAttach(context)
+    }
+
+    override fun showNotConnected() {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 }
