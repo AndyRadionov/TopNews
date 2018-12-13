@@ -18,6 +18,7 @@ import io.github.andyradionov.googlenews.data.entities.Article
 import io.github.andyradionov.googlenews.ui.details.DetailsWebViewActivity
 import io.github.andyradionov.googlenews.ui.dialogs.NewsBottomSheetDialog
 import io.github.andyradionov.googlenews.ui.topnews.NewsAdapter
+import io.github.andyradionov.googlenews.utils.EMPTY_QUERY
 import kotlinx.android.synthetic.main.content_layout.*
 import kotlinx.android.synthetic.main.fragment_search_dialog.*
 import javax.inject.Inject
@@ -41,8 +42,7 @@ class SearchDialogFragment : MvpAppCompatDialogFragment(), SearchNewsView {
         }
 
         override fun onOpenDialogClick(articleUrl: String) {
-            NewsBottomSheetDialog
-                    .newInstance()
+            NewsBottomSheetDialog()
                     .show(childFragmentManager, NewsBottomSheetDialog.TAG)
         }
     }
@@ -153,6 +153,5 @@ class SearchDialogFragment : MvpAppCompatDialogFragment(), SearchNewsView {
 
     companion object {
         val TAG = SearchDialogFragment::class.java.simpleName
-        private const val EMPTY_QUERY = ""
     }
 }

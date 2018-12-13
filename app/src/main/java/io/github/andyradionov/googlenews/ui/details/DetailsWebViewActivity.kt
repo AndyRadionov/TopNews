@@ -49,8 +49,7 @@ class DetailsWebViewActivity: AppCompatActivity() {
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.details, menu);
-        var a:Boolean? = false
-        return true
+        return super.onCreateOptionsMenu(menu)
     }
 
     override fun onOptionsItemSelected(menuItem: MenuItem): Boolean {

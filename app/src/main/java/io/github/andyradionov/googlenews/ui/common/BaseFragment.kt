@@ -21,8 +21,7 @@ abstract class BaseFragment : MvpAppCompatFragment() {
         }
 
         override fun onOpenDialogClick(articleUrl: String) {
-            NewsBottomSheetDialog
-                    .newInstance()
+            NewsBottomSheetDialog()
                     .show(fragmentManager, NewsBottomSheetDialog.TAG)
         }
     }
