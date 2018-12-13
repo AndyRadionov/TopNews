@@ -6,7 +6,7 @@ import com.arellomobile.mvp.MvpAppCompatFragment
 import dagger.android.support.AndroidSupportInjection
 import io.github.andyradionov.googlenews.ui.details.DetailsWebViewActivity
 import io.github.andyradionov.googlenews.ui.dialogs.NewsBottomSheetDialog
-import io.github.andyradionov.googlenews.ui.topnews.NewsAdapter
+import io.github.andyradionov.googlenews.ui.common.adapter.NewsAdapter
 
 /**
  * @author Andrey Radionov

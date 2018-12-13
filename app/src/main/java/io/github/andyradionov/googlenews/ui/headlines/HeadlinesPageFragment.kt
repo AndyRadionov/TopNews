@@ -1,7 +1,6 @@
 package io.github.andyradionov.googlenews.ui.headlines
 
 import android.os.Bundle
-import android.support.v4.app.Fragment
 import android.support.v7.widget.GridLayoutManager
 import android.view.LayoutInflater
 import android.view.View
@@ -13,7 +12,7 @@ import io.github.andyradionov.googlenews.R
 import io.github.andyradionov.googlenews.data.entities.Article
 import io.github.andyradionov.googlenews.ui.common.BaseFragment
 import io.github.andyradionov.googlenews.ui.common.BaseNewsView
-import io.github.andyradionov.googlenews.ui.topnews.NewsAdapter
+import io.github.andyradionov.googlenews.ui.common.adapter.NewsAdapter
 import kotlinx.android.synthetic.main.content_layout.*
 import javax.inject.Inject
 
@@ -61,11 +60,10 @@ class HeadlinesPageFragment : BaseFragment(), BaseNewsView {
 
     override fun showError() {
         setVisibility(empty = true)
-        newsAdapter.clearData()
     }
 
     override fun showLoading() {
-        setVisibility(container = false, loading = true)
+        setVisibility(loading = true)
     }
 
     private fun setUpSwipeRefresh() {
@@ -89,10 +87,12 @@ class HeadlinesPageFragment : BaseFragment(), BaseNewsView {
                               loading: Boolean = false,
                               empty: Boolean = false) {
 
-        rv_news_container.visibility = if (container) View.VISIBLE else View.INVISIBLE
         swipe_container.isRefreshing = loading
-        tv_empty_view.visibility = if (empty) View.VISIBLE else View.INVISIBLE
+        rv_news_container.visibility = getVisibility(container)
+        tv_empty_view.visibility = getVisibility(empty)
     }
+
+    private fun getVisibility(isVisible: Boolean) = if (isVisible) View.VISIBLE else View.INVISIBLE
 
     private fun loadNews() {
         showLoading()

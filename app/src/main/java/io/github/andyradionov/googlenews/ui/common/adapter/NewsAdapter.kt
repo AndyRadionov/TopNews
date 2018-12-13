@@ -1,5 +1,6 @@
-package io.github.andyradionov.googlenews.ui.topnews
+package io.github.andyradionov.googlenews.ui.common.adapter
 
+import android.support.v7.recyclerview.extensions.AsyncListDiffer
 import android.support.v7.widget.CardView
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
@@ -15,22 +16,15 @@ import kotlinx.android.synthetic.main.item_article.view.*
  */
 class NewsAdapter(private val clickListener: OnArticleClickListener) : RecyclerView.Adapter<NewsAdapter.ArticleViewHolder>() {
 
-    private val mArticles = ArrayList<Article>()
+    private val differ = AsyncListDiffer(this, ArticlesDiffCallback())
 
     interface OnArticleClickListener {
         fun onClick(articleUrl: String)
         fun onOpenDialogClick(articleUrl: String)
     }
 
-    fun clearData() {
-        mArticles.clear()
-        notifyDataSetChanged()
-    }
-
     fun updateData(articles: List<Article>) {
-        mArticles.clear()
-        mArticles.addAll(articles)
-        notifyDataSetChanged()
+        differ.submitList(articles)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ArticleViewHolder {
@@ -44,7 +38,7 @@ class NewsAdapter(private val clickListener: OnArticleClickListener) : RecyclerV
     }
 
     override fun getItemCount(): Int {
-        return mArticles.size
+        return differ.currentList.size
     }
 
     inner class ArticleViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView),
@@ -53,7 +47,7 @@ class NewsAdapter(private val clickListener: OnArticleClickListener) : RecyclerV
         fun bind(position: Int) {
             itemView.setOnClickListener(this)
             itemView.iv_open_dialog.setOnClickListener(this)
-            val article = mArticles[position]
+            val article = differ.currentList[position]
 
             itemView.tv_article_title.text = article.title
 
@@ -66,7 +60,7 @@ class NewsAdapter(private val clickListener: OnArticleClickListener) : RecyclerV
         }
 
         override fun onClick(v: View) {
-            val url = mArticles[adapterPosition].url ?: return
+            val url = differ.currentList[adapterPosition].url ?: return
             when(v) {
                 itemView.iv_open_dialog -> clickListener.onOpenDialogClick(url)
                 else -> clickListener.onClick(url)
