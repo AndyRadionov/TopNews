@@ -11,11 +11,12 @@ import io.github.andyradionov.googlenews.R
 import io.github.andyradionov.googlenews.data.entities.Article
 import io.github.andyradionov.googlenews.ui.common.BaseFragment
 import io.github.andyradionov.googlenews.ui.common.adapter.NewsAdapter
+import io.github.andyradionov.googlenews.ui.common.views.BaseNewsAddFavView
 import io.github.andyradionov.googlenews.ui.common.views.BaseNewsView
 import kotlinx.android.synthetic.main.fragment_top_news.*
 import javax.inject.Inject
 
-class TopNewsFragment : BaseFragment(), BaseNewsView {
+class TopNewsFragment : BaseFragment(), BaseNewsAddFavView {
 
     @Inject
     @InjectPresenter
@@ -56,6 +57,10 @@ class TopNewsFragment : BaseFragment(), BaseNewsView {
 
     override fun showLoading() {
         setVisibility(container = false, loading = true)
+    }
+
+    override fun onFavouriteAdded() {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 
     private fun setUpSwipeRefresh() {

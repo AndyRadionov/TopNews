@@ -20,7 +20,7 @@ class NewsAdapter(private val clickListener: OnArticleClickListener) : RecyclerV
 
     interface OnArticleClickListener {
         fun onClick(articleUrl: String)
-        fun onOpenDialogClick(articleUrl: String)
+        fun onOpenDialogClick(articleUrl: String, isFavourite: Boolean)
     }
 
     fun updateData(articles: List<Article>) {
@@ -60,10 +60,11 @@ class NewsAdapter(private val clickListener: OnArticleClickListener) : RecyclerV
         }
 
         override fun onClick(v: View) {
-            val url = differ.currentList[adapterPosition].url ?: return
+            val article = differ.currentList[adapterPosition]
             when(v) {
-                itemView.iv_open_dialog -> clickListener.onOpenDialogClick(url)
-                else -> clickListener.onClick(url)
+                itemView.iv_open_dialog ->
+                    clickListener.onOpenDialogClick(article.url, article.isFavourite)
+                else -> clickListener.onClick(article.url)
             }
         }
     }

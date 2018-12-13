@@ -6,8 +6,8 @@ import com.arellomobile.mvp.viewstate.strategy.StateStrategyType
 /**
  * @author Andrey Radionov
  */
-interface BaseRemoveFavView {
+interface BaseNewsAddFavView: BaseNewsView {
 
     @StateStrategyType(SkipStrategy::class)
-    fun onFavouriteRemoved()
+    fun onFavouriteAdded()
 }

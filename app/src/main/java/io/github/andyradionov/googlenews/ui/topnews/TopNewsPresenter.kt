@@ -4,6 +4,7 @@ import com.arellomobile.mvp.InjectViewState
 import io.github.andyradionov.googlenews.interactors.NewsInteractor
 import io.github.andyradionov.googlenews.ui.common.views.BaseNewsView
 import io.github.andyradionov.googlenews.ui.common.BasePresenter
+import io.github.andyradionov.googlenews.ui.common.views.BaseNewsAddFavView
 import io.github.andyradionov.googlenews.utils.RxComposers
 import javax.inject.Inject
 
@@ -14,7 +15,7 @@ import javax.inject.Inject
 class TopNewsPresenter @Inject constructor(
         private val newsInteractor: NewsInteractor,
         private val rxSchedulers: RxComposers) :
-        BasePresenter<BaseNewsView>() {
+        BasePresenter<BaseNewsAddFavView>() {
 
     fun fetchNews() {
         if (checkNotConnected()) return

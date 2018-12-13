@@ -13,7 +13,18 @@ import io.github.andyradionov.googlenews.R
  * @author Andrey Radionov
  */
 
+private const val ARG_IS_FAVOURITE = "is_favourite"
+
 class NewsBottomSheetDialog : BottomSheetDialogFragment() {
+
+    private var isFavourite: Boolean = false
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        arguments?.let {
+            isFavourite = it.getBoolean(ARG_IS_FAVOURITE)
+        }
+    }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
@@ -36,5 +47,12 @@ class NewsBottomSheetDialog : BottomSheetDialogFragment() {
 
     companion object {
         val TAG: String = NewsBottomSheetDialog::class.java.simpleName
+
+        fun newInstance(isFavourite: Boolean = false) =
+                NewsBottomSheetDialog().apply {
+                    arguments = Bundle().apply {
+                        putBoolean(ARG_IS_FAVOURITE, isFavourite)
+                    }
+                }
     }
 }
