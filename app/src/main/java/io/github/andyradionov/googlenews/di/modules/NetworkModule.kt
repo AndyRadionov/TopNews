@@ -8,7 +8,7 @@ import dagger.Module
 import dagger.Provides
 import io.github.andyradionov.googlenews.BuildConfig
 import io.github.andyradionov.googlenews.data.datasource.remote.NewsApi
-import io.github.andyradionov.googlenews.utils.isInternetAvailable
+import io.github.andyradionov.googlenews.utils.NetworkManager
 import okhttp3.Cache
 import okhttp3.CacheControl
 import okhttp3.Interceptor
@@ -43,14 +43,20 @@ class NetworkModule() {
     @NonNull
     @Provides
     @Singleton
-    fun provideOkHttp(app: Application): OkHttpClient {
+    fun provideOkHttp(app: Application, networkManager: NetworkManager): OkHttpClient {
         return OkHttpClient.Builder()
                 .addInterceptor(initApiKeyInterceptor())
-                .addInterceptor(initOfflineCacheInterceptor(app))
+                .addInterceptor(initOfflineCacheInterceptor(networkManager))
                 .addNetworkInterceptor(initCacheInterceptor())
                 .cache(initCache(app))
                 .build()
     }
+
+    @NonNull
+    @Provides
+    @Singleton
+    fun provideNetworkManager(app: Application) =
+            NetworkManager(app.applicationContext)
 
     private fun initApiKeyInterceptor(): Interceptor {
         return Interceptor { chain ->
@@ -98,11 +104,11 @@ class NetworkModule() {
         }
     }
 
-    private fun initOfflineCacheInterceptor(app: Application): Interceptor {
+    private fun initOfflineCacheInterceptor(networkManager: NetworkManager): Interceptor {
         return Interceptor { chain ->
             var request = chain.request()
 
-            if (!isInternetAvailable(app)) {
+            if (!networkManager.isInternetAvailable()) {
                 val cacheControl = CacheControl.Builder()
                         .maxStale(7, TimeUnit.DAYS)
                         .build()

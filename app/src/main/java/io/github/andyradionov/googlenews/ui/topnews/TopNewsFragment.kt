@@ -12,7 +12,6 @@ import io.github.andyradionov.googlenews.data.entities.Article
 import io.github.andyradionov.googlenews.ui.common.BaseFragment
 import io.github.andyradionov.googlenews.ui.common.adapter.NewsAdapter
 import io.github.andyradionov.googlenews.ui.common.views.BaseNewsAddFavView
-import io.github.andyradionov.googlenews.ui.common.views.BaseNewsView
 import kotlinx.android.synthetic.main.fragment_top_news.*
 import javax.inject.Inject
 
@@ -48,7 +47,7 @@ class TopNewsFragment : BaseFragment(), BaseNewsAddFavView {
 
     override fun showNews(articles: List<Article>) {
         setVisibility(container = true)
-        newsAdapter.updateData(articles)
+        newsAdapter.items = articles
     }
 
     override fun showError() {

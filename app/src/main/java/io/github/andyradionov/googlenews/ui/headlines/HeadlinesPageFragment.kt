@@ -11,8 +11,9 @@ import com.arellomobile.mvp.presenter.ProvidePresenter
 import io.github.andyradionov.googlenews.R
 import io.github.andyradionov.googlenews.data.entities.Article
 import io.github.andyradionov.googlenews.ui.common.BaseFragment
-import io.github.andyradionov.googlenews.ui.common.views.BaseNewsView
 import io.github.andyradionov.googlenews.ui.common.adapter.NewsAdapter
+import io.github.andyradionov.googlenews.ui.common.adapter.NewsAdapterDelegate
+import io.github.andyradionov.googlenews.ui.common.views.BaseNewsView
 import kotlinx.android.synthetic.main.content_layout.*
 import javax.inject.Inject
 
@@ -55,7 +56,7 @@ class HeadlinesPageFragment : BaseFragment(), BaseNewsView {
 
     override fun showNews(articles: List<Article>) {
         setVisibility(container = true)
-        newsAdapter.updateData(articles)
+        newsAdapter.items = articles
     }
 
     override fun showError() {

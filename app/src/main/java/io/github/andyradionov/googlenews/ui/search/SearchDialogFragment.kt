@@ -6,7 +6,9 @@ import android.os.Bundle
 import android.support.v4.app.DialogFragment
 import android.support.v7.widget.GridLayoutManager
 import android.support.v7.widget.SearchView
-import android.view.*
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import android.view.inputmethod.EditorInfo
 import android.widget.ImageView
 import com.arellomobile.mvp.MvpAppCompatDialogFragment
@@ -15,15 +17,19 @@ import com.arellomobile.mvp.presenter.ProvidePresenter
 import dagger.android.support.AndroidSupportInjection
 import io.github.andyradionov.googlenews.R
 import io.github.andyradionov.googlenews.data.entities.Article
+import io.github.andyradionov.googlenews.ui.common.adapter.NewsAdapter
+import io.github.andyradionov.googlenews.ui.common.adapter.NewsAdapterDelegate
 import io.github.andyradionov.googlenews.ui.details.DetailsWebViewActivity
 import io.github.andyradionov.googlenews.ui.dialogs.NewsBottomSheetDialog
-import io.github.andyradionov.googlenews.ui.common.adapter.NewsAdapter
 import io.github.andyradionov.googlenews.utils.EMPTY_QUERY
 import kotlinx.android.synthetic.main.content_layout.*
 import kotlinx.android.synthetic.main.fragment_search_dialog.*
 import javax.inject.Inject
 
 class SearchDialogFragment : MvpAppCompatDialogFragment(), SearchNewsView {
+    override fun showNotConnected() {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
 
     @Inject
     @InjectPresenter
@@ -34,16 +40,17 @@ class SearchDialogFragment : MvpAppCompatDialogFragment(), SearchNewsView {
     @ProvidePresenter
     fun providePresenter() = presenter
 
-    protected val onArticleClickListener = object : NewsAdapter.OnArticleClickListener {
+    private val onArticleClickListener = object : NewsAdapterDelegate.OnArticleClickListener {
         override fun onClick(articleUrl: String) {
             val intent = Intent(activity, DetailsWebViewActivity::class.java)
             intent.putExtra(DetailsWebViewActivity.ARTICLE_URL_EXTRA, articleUrl)
             startActivity(intent)
         }
 
-        override fun onOpenDialogClick(articleUrl: String) {
-            NewsBottomSheetDialog()
-                    .show(childFragmentManager, NewsBottomSheetDialog.TAG)
+        override fun onOpenDialogClick(articleUrl: String, isFavourite: Boolean) {
+            NewsBottomSheetDialog
+                    .newInstance(isFavourite)
+                    .show(fragmentManager, NewsBottomSheetDialog.TAG)
         }
     }
 
@@ -77,12 +84,11 @@ class SearchDialogFragment : MvpAppCompatDialogFragment(), SearchNewsView {
 
     override fun showNews(articles: List<Article>) {
         setVisibility(container = true)
-        newsAdapter.updateData(articles)
+        newsAdapter.items = articles
     }
 
     override fun showError() {
         setVisibility(empty = true)
-        newsAdapter.clearData()
     }
 
     override fun showLoading() {
