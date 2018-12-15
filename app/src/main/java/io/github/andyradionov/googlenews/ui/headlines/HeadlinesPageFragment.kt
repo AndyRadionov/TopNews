@@ -69,7 +69,6 @@ class HeadlinesPageFragment : BaseFragment(), BaseNewsView {
 
     private fun setUpSwipeRefresh() {
         swipe_container.setOnRefreshListener {
-            swipe_container.isRefreshing = false
             presenter.fetchNewsForHeadline(pageHeadline)
         }
     }

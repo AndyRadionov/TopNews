@@ -1,4 +1,4 @@
-package io.github.andyradionov.googlenews.data.datasource.remote
+package io.github.andyradionov.googlenews.data.datasource.server
 
 import io.github.andyradionov.googlenews.app.SEARCH_NEWS_REQUEST
 import io.github.andyradionov.googlenews.app.TOP_NEWS_REQUEST

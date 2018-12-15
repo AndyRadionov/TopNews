@@ -74,7 +74,7 @@ class SearchDialogFragment : MvpAppCompatDialogFragment(), SearchNewsView {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        dialog.window.attributes.windowAnimations = R.style.SearchDialogAnimation;
+        dialog?.window?.attributes?.windowAnimations = R.style.SearchDialogAnimation;
     }
 
     override fun onAttach(context: Context?) {
@@ -123,10 +123,6 @@ class SearchDialogFragment : MvpAppCompatDialogFragment(), SearchNewsView {
                 return false
             }
         })
-
-//        iv_back.setOnClickListener {
-//            dismiss()
-//        }
     }
 
     private fun setUpSwipeRefresh() {

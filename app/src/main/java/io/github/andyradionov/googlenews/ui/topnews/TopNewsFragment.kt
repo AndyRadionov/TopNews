@@ -64,7 +64,6 @@ class TopNewsFragment : BaseFragment(), BaseNewsAddFavView {
 
     private fun setUpSwipeRefresh() {
         swipe_container.setOnRefreshListener {
-            swipe_container.isRefreshing = false
             presenter.fetchNews()
         }
     }

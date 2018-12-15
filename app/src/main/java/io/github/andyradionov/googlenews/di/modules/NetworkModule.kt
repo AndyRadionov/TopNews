@@ -7,7 +7,7 @@ import com.google.gson.Gson
 import dagger.Module
 import dagger.Provides
 import io.github.andyradionov.googlenews.BuildConfig
-import io.github.andyradionov.googlenews.data.datasource.remote.NewsApi
+import io.github.andyradionov.googlenews.data.datasource.server.NewsApi
 import io.github.andyradionov.googlenews.utils.NetworkManager
 import okhttp3.Cache
 import okhttp3.CacheControl
