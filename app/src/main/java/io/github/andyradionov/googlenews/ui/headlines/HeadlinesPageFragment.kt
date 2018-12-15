@@ -9,7 +9,7 @@ import com.arellomobile.mvp.presenter.InjectPresenter
 import com.arellomobile.mvp.presenter.PresenterType
 import com.arellomobile.mvp.presenter.ProvidePresenter
 import io.github.andyradionov.googlenews.R
-import io.github.andyradionov.googlenews.entities.Article
+import io.github.andyradionov.googlenews.data.entities.Article
 import io.github.andyradionov.googlenews.ui.common.BaseFragment
 import io.github.andyradionov.googlenews.ui.common.adapter.NewsAdapter
 import io.github.andyradionov.googlenews.ui.common.views.BaseNewsView

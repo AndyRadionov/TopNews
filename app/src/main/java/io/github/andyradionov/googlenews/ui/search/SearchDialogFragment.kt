@@ -16,7 +16,7 @@ import com.arellomobile.mvp.presenter.InjectPresenter
 import com.arellomobile.mvp.presenter.ProvidePresenter
 import dagger.android.support.AndroidSupportInjection
 import io.github.andyradionov.googlenews.R
-import io.github.andyradionov.googlenews.entities.Article
+import io.github.andyradionov.googlenews.data.entities.Article
 import io.github.andyradionov.googlenews.ui.common.adapter.NewsAdapter
 import io.github.andyradionov.googlenews.ui.common.adapter.NewsAdapterDelegate
 import io.github.andyradionov.googlenews.ui.details.DetailsWebViewActivity

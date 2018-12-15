@@ -1,7 +1,7 @@
 package io.github.andyradionov.googlenews.ui.common.adapter
 
 import android.support.v7.util.DiffUtil
-import io.github.andyradionov.googlenews.entities.Article
+import io.github.andyradionov.googlenews.data.entities.Article
 
 /**
  * @author Andrey Radionov

@@ -8,7 +8,7 @@ import android.view.ViewGroup
 import com.hannesdorfmann.adapterdelegates3.AdapterDelegate
 import com.squareup.picasso.Picasso
 import io.github.andyradionov.googlenews.R
-import io.github.andyradionov.googlenews.entities.Article
+import io.github.andyradionov.googlenews.data.entities.Article
 import kotlinx.android.synthetic.main.item_article.view.*
 
 /**

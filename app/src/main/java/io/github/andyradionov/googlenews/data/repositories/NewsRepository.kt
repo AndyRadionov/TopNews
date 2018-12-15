@@ -1,8 +1,8 @@
-package io.github.andyradionov.googlenews.model.repositories
+package io.github.andyradionov.googlenews.data.repositories
 
-import io.github.andyradionov.googlenews.model.data.local.NewsDao
-import io.github.andyradionov.googlenews.model.data.server.NewsApi
-import io.github.andyradionov.googlenews.entities.Article
+import io.github.andyradionov.googlenews.data.datasource.local.NewsDao
+import io.github.andyradionov.googlenews.data.datasource.server.NewsApi
+import io.github.andyradionov.googlenews.data.entities.Article
 import io.reactivex.Completable
 import io.reactivex.Observable
 

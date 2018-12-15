@@ -22,5 +22,5 @@ class NavigationModule {
 
     @Provides
     @Singleton
-    fun provideCiceron() = Cicerone.create()
+    fun provideCicerone() = Cicerone.create()
 }

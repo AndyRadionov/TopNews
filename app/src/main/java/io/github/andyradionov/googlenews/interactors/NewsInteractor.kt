@@ -1,7 +1,7 @@
 package io.github.andyradionov.googlenews.interactors
 
-import io.github.andyradionov.googlenews.entities.Article
-import io.github.andyradionov.googlenews.model.repositories.NewsRepository
+import io.github.andyradionov.googlenews.data.entities.Article
+import io.github.andyradionov.googlenews.data.repositories.NewsRepository
 
 /**
  * @author Andrey Radionov
