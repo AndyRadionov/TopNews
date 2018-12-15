@@ -6,7 +6,7 @@ import dagger.Provides
 import io.github.andyradionov.googlenews.model.data.local.NewsDao
 import io.github.andyradionov.googlenews.model.data.server.NewsApi
 import io.github.andyradionov.googlenews.model.repositories.NewsRepository
-import io.github.andyradionov.googlenews.model.interactors.NewsInteractor
+import io.github.andyradionov.googlenews.interactors.NewsInteractor
 import io.github.andyradionov.googlenews.utils.RxComposers
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers

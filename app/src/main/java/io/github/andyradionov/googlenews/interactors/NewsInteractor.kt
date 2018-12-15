@@ -1,4 +1,4 @@
-package io.github.andyradionov.googlenews.model.interactors
+package io.github.andyradionov.googlenews.interactors
 
 import io.github.andyradionov.googlenews.entities.Article
 import io.github.andyradionov.googlenews.model.repositories.NewsRepository

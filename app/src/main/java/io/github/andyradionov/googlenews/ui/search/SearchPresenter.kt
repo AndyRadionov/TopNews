@@ -1,7 +1,7 @@
 package io.github.andyradionov.googlenews.ui.search
 
 import com.arellomobile.mvp.InjectViewState
-import io.github.andyradionov.googlenews.model.interactors.NewsInteractor
+import io.github.andyradionov.googlenews.interactors.NewsInteractor
 import io.github.andyradionov.googlenews.ui.common.BasePresenter
 import javax.inject.Inject
 

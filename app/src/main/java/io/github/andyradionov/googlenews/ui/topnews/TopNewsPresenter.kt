@@ -1,7 +1,7 @@
 package io.github.andyradionov.googlenews.ui.topnews
 
 import com.arellomobile.mvp.InjectViewState
-import io.github.andyradionov.googlenews.model.interactors.NewsInteractor
+import io.github.andyradionov.googlenews.interactors.NewsInteractor
 import io.github.andyradionov.googlenews.ui.common.BasePresenter
 import io.github.andyradionov.googlenews.ui.common.views.BaseNewsAddFavView
 import io.github.andyradionov.googlenews.utils.RxComposers
