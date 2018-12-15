@@ -1,4 +1,4 @@
-package io.github.andyradionov.googlenews.data.entities
+package io.github.andyradionov.googlenews.entities
 
 import android.arch.persistence.room.Entity
 import android.arch.persistence.room.PrimaryKey

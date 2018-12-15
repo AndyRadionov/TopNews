@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import com.arellomobile.mvp.presenter.InjectPresenter
 import com.arellomobile.mvp.presenter.ProvidePresenter
 import io.github.andyradionov.googlenews.R
-import io.github.andyradionov.googlenews.data.entities.Article
+import io.github.andyradionov.googlenews.entities.Article
 import io.github.andyradionov.googlenews.ui.common.BaseFragment
 import javax.inject.Inject
 

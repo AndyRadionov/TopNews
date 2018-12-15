@@ -1,4 +1,4 @@
-package io.github.andyradionov.googlenews.data.entities
+package io.github.andyradionov.googlenews.entities
 
 /**
  * @author Andrey Radionov

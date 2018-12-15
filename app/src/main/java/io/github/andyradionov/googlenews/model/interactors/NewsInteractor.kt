@@ -1,9 +1,7 @@
-package io.github.andyradionov.googlenews.interactors
+package io.github.andyradionov.googlenews.model.interactors
 
-import io.github.andyradionov.googlenews.data.entities.Article
-import io.github.andyradionov.googlenews.data.repositories.NewsRepository
-import io.reactivex.android.schedulers.AndroidSchedulers
-import io.reactivex.schedulers.Schedulers
+import io.github.andyradionov.googlenews.entities.Article
+import io.github.andyradionov.googlenews.model.repositories.NewsRepository
 
 /**
  * @author Andrey Radionov

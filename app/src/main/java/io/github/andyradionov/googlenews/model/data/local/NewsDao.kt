@@ -1,9 +1,9 @@
-package io.github.andyradionov.googlenews.data.datasource.local
+package io.github.andyradionov.googlenews.model.data.local
 
 import android.arch.persistence.room.Dao
 import android.arch.persistence.room.Insert
 import android.arch.persistence.room.Query
-import io.github.andyradionov.googlenews.data.entities.Article
+import io.github.andyradionov.googlenews.entities.Article
 import io.reactivex.Flowable
 
 /**

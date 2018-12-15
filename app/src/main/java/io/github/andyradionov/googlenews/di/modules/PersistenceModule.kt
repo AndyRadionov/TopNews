@@ -4,8 +4,8 @@ import android.app.Application
 import android.arch.persistence.room.Room
 import dagger.Module
 import dagger.Provides
-import io.github.andyradionov.googlenews.data.datasource.local.AppDatabase
-import io.github.andyradionov.googlenews.data.datasource.local.NewsDao
+import io.github.andyradionov.googlenews.model.data.local.AppDatabase
+import io.github.andyradionov.googlenews.model.data.local.NewsDao
 import javax.inject.Singleton
 
 /**

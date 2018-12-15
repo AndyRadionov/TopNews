@@ -1,4 +1,4 @@
-package io.github.andyradionov.googlenews.data.datasource.local
+package io.github.andyradionov.googlenews.model.data.local
 
 import android.arch.persistence.room.TypeConverter
 import java.util.*

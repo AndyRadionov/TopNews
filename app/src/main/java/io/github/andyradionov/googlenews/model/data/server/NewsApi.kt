@@ -1,8 +1,8 @@
-package io.github.andyradionov.googlenews.data.datasource.server
+package io.github.andyradionov.googlenews.model.data.server
 
 import io.github.andyradionov.googlenews.app.SEARCH_NEWS_REQUEST
 import io.github.andyradionov.googlenews.app.TOP_NEWS_REQUEST
-import io.github.andyradionov.googlenews.data.entities.NewsResponse
+import io.github.andyradionov.googlenews.entities.NewsResponse
 import io.reactivex.Observable
 import retrofit2.http.GET
 import retrofit2.http.Query

@@ -1,9 +1,9 @@
-package io.github.andyradionov.googlenews.data.datasource.local
+package io.github.andyradionov.googlenews.model.data.local
 
 import android.arch.persistence.room.Database
 import android.arch.persistence.room.RoomDatabase
 import android.arch.persistence.room.TypeConverters
-import io.github.andyradionov.googlenews.data.entities.Article
+import io.github.andyradionov.googlenews.entities.Article
 
 /**
  * @author Andrey Radionov

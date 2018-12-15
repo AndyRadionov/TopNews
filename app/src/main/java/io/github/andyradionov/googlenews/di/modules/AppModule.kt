@@ -3,10 +3,10 @@ package io.github.andyradionov.googlenews.di.modules
 import android.support.annotation.NonNull
 import dagger.Module
 import dagger.Provides
-import io.github.andyradionov.googlenews.data.datasource.local.NewsDao
-import io.github.andyradionov.googlenews.data.datasource.server.NewsApi
-import io.github.andyradionov.googlenews.data.repositories.NewsRepository
-import io.github.andyradionov.googlenews.interactors.NewsInteractor
+import io.github.andyradionov.googlenews.model.data.local.NewsDao
+import io.github.andyradionov.googlenews.model.data.server.NewsApi
+import io.github.andyradionov.googlenews.model.repositories.NewsRepository
+import io.github.andyradionov.googlenews.model.interactors.NewsInteractor
 import io.github.andyradionov.googlenews.utils.RxComposers
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers

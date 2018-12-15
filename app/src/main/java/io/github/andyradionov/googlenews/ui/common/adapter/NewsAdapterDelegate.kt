@@ -1,6 +1,5 @@
 package io.github.andyradionov.googlenews.ui.common.adapter
 
-import android.support.v7.recyclerview.extensions.ListAdapter
 import android.support.v7.widget.CardView
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
@@ -9,7 +8,7 @@ import android.view.ViewGroup
 import com.hannesdorfmann.adapterdelegates3.AdapterDelegate
 import com.squareup.picasso.Picasso
 import io.github.andyradionov.googlenews.R
-import io.github.andyradionov.googlenews.data.entities.Article
+import io.github.andyradionov.googlenews.entities.Article
 import kotlinx.android.synthetic.main.item_article.view.*
 
 /**

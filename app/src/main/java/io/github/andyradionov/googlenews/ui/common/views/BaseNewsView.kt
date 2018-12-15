@@ -3,7 +3,7 @@ package io.github.andyradionov.googlenews.ui.common.views
 import com.arellomobile.mvp.viewstate.strategy.AddToEndSingleStrategy
 import com.arellomobile.mvp.viewstate.strategy.SkipStrategy
 import com.arellomobile.mvp.viewstate.strategy.StateStrategyType
-import io.github.andyradionov.googlenews.data.entities.Article
+import io.github.andyradionov.googlenews.entities.Article
 
 /**
  * @author Andrey Radionov
