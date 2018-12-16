@@ -8,19 +8,23 @@ import android.view.MenuItem
 import android.webkit.WebResourceRequest
 import android.webkit.WebView
 import android.webkit.WebViewClient
+import com.arellomobile.mvp.presenter.InjectPresenter
+import com.arellomobile.mvp.presenter.ProvidePresenter
 import io.github.andyradionov.googlenews.R
+import javax.inject.Inject
 
 /**
  * @author Andrey Radionov
  */
 class DetailsWebViewActivity: AppCompatActivity() {
 
-    companion object {
-        private val TAG = DetailsWebViewActivity::class.java.simpleName
 
-        const val ARTICLE_URL_EXTRA = "article_url_extra"
-    }
+    @Inject
+    @InjectPresenter
+    lateinit var presenter: DetailsPresenter
 
+    @ProvidePresenter
+    fun providePresenter(): DetailsPresenter = presenter
 
     private var mWebView: WebView? = null
 
@@ -31,7 +35,6 @@ class DetailsWebViewActivity: AppCompatActivity() {
         val siteUrl = intent.getStringExtra(ARTICLE_URL_EXTRA)
 
         title = getString(R.string.web_view_title)
-
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
         mWebView = WebView(this)
@@ -56,7 +59,7 @@ class DetailsWebViewActivity: AppCompatActivity() {
         Log.d(TAG, "onOptionsItemSelected")
 
         if (android.R.id.home == menuItem.itemId) {
-            finish()
+            presenter.onBackPressed()
             return true
         }
         return super.onOptionsItemSelected(menuItem)
@@ -68,7 +71,13 @@ class DetailsWebViewActivity: AppCompatActivity() {
         if (mWebView?.canGoBack() == true) {
             mWebView?.goBack()
         } else {
-            finish()
+            presenter.onBackPressed()
         }
+    }
+
+    companion object {
+        private val TAG = DetailsWebViewActivity::class.java.simpleName
+
+        const val ARTICLE_URL_EXTRA = "article_url_extra"
     }
 }

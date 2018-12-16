@@ -38,7 +38,6 @@ class HeadlinesPageFragment : BaseFragment(), BaseNewsView {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
-        //todo contentLay
         return inflater.inflate(R.layout.content_layout, container, false)
     }
 
