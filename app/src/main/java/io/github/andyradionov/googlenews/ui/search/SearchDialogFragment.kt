@@ -21,7 +21,7 @@ import io.github.andyradionov.googlenews.ui.common.adapter.NewsAdapter
 import io.github.andyradionov.googlenews.ui.common.adapter.NewsAdapterDelegate
 import io.github.andyradionov.googlenews.ui.details.DetailsWebViewActivity
 import io.github.andyradionov.googlenews.ui.dialogs.NewsBottomSheetDialog
-import io.github.andyradionov.googlenews.utils.EMPTY_QUERY
+import io.github.andyradionov.googlenews.utils.EMPTY_STRING
 import kotlinx.android.synthetic.main.content_layout.*
 import kotlinx.android.synthetic.main.fragment_search_dialog.*
 import javax.inject.Inject
@@ -35,7 +35,7 @@ class SearchDialogFragment : MvpAppCompatDialogFragment(), SearchNewsView {
     @InjectPresenter
     lateinit var presenter: SearchPresenter
     private lateinit var newsAdapter: NewsAdapter
-    private var query: String = EMPTY_QUERY
+    private var query: String = EMPTY_STRING
 
     @ProvidePresenter
     fun providePresenter() = presenter
@@ -43,7 +43,7 @@ class SearchDialogFragment : MvpAppCompatDialogFragment(), SearchNewsView {
     private val onArticleClickListener = object : NewsAdapterDelegate.OnArticleClickListener {
         override fun onClick(articleUrl: String) {
             val intent = Intent(activity, DetailsWebViewActivity::class.java)
-            intent.putExtra(DetailsWebViewActivity.ARTICLE_URL_EXTRA, articleUrl)
+            intent.putExtra(DetailsWebViewActivity.ARTICLE_URL, articleUrl)
             startActivity(intent)
         }
 
@@ -128,7 +128,7 @@ class SearchDialogFragment : MvpAppCompatDialogFragment(), SearchNewsView {
     private fun setUpSwipeRefresh() {
         swipe_container.setOnRefreshListener {
             swipe_container.isRefreshing = false
-            if (query != EMPTY_QUERY) {
+            if (query != EMPTY_STRING) {
                 presenter.searchNews(query)
             }
         }

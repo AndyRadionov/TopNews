@@ -32,7 +32,7 @@ class DetailsWebViewActivity: AppCompatActivity() {
         Log.d(TAG, "onCreate")
         super.onCreate(savedInstanceState)
 
-        val siteUrl = intent.getStringExtra(ARTICLE_URL_EXTRA)
+        val siteUrl = intent.getStringExtra(ARTICLE_URL)
 
         title = getString(R.string.web_view_title)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
@@ -78,6 +78,6 @@ class DetailsWebViewActivity: AppCompatActivity() {
     companion object {
         private val TAG = DetailsWebViewActivity::class.java.simpleName
 
-        const val ARTICLE_URL_EXTRA = "article_url_extra"
+        const val ARTICLE_URL = "article_url_extra"
     }
 }

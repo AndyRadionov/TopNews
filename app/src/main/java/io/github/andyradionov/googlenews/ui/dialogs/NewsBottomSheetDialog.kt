@@ -8,21 +8,23 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import io.github.andyradionov.googlenews.R
+import io.github.andyradionov.googlenews.data.entities.Article
 
 /**
  * @author Andrey Radionov
  */
 
-private const val ARG_IS_FAVOURITE = "is_favourite"
+private const val ARG_ARTICLE = "article"
 
 class NewsBottomSheetDialog : BottomSheetDialogFragment() {
 
+    private lateinit var article: Article
     private var isFavourite: Boolean = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
-            isFavourite = it.getBoolean(ARG_IS_FAVOURITE)
+            article = it.getParcelable(ARG_ARTICLE) as Article
         }
     }
 
@@ -48,10 +50,10 @@ class NewsBottomSheetDialog : BottomSheetDialogFragment() {
     companion object {
         val TAG: String = NewsBottomSheetDialog::class.java.simpleName
 
-        fun newInstance(isFavourite: Boolean = false) =
+        fun newInstance(article: Article) =
                 NewsBottomSheetDialog().apply {
                     arguments = Bundle().apply {
-                        putBoolean(ARG_IS_FAVOURITE, isFavourite)
+                        putParcelable(ARG_ARTICLE, article)
                     }
                 }
     }

@@ -6,12 +6,14 @@ import com.arellomobile.mvp.presenter.InjectPresenter
 import com.arellomobile.mvp.presenter.ProvidePresenter
 import io.github.andyradionov.googlenews.R
 import io.github.andyradionov.googlenews.app.Screens
+import io.github.andyradionov.googlenews.data.entities.Article
 import io.github.andyradionov.googlenews.ui.common.BaseActivity
+import io.github.andyradionov.googlenews.ui.dialogs.NewsBottomSheetDialog
 import io.github.andyradionov.googlenews.ui.search.SearchDialogFragment
 import kotlinx.android.synthetic.main.activity_main.*
 import javax.inject.Inject
 
-class MainActivity : BaseActivity(), MvpView {
+class MainActivity : BaseActivity(), MainView {
 
     @Inject
     @InjectPresenter
@@ -27,6 +29,12 @@ class MainActivity : BaseActivity(), MvpView {
         supportActionBar?.setDisplayShowTitleEnabled(false)
         setupBottomNavigation()
         setupListeners()
+    }
+
+    override fun showBottomSheet(article: Article) {
+        NewsBottomSheetDialog
+                .newInstance(article)
+                .show(supportFragmentManager, NewsBottomSheetDialog.TAG)
     }
 
     private fun setupBottomNavigation() {

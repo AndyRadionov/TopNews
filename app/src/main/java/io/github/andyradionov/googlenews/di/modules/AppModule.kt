@@ -5,6 +5,7 @@ import dagger.Module
 import dagger.Provides
 import io.github.andyradionov.googlenews.data.datasource.local.NewsDao
 import io.github.andyradionov.googlenews.data.datasource.server.NewsApi
+import io.github.andyradionov.googlenews.data.message.SystemMessageNotifier
 import io.github.andyradionov.googlenews.data.repositories.NewsRepository
 import io.github.andyradionov.googlenews.interactors.NewsInteractor
 import io.github.andyradionov.googlenews.utils.RxComposers
@@ -33,4 +34,9 @@ class AppModule {
     @Provides
     @Singleton
     fun provideRxComposers() = RxComposers(Schedulers.io(), AndroidSchedulers.mainThread())
+
+    @NonNull
+    @Provides
+    @Singleton
+    fun provideMessageNotifier() = SystemMessageNotifier()
 }
