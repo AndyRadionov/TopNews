@@ -2,8 +2,9 @@ package io.github.andyradionov.googlenews.ui.main
 
 import com.arellomobile.mvp.InjectViewState
 import com.arellomobile.mvp.MvpPresenter
-import com.arellomobile.mvp.MvpView
+import io.github.andyradionov.googlenews.data.entities.Article
 import io.github.andyradionov.googlenews.data.message.SystemMessageNotifier
+import io.github.andyradionov.googlenews.data.message.SystemMessageType
 import io.reactivex.disposables.Disposable
 import ru.terrakok.cicerone.Router
 import ru.terrakok.cicerone.Screen
@@ -36,7 +37,12 @@ class MainPresenter @Inject constructor(
     private fun subscribeOnSystemMessages() {
         notifierDisposable = systemMessageNotifier.notifier
                 .subscribe { msg ->
-                    viewState.showBottomSheet(msg.article)
+                    when (msg.type) {
+                        SystemMessageType.ALERT -> println()
+                        SystemMessageType.BOTTOM ->
+                            viewState.showBottomSheet(msg.data as Article)
+                        SystemMessageType.NO_CONNECTION -> println()
+                    }
                 }
     }
 }

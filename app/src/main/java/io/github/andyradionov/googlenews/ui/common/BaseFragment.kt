@@ -29,8 +29,4 @@ abstract class BaseFragment : MvpAppCompatFragment(), BaseView {
         AndroidSupportInjection.inject(this)
         super.onAttach(context)
     }
-
-    override fun showNotConnected() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-    }
 }

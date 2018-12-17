@@ -5,4 +5,4 @@ import io.github.andyradionov.googlenews.data.entities.Article
 /**
  * @author Andrey Radionov
  */
-abstract class SystemMessage(val type: SystemMessageType)
+class SystemMessage(val data: Any, val type: SystemMessageType)
