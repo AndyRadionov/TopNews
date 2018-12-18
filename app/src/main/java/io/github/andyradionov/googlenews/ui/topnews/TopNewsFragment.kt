@@ -20,7 +20,9 @@ class TopNewsFragment : BaseFragment(), BaseNewsAddFavView {
     @Inject
     @InjectPresenter
     lateinit var presenter: TopNewsPresenter
-    private lateinit var newsAdapter: NewsAdapter
+
+    @Inject
+    lateinit var newsAdapter: NewsAdapter
 
     @ProvidePresenter
     fun providePresenter(): TopNewsPresenter {
@@ -69,7 +71,6 @@ class TopNewsFragment : BaseFragment(), BaseNewsAddFavView {
     }
 
     private fun setUpRecycler() {
-        newsAdapter = NewsAdapter(onArticleClickListener)
         rv_news_container.adapter = newsAdapter
 
         val columnsNumber = resources.getInteger(R.integer.columns_number)

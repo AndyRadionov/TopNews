@@ -30,7 +30,7 @@ object Screens {
     data class DetailsScreen(val article: Article): SupportAppScreen() {
         override fun getActivityIntent(context: Context?): Intent {
             val intent = Intent(context, DetailsWebViewActivity::class.java)
-            intent.putExtra(DetailsWebViewActivity.ARTICLE_URL, article)
+            intent.putExtra(DetailsWebViewActivity.ARTICLE_EXTRA, article)
             return intent
         }
     }

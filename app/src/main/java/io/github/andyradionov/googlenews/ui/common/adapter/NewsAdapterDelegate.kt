@@ -14,13 +14,8 @@ import kotlinx.android.synthetic.main.item_article.view.*
 /**
  * @author Andrey Radionov
  */
-class NewsAdapterDelegate(private val clickListener: OnArticleClickListener) :
+class NewsAdapterDelegate(private val clickListener: NewsAdapter.OnArticleClickListener) :
         AdapterDelegate<List<Article>>() {
-
-    interface OnArticleClickListener {
-        fun onClick(articleUrl: String)
-        fun onOpenDialogClick(articleUrl: String, isFavourite: Boolean)
-    }
 
     override fun onCreateViewHolder(parent: ViewGroup): RecyclerView.ViewHolder {
         val cardView = LayoutInflater.from(parent.context)
@@ -64,8 +59,8 @@ class NewsAdapterDelegate(private val clickListener: OnArticleClickListener) :
             article?.let {
                 when(v) {
                     itemView.iv_open_dialog ->
-                        clickListener.onOpenDialogClick(it.url, it.isFavourite)
-                    else -> clickListener.onClick(it.url)
+                        clickListener.onOpenDialogClick(it)
+                    else -> clickListener.onClick(it)
                 }
             }
 

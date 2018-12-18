@@ -27,32 +27,17 @@ import kotlinx.android.synthetic.main.fragment_search_dialog.*
 import javax.inject.Inject
 
 class SearchDialogFragment : MvpAppCompatDialogFragment(), SearchNewsView {
-    override fun showNotConnected() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-    }
 
     @Inject
     @InjectPresenter
     lateinit var presenter: SearchPresenter
-    private lateinit var newsAdapter: NewsAdapter
+
+    @Inject
+    lateinit var newsAdapter: NewsAdapter
     private var query: String = EMPTY_STRING
 
     @ProvidePresenter
     fun providePresenter() = presenter
-
-    private val onArticleClickListener = object : NewsAdapterDelegate.OnArticleClickListener {
-        override fun onClick(articleUrl: String) {
-            val intent = Intent(activity, DetailsWebViewActivity::class.java)
-            intent.putExtra(DetailsWebViewActivity.ARTICLE_URL, articleUrl)
-            startActivity(intent)
-        }
-
-        override fun onOpenDialogClick(articleUrl: String, isFavourite: Boolean) {
-            NewsBottomSheetDialog
-                    .newInstance(isFavourite)
-                    .show(fragmentManager, NewsBottomSheetDialog.TAG)
-        }
-    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -135,7 +120,6 @@ class SearchDialogFragment : MvpAppCompatDialogFragment(), SearchNewsView {
     }
 
     private fun setUpRecycler() {
-        newsAdapter = NewsAdapter(onArticleClickListener)
         rv_news_container.adapter = newsAdapter
 
         val columnsNumber = resources.getInteger(R.integer.columns_number)

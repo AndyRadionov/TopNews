@@ -1,7 +1,8 @@
 package io.github.andyradionov.googlenews.ui.common
 
 import com.arellomobile.mvp.MvpPresenter
-import io.github.andyradionov.googlenews.ui.common.views.BaseView
+import com.arellomobile.mvp.MvpView
+import io.github.andyradionov.googlenews.data.message.SystemMessageNotifier
 import io.github.andyradionov.googlenews.utils.NetworkManager
 import io.github.andyradionov.googlenews.utils.RxComposers
 import io.reactivex.disposables.Disposable
@@ -10,10 +11,12 @@ import javax.inject.Inject
 /**
  * @author Andrey Radionov
  */
-abstract class BasePresenter<T : BaseView> : MvpPresenter<T>() {
+abstract class BasePresenter<T : MvpView> : MvpPresenter<T>() {
 
     @Inject lateinit var rxComposers: RxComposers
     @Inject lateinit var networkManager: NetworkManager
+    @Inject lateinit var messageNotifier: SystemMessageNotifier
+
     protected var disposable: Disposable? = null
 
     override fun onDestroy() {
@@ -25,7 +28,7 @@ abstract class BasePresenter<T : BaseView> : MvpPresenter<T>() {
     protected fun checkNotConnected(): Boolean {
         dispose()
         if (!networkManager.isInternetAvailable()) {
-            viewState.showNotConnected()
+            messageNotifier.send("Not Connected")
             return true
         }
         return false

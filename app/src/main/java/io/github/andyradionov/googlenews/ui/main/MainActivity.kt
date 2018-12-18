@@ -1,7 +1,6 @@
 package io.github.andyradionov.googlenews.ui.main
 
 import android.os.Bundle
-import com.arellomobile.mvp.MvpView
 import com.arellomobile.mvp.presenter.InjectPresenter
 import com.arellomobile.mvp.presenter.ProvidePresenter
 import io.github.andyradionov.googlenews.R
@@ -11,6 +10,7 @@ import io.github.andyradionov.googlenews.ui.common.BaseActivity
 import io.github.andyradionov.googlenews.ui.dialogs.NewsBottomSheetDialog
 import io.github.andyradionov.googlenews.ui.search.SearchDialogFragment
 import kotlinx.android.synthetic.main.activity_main.*
+import ru.terrakok.cicerone.Screen
 import javax.inject.Inject
 
 class MainActivity : BaseActivity(), MainView {
@@ -37,22 +37,24 @@ class MainActivity : BaseActivity(), MainView {
                 .show(supportFragmentManager, NewsBottomSheetDialog.TAG)
     }
 
+    override fun showNotConnected() {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
+
     private fun setupBottomNavigation() {
         bottom_navigation.setOnNavigationItemSelectedListener { item ->
             return@setOnNavigationItemSelectedListener when (item.itemId) {
                 R.id.action_top_news -> {
-                    presenter.selectTab(Screens.TopNewsScreen)
-                    setToolbarTitle("Top News")
+                    //todo resources
+                    changeTab(Screens.TopNewsScreen, "Top News")
                     true
                 }
                 R.id.action_headlines -> {
-                    presenter.selectTab(Screens.HeadlinesScreen)
-                    setToolbarTitle("Headlines")
+                    changeTab(Screens.HeadlinesScreen, "Headlines")
                     true
                 }
                 R.id.action_favorites -> {
-                    presenter.selectTab(Screens.FavouritesScreen)
-                    setToolbarTitle("Favourites")
+                    changeTab(Screens.FavouritesScreen, "Favourites")
                     true
                 }
                 else -> false
@@ -67,7 +69,8 @@ class MainActivity : BaseActivity(), MainView {
         }
     }
 
-    private fun setToolbarTitle(title: String) {
+    private fun changeTab(screen: Screen, title: String) {
+        presenter.selectTab(screen)
         toolbar_title.text = title
     }
 }

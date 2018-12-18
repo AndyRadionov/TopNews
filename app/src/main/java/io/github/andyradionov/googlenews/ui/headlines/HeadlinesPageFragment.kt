@@ -23,7 +23,9 @@ class HeadlinesPageFragment : BaseFragment(), BaseNewsView {
     @Inject
     @InjectPresenter(type = PresenterType.LOCAL)
     lateinit var presenter: HeadlinesPresenter
-    private lateinit var newsAdapter: NewsAdapter
+
+    @Inject
+    lateinit var newsAdapter: NewsAdapter
     private lateinit var pageHeadline: String
 
     @ProvidePresenter
@@ -32,7 +34,7 @@ class HeadlinesPageFragment : BaseFragment(), BaseNewsView {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
-            pageHeadline = it.getString(ARG_PAGE_HEADLINE)
+            pageHeadline = it.getString(ARG_PAGE_HEADLINE) as String
         }
     }
 
@@ -72,7 +74,6 @@ class HeadlinesPageFragment : BaseFragment(), BaseNewsView {
     }
 
     private fun setUpRecycler() {
-        newsAdapter = NewsAdapter(onArticleClickListener)
         rv_news_container.adapter = newsAdapter
 
         val columnsNumber = resources.getInteger(R.integer.columns_number)
