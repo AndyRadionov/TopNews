@@ -12,8 +12,8 @@ import javax.inject.Inject
  */
 @InjectViewState
 class TopNewsPresenter @Inject constructor(
-        private val newsInteractor: NewsInteractor) :
-        BasePresenter<BaseNewsView>() {
+        private val newsInteractor: NewsInteractor
+) : BasePresenter<BaseNewsView>() {
 
     fun fetchNews() {
         if (checkNotConnected()) return

@@ -9,7 +9,8 @@ import io.github.andyradionov.googlenews.data.entities.Article
 class ArticlesDiffCallback : DiffUtil.ItemCallback<Article>() {
 
     override fun areItemsTheSame(article1: Article, article2: Article) =
-            article1.articleId == article2.articleId
+            article1.title == article2.title &&
+                    article1.publishedAt == article2.publishedAt
 
     override fun areContentsTheSame(article1: Article, article2: Article) =
             article1 == article2

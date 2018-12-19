@@ -6,36 +6,29 @@ import android.os.Parcel
 import android.os.Parcelable
 import java.util.*
 
-@Entity(tableName = "articles")
-data class Article(@PrimaryKey(autoGenerate = true)
-                   var articleId: Int,
-                   val publishedAt: Date,
+@Entity(tableName = "articles", primaryKeys = ["title", "publishedAt"])
+data class Article(val publishedAt: Date,
                    val author: String?,
                    val urlToImage: String?,
                    val description: String?,
-                   val title: String?,
-                   val url: String?,
-                   var isFavourite: Boolean = false):
+                   val title: String,
+                   val url: String?):
         Parcelable {
     constructor(parcel: Parcel) : this(
-            parcel.readInt(),
             Date(parcel.readLong()),
             parcel.readString(),
             parcel.readString(),
             parcel.readString(),
             parcel.readString(),
-            parcel.readString(),
-            parcel.readByte() != 0.toByte())
+            parcel.readString())
 
     override fun writeToParcel(parcel: Parcel, flags: Int) {
-        parcel.writeInt(articleId)
         parcel.writeLong(publishedAt.time)
         parcel.writeString(author)
         parcel.writeString(urlToImage)
         parcel.writeString(description)
         parcel.writeString(title)
         parcel.writeString(url)
-        parcel.writeByte(if (isFavourite) 1 else 0)
     }
 
     override fun describeContents(): Int {

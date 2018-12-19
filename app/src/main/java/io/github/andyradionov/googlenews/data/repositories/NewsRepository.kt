@@ -32,8 +32,8 @@ class NewsRepository(private val newsApi: NewsApi,
         }
 
 
-    fun removeFromFavourites(articleId: Int): Completable =
+    fun removeFromFavourites(article: Article): Completable =
         Completable.fromAction {
-            newsDao.removeFromFavouritesById(articleId)
+            newsDao.removeFromFavouritesById(article)
         }
 }

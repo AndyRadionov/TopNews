@@ -18,5 +18,5 @@ class NewsInteractor(private val newsRepository: NewsRepository) {
 
     fun addToFavourites(article: Article) = newsRepository.addToFavourites(article)
 
-    fun removeFromFavourites(articleId: Int) = newsRepository.removeFromFavourites(articleId)
+    fun removeFromFavourites(article: Article) = newsRepository.removeFromFavourites(article)
 }

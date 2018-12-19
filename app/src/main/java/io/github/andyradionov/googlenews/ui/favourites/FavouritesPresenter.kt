@@ -1,6 +1,7 @@
 package io.github.andyradionov.googlenews.ui.favourites
 
 import com.arellomobile.mvp.InjectViewState
+import io.github.andyradionov.googlenews.data.entities.Article
 import io.github.andyradionov.googlenews.interactors.NewsInteractor
 import io.github.andyradionov.googlenews.ui.common.BasePresenter
 import javax.inject.Inject
@@ -10,8 +11,8 @@ import javax.inject.Inject
  */
 @InjectViewState
 class FavouritesPresenter @Inject constructor(
-        private val newsInteractor: NewsInteractor) :
-        BasePresenter<FavouritesView>() {
+        private val newsInteractor: NewsInteractor
+) : BasePresenter<FavouritesView>() {
 
     fun loadFavourites() {
         dispose()
@@ -28,9 +29,9 @@ class FavouritesPresenter @Inject constructor(
                 })
     }
 
-    fun removeFromFavourites(articleId: Int, position: Int) {
+    fun removeFromFavourites(article: Article, position: Int) {
         dispose()
-        disposable = newsInteractor.removeFromFavourites(articleId)
+        disposable = newsInteractor.removeFromFavourites(article)
                 .compose(rxComposers.getCompletableComposer())
                 .subscribe {
                     viewState.onFavouriteRemove(position)

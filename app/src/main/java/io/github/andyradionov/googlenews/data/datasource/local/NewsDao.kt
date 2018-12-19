@@ -1,8 +1,6 @@
 package io.github.andyradionov.googlenews.data.datasource.local
 
-import android.arch.persistence.room.Dao
-import android.arch.persistence.room.Insert
-import android.arch.persistence.room.Query
+import android.arch.persistence.room.*
 import io.github.andyradionov.googlenews.data.entities.Article
 import io.reactivex.Flowable
 
@@ -12,12 +10,12 @@ import io.reactivex.Flowable
 @Dao
 interface NewsDao {
 
-    @Query("SELECT * FROM articles ORDER BY articleId DESC")
+    @Query("SELECT * FROM articles ORDER BY publishedAt DESC")
     fun getFavouriteNews() : Flowable<List<Article>>
 
-    @Insert
+    @Insert(onConflict = OnConflictStrategy.ABORT)
     fun addToFavourites(article: Article)
 
-    @Query("DELETE FROM articles WHERE articleId=:articleId")
-    fun removeFromFavouritesById(articleId: Int)
+    @Delete
+    fun removeFromFavouritesById(article: Article)
 }

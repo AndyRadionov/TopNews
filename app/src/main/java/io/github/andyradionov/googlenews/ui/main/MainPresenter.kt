@@ -16,8 +16,8 @@ import javax.inject.Inject
 @InjectViewState
 class MainPresenter @Inject constructor(
         private val router: Router,
-        private val systemMessageNotifier: SystemMessageNotifier) :
-        MvpPresenter<MainView>() {
+        private val systemMessageNotifier: SystemMessageNotifier
+) : MvpPresenter<MainView>() {
 
     private var notifierDisposable: Disposable? = null
 

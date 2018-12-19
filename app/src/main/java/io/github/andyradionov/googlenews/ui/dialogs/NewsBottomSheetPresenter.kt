@@ -12,13 +12,10 @@ import javax.inject.Inject
  */
 @InjectViewState
 class NewsBottomSheetPresenter @Inject constructor(
-        private val newsInteractor: NewsInteractor): BasePresenter<MvpView>() {
+        private val newsInteractor: NewsInteractor
+): BasePresenter<MvpView>() {
 
     fun addToFavourites(article: Article) {
-        if (article.isFavourite) {
-            messageNotifier.send("Article Added")
-            return
-        }
         dispose()
         disposable = newsInteractor.addToFavourites(article)
                 .compose(rxComposers.getCompletableComposer())

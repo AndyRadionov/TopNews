@@ -10,8 +10,8 @@ import javax.inject.Inject
  */
 @InjectViewState
 class SearchPresenter @Inject constructor(
-        private val newsInteractor: NewsInteractor) :
-        BasePresenter<SearchNewsView>() {
+        private val newsInteractor: NewsInteractor
+) : BasePresenter<SearchNewsView>() {
 
     fun searchNews(query: String) {
         if (checkNotConnected()) return
