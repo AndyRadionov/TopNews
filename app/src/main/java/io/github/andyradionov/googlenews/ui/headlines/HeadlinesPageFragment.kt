@@ -12,7 +12,7 @@ import io.github.andyradionov.googlenews.R
 import io.github.andyradionov.googlenews.data.entities.Article
 import io.github.andyradionov.googlenews.ui.common.BaseFragment
 import io.github.andyradionov.googlenews.ui.common.BaseNewsView
-import kotlinx.android.synthetic.main.content_layout.*
+import kotlinx.android.synthetic.main.news_content_layout.*
 import javax.inject.Inject
 
 private const val ARG_PAGE_HEADLINE = "page_headline"
@@ -37,7 +37,7 @@ class HeadlinesPageFragment : BaseFragment(), BaseNewsView {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
-        return inflater.inflate(R.layout.content_layout, container, false)
+        return inflater.inflate(R.layout.news_content_layout, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

@@ -11,7 +11,7 @@ import io.github.andyradionov.googlenews.R
 import io.github.andyradionov.googlenews.data.entities.Article
 import io.github.andyradionov.googlenews.ui.common.BaseFragment
 import io.github.andyradionov.googlenews.ui.common.BaseNewsView
-import kotlinx.android.synthetic.main.fragment_top_news.*
+import kotlinx.android.synthetic.main.news_content_layout.*
 import javax.inject.Inject
 
 class TopNewsFragment : BaseFragment(), BaseNewsView {
@@ -27,7 +27,7 @@ class TopNewsFragment : BaseFragment(), BaseNewsView {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
-        return inflater.inflate(R.layout.fragment_top_news, container, false)
+        return inflater.inflate(R.layout.news_content_layout, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -55,10 +55,6 @@ class TopNewsFragment : BaseFragment(), BaseNewsView {
     override fun showLoading() {
         setVisibility(container = false, loading = true)
     }
-
-//    override fun showSuccess(msgId: Int) {
-//        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-//    }
 
     private fun setUpSwipeRefresh() {
         swipe_container.setOnRefreshListener {

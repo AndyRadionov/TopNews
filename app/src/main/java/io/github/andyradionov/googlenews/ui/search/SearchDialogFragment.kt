@@ -18,7 +18,7 @@ import io.github.andyradionov.googlenews.R
 import io.github.andyradionov.googlenews.data.entities.Article
 import io.github.andyradionov.googlenews.ui.adapter.NewsAdapter
 import io.github.andyradionov.googlenews.utils.EMPTY_STRING
-import kotlinx.android.synthetic.main.content_layout.*
+import kotlinx.android.synthetic.main.news_content_layout.*
 import kotlinx.android.synthetic.main.fragment_search_dialog.*
 import javax.inject.Inject
 
