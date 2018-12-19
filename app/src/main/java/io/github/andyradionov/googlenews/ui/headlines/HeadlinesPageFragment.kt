@@ -24,8 +24,6 @@ class HeadlinesPageFragment : BaseFragment(), BaseNewsView {
     @InjectPresenter(type = PresenterType.LOCAL)
     lateinit var presenter: HeadlinesPresenter
 
-    @Inject
-    lateinit var newsAdapter: NewsAdapter
     private lateinit var pageHeadline: String
 
     @ProvidePresenter

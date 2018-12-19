@@ -21,9 +21,6 @@ class TopNewsFragment : BaseFragment(), BaseNewsAddFavView {
     @InjectPresenter
     lateinit var presenter: TopNewsPresenter
 
-    @Inject
-    lateinit var newsAdapter: NewsAdapter
-
     @ProvidePresenter
     fun providePresenter(): TopNewsPresenter {
         return presenter
