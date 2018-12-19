@@ -1,8 +1,7 @@
-package io.github.andyradionov.googlenews.ui.common.adapter
+package io.github.andyradionov.googlenews.ui.adapter
 
 import android.support.v7.widget.RecyclerView
 import com.arellomobile.mvp.MvpView
-import com.arellomobile.mvp.presenter.InjectPresenter
 import com.arellomobile.mvp.presenter.ProvidePresenter
 import com.hannesdorfmann.adapterdelegates3.AsyncListDifferDelegationAdapter
 import io.github.andyradionov.googlenews.data.entities.Article

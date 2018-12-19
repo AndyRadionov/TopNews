@@ -1,7 +1,6 @@
 package io.github.andyradionov.googlenews.ui.search
 
 import android.content.Context
-import android.content.Intent
 import android.os.Bundle
 import android.support.v4.app.DialogFragment
 import android.support.v7.widget.GridLayoutManager
@@ -17,10 +16,7 @@ import com.arellomobile.mvp.presenter.ProvidePresenter
 import dagger.android.support.AndroidSupportInjection
 import io.github.andyradionov.googlenews.R
 import io.github.andyradionov.googlenews.data.entities.Article
-import io.github.andyradionov.googlenews.ui.common.adapter.NewsAdapter
-import io.github.andyradionov.googlenews.ui.common.adapter.NewsAdapterDelegate
-import io.github.andyradionov.googlenews.ui.details.DetailsWebViewActivity
-import io.github.andyradionov.googlenews.ui.dialogs.NewsBottomSheetDialog
+import io.github.andyradionov.googlenews.ui.adapter.NewsAdapter
 import io.github.andyradionov.googlenews.utils.EMPTY_STRING
 import kotlinx.android.synthetic.main.content_layout.*
 import kotlinx.android.synthetic.main.fragment_search_dialog.*

@@ -10,21 +10,21 @@ import java.util.*
 data class Article(@PrimaryKey(autoGenerate = true)
                    var articleId: Int,
                    val publishedAt: Date,
-                   val author: String,
-                   val urlToImage: String,
-                   val description: String,
-                   val title: String,
-                   val url: String,
+                   val author: String?,
+                   val urlToImage: String?,
+                   val description: String?,
+                   val title: String?,
+                   val url: String?,
                    var isFavourite: Boolean = false):
         Parcelable {
     constructor(parcel: Parcel) : this(
             parcel.readInt(),
             Date(parcel.readLong()),
-            parcel.readString() as String,
-            parcel.readString() as String,
-            parcel.readString() as String,
-            parcel.readString() as String,
-            parcel.readString() as String,
+            parcel.readString(),
+            parcel.readString(),
+            parcel.readString(),
+            parcel.readString(),
+            parcel.readString(),
             parcel.readByte() != 0.toByte())
 
     override fun writeToParcel(parcel: Parcel, flags: Int) {

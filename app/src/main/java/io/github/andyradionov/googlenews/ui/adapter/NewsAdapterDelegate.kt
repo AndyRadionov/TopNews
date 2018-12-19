@@ -1,4 +1,4 @@
-package io.github.andyradionov.googlenews.ui.common.adapter
+package io.github.andyradionov.googlenews.ui.adapter
 
 import android.support.v7.widget.CardView
 import android.support.v7.widget.RecyclerView

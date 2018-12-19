@@ -1,4 +1,4 @@
-package io.github.andyradionov.googlenews.ui.common.adapter
+package io.github.andyradionov.googlenews.ui.adapter
 
 import com.arellomobile.mvp.InjectViewState
 import com.arellomobile.mvp.MvpPresenter

@@ -1,4 +1,4 @@
-package io.github.andyradionov.googlenews.ui.common.views
+package io.github.andyradionov.googlenews.ui.common
 
 import com.arellomobile.mvp.MvpView
 import com.arellomobile.mvp.viewstate.strategy.AddToEndSingleStrategy
@@ -14,6 +14,8 @@ interface BaseNewsView : MvpView {
 
     @StateStrategyType(SkipStrategy::class)
     fun showError()
+//    @StateStrategyType(SkipStrategy::class)
+//    fun showSuccess(msgId: Int)
     fun showNews(articles: List<Article>)
     fun showLoading()
 }
