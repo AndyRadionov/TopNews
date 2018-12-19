@@ -34,7 +34,7 @@ abstract class BasePresenter<T : MvpView> : MvpPresenter<T>() {
         return false
     }
 
-    private fun dispose() {
+    protected fun dispose() {
         disposable?.dispose()
     }
 }

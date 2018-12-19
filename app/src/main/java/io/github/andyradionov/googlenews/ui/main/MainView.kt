@@ -15,5 +15,8 @@ interface MainView: MvpView {
     fun showBottomSheet(article: Article)
 
     @StateStrategyType(SkipStrategy::class)
+    fun showMessage(msg: String)
+
+    @StateStrategyType(SkipStrategy::class)
     fun showNotConnected()
 }

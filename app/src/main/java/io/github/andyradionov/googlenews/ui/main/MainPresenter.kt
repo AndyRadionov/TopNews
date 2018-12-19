@@ -38,7 +38,7 @@ class MainPresenter @Inject constructor(
         notifierDisposable = systemMessageNotifier.notifier
                 .subscribe { msg ->
                     when (msg.type) {
-                        SystemMessageType.ALERT -> println()
+                        SystemMessageType.ALERT -> viewState.showMessage(msg.data as String)
                         SystemMessageType.BOTTOM ->
                             viewState.showBottomSheet(msg.data as Article)
                         SystemMessageType.NO_CONNECTION -> println()

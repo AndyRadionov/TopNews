@@ -14,7 +14,7 @@ class FavouritesPresenter @Inject constructor(
         BasePresenter<FavouritesView>() {
 
     fun loadFavourites() {
-        if (checkNotConnected()) return
+        dispose()
         disposable = newsInteractor.getFavourites()
                 .compose(rxComposers.getFlowableComposer())
                 .subscribe({ articles ->
@@ -29,7 +29,7 @@ class FavouritesPresenter @Inject constructor(
     }
 
     fun removeFromFavourites(articleId: Int, position: Int) {
-        if (checkNotConnected()) return
+        dispose()
         disposable = newsInteractor.removeFromFavourites(articleId)
                 .compose(rxComposers.getCompletableComposer())
                 .subscribe {

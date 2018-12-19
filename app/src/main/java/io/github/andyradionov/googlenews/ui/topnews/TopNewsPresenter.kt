@@ -12,14 +12,13 @@ import javax.inject.Inject
  */
 @InjectViewState
 class TopNewsPresenter @Inject constructor(
-        private val newsInteractor: NewsInteractor,
-        private val rxSchedulers: RxComposers) :
+        private val newsInteractor: NewsInteractor) :
         BasePresenter<BaseNewsView>() {
 
     fun fetchNews() {
         if (checkNotConnected()) return
         disposable = newsInteractor.fetchNews()
-                .compose(rxSchedulers.getObservableComposer())
+                .compose(rxComposers.getObservableComposer())
                 .subscribe({ articles ->
                     if (articles.isEmpty()) {
                         viewState.showError()

@@ -1,6 +1,7 @@
 package io.github.andyradionov.googlenews.ui.main
 
 import android.os.Bundle
+import android.widget.Toast
 import com.arellomobile.mvp.presenter.InjectPresenter
 import com.arellomobile.mvp.presenter.ProvidePresenter
 import io.github.andyradionov.googlenews.R
@@ -35,6 +36,10 @@ class MainActivity : BaseActivity(), MainView {
         NewsBottomSheetDialog
                 .newInstance(article)
                 .show(supportFragmentManager, NewsBottomSheetDialog.TAG)
+    }
+
+    override fun showMessage(msg: String) {
+        Toast.makeText(this, msg, Toast.LENGTH_SHORT).show()
     }
 
     override fun showNotConnected() {
