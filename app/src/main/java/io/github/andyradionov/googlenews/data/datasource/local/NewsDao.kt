@@ -13,7 +13,7 @@ interface NewsDao {
     @Query("SELECT * FROM articles ORDER BY publishedAt DESC")
     fun getFavouriteNews() : Flowable<List<Article>>
 
-    @Insert(onConflict = OnConflictStrategy.ABORT)
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun addToFavourites(article: Article)
 
     @Delete
