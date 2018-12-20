@@ -12,15 +12,18 @@ data class Article(val publishedAt: Date,
                    val urlToImage: String?,
                    val description: String?,
                    val title: String,
-                   val url: String?):
-        Parcelable {
+                   val url: String?,
+                   var isFavourite: Boolean = false):
+    Parcelable{
     constructor(parcel: Parcel) : this(
             Date(parcel.readLong()),
             parcel.readString(),
             parcel.readString(),
             parcel.readString(),
             parcel.readString(),
-            parcel.readString())
+            parcel.readString(),
+            parcel.readByte() != 0.toByte()) {
+    }
 
     override fun writeToParcel(parcel: Parcel, flags: Int) {
         parcel.writeLong(publishedAt.time)
@@ -29,6 +32,7 @@ data class Article(val publishedAt: Date,
         parcel.writeString(description)
         parcel.writeString(title)
         parcel.writeString(url)
+        parcel.writeByte(if (isFavourite) 1 else 0)
     }
 
     override fun describeContents(): Int {

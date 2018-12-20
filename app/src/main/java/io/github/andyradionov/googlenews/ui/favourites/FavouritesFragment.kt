@@ -36,7 +36,7 @@ class FavouritesFragment : BaseFragment(), FavouritesView {
 
     override fun onResume() {
         super.onResume()
-        presenter.loadFavourites()
+        loadNews()
     }
 
     override fun onFavouriteRemove(position: Int) {

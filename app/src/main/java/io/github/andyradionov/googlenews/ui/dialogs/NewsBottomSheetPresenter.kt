@@ -17,8 +17,16 @@ class NewsBottomSheetPresenter @Inject constructor(
 
     fun addToFavourites(article: Article) {
         dispose()
+        article.isFavourite = true
         disposable = newsInteractor.addToFavourites(article)
                 .compose(rxComposers.getCompletableComposer())
                 .subscribe { messageNotifier.send("Article Added") }
+    }
+
+    fun removeFromFavourites(article: Article) {
+        dispose()
+        disposable = newsInteractor.removeFromFavourites(article)
+                .compose(rxComposers.getCompletableComposer())
+                .subscribe { messageNotifier.send("Article Removed") }
     }
 }

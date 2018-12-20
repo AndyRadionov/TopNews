@@ -44,6 +44,7 @@ class NewsBottomSheetDialog : BottomSheetDialogFragment(), MvpView {
                               savedInstanceState: Bundle?): View? {
         initDialog()
         val view = inflater.inflate(R.layout.fragment_dialog_bottom, container, false)
+        initView(view)
         setClickListeners(view)
         return view
     }
@@ -70,10 +71,21 @@ class NewsBottomSheetDialog : BottomSheetDialogFragment(), MvpView {
         }
     }
 
+    private fun initView(view: View) {
+        if (article.isFavourite) {
+            view.tv_add_favourite_action.visibility = View.GONE
+            view.tv_remove_favourite_action.visibility = View.VISIBLE
+        }
+    }
+
     private fun setClickListeners(view: View) {
         view.tv_copy_link_action.setOnClickListener {  }
-        view.tv_favourite_action.setOnClickListener {
+        view.tv_add_favourite_action.setOnClickListener {
             presenter.addToFavourites(article)
+            dismiss()
+        }
+        view.tv_remove_favourite_action.setOnClickListener {
+            presenter.removeFromFavourites(article)
             dismiss()
         }
         view.tv_open_action.setOnClickListener {  }
