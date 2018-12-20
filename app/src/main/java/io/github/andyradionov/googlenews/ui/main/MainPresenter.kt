@@ -26,14 +26,9 @@ class MainPresenter @Inject constructor(
         router.navigateTo(screen)
     }
 
-    fun onBack() {
-        router.exit()
-    }
-
     override fun onFirstViewAttach() {
         super.onFirstViewAttach()
         subscribeOnSystemMessages()
-        router.newRootScreen(Screens.TopNewsScreen)
     }
 
     override fun onDestroy() {
@@ -45,8 +40,7 @@ class MainPresenter @Inject constructor(
                 .subscribe { msg ->
                     when (msg.type) {
                         SystemMessageType.ALERT -> viewState.showMessage(msg.data as String)
-                        SystemMessageType.BOTTOM ->
-                            viewState.showBottomSheet(msg.data as Article)
+                        SystemMessageType.BOTTOM -> viewState.showBottomSheet(msg.data as Article)
                         SystemMessageType.NO_CONNECTION -> println()
                     }
                 }

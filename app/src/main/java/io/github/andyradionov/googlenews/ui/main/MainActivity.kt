@@ -1,6 +1,7 @@
 package io.github.andyradionov.googlenews.ui.main
 
 import android.os.Bundle
+import android.view.MenuItem
 import android.widget.Toast
 import com.arellomobile.mvp.presenter.InjectPresenter
 import com.arellomobile.mvp.presenter.ProvidePresenter
@@ -12,6 +13,7 @@ import io.github.andyradionov.googlenews.ui.dialogs.NewsBottomSheetDialog
 import io.github.andyradionov.googlenews.ui.search.SearchDialogFragment
 import kotlinx.android.synthetic.main.activity_main.*
 import ru.terrakok.cicerone.Screen
+import java.util.*
 import javax.inject.Inject
 
 class MainActivity : BaseActivity(), MainView {
@@ -22,6 +24,7 @@ class MainActivity : BaseActivity(), MainView {
 
     @ProvidePresenter
     fun providePresenter(): MainPresenter = presenter
+    private val selectedTabs = LinkedList<Int>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -47,8 +50,13 @@ class MainActivity : BaseActivity(), MainView {
     }
 
     override fun onBackPressed() {
-        super.onBackPressed()
-       // presenter.onBack()
+        if (selectedTabs.size >= 2) {
+            selectedTabs.pop()
+            val tabId = selectedTabs.pop()
+            bottom_navigation.selectedItemId = tabId
+        } else {
+            finish()
+        }
     }
 
     private fun setupBottomNavigation() {
@@ -56,15 +64,15 @@ class MainActivity : BaseActivity(), MainView {
             return@setOnNavigationItemSelectedListener when (item.itemId) {
                 R.id.action_top_news -> {
                     //todo resources
-                    changeTab(Screens.TopNewsScreen, "Top News")
+                    changeTab(item, Screens.TopNewsScreen, "Top News")
                     true
                 }
                 R.id.action_headlines -> {
-                    changeTab(Screens.HeadlinesScreen, "Headlines")
+                    changeTab(item, Screens.HeadlinesScreen, "Headlines")
                     true
                 }
                 R.id.action_favorites -> {
-                    changeTab(Screens.FavouritesScreen, "Favourites")
+                    changeTab(item, Screens.FavouritesScreen, "Favourites")
                     true
                 }
                 else -> false
@@ -75,12 +83,12 @@ class MainActivity : BaseActivity(), MainView {
 
     private fun setupListeners() {
         iv_search.setOnClickListener {
-            presenter.selectTab(Screens.SearchScreen)
-//            SearchDialogFragment().show(supportFragmentManager, SearchDialogFragment.TAG)
+            SearchDialogFragment().show(supportFragmentManager, SearchDialogFragment.TAG)
         }
     }
 
-    private fun changeTab(screen: Screen, title: String) {
+    private fun changeTab(item: MenuItem, screen: Screen, title: String) {
+        selectedTabs.push(item.itemId)
         presenter.selectTab(screen)
         toolbar_title.text = title
     }

@@ -28,10 +28,6 @@ object Screens {
         override fun getFragment() = FavouritesFragment()
     }
 
-    object SearchScreen: SupportAppScreen() {
-        override fun getFragment() = SearchDialogFragment()
-    }
-
     data class DetailsScreen(val article: Article): SupportAppScreen() {
         override fun getActivityIntent(context: Context?): Intent {
             val intent = Intent(context, DetailsWebViewActivity::class.java)
