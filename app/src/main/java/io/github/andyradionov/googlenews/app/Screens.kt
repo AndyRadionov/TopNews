@@ -7,6 +7,7 @@ import io.github.andyradionov.googlenews.data.entities.Article
 import io.github.andyradionov.googlenews.ui.details.DetailsWebViewActivity
 import io.github.andyradionov.googlenews.ui.favourites.FavouritesFragment
 import io.github.andyradionov.googlenews.ui.headlines.HeadlinesFragment
+import io.github.andyradionov.googlenews.ui.search.SearchDialogFragment
 import io.github.andyradionov.googlenews.ui.topnews.TopNewsFragment
 import ru.terrakok.cicerone.android.support.SupportAppScreen
 
@@ -25,6 +26,10 @@ object Screens {
 
     object FavouritesScreen: SupportAppScreen() {
         override fun getFragment() = FavouritesFragment()
+    }
+
+    object SearchScreen: SupportAppScreen() {
+        override fun getFragment() = SearchDialogFragment()
     }
 
     data class DetailsScreen(val article: Article): SupportAppScreen() {

@@ -46,6 +46,11 @@ class MainActivity : BaseActivity(), MainView {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 
+    override fun onBackPressed() {
+        super.onBackPressed()
+       // presenter.onBack()
+    }
+
     private fun setupBottomNavigation() {
         bottom_navigation.setOnNavigationItemSelectedListener { item ->
             return@setOnNavigationItemSelectedListener when (item.itemId) {
@@ -70,7 +75,8 @@ class MainActivity : BaseActivity(), MainView {
 
     private fun setupListeners() {
         iv_search.setOnClickListener {
-            SearchDialogFragment().show(supportFragmentManager, SearchDialogFragment.TAG)
+            presenter.selectTab(Screens.SearchScreen)
+//            SearchDialogFragment().show(supportFragmentManager, SearchDialogFragment.TAG)
         }
     }
 

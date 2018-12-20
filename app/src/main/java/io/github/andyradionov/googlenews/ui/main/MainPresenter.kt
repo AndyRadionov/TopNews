@@ -2,6 +2,7 @@ package io.github.andyradionov.googlenews.ui.main
 
 import com.arellomobile.mvp.InjectViewState
 import com.arellomobile.mvp.MvpPresenter
+import io.github.andyradionov.googlenews.app.Screens
 import io.github.andyradionov.googlenews.data.entities.Article
 import io.github.andyradionov.googlenews.data.message.SystemMessageNotifier
 import io.github.andyradionov.googlenews.data.message.SystemMessageType
@@ -25,9 +26,14 @@ class MainPresenter @Inject constructor(
         router.navigateTo(screen)
     }
 
+    fun onBack() {
+        router.exit()
+    }
+
     override fun onFirstViewAttach() {
         super.onFirstViewAttach()
         subscribeOnSystemMessages()
+        router.newRootScreen(Screens.TopNewsScreen)
     }
 
     override fun onDestroy() {
