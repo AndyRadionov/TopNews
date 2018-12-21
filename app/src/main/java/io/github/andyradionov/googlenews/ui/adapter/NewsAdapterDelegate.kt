@@ -58,8 +58,7 @@ class NewsAdapterDelegate(private val clickListener: NewsAdapter.OnArticleClickL
         override fun onClick(v: View) {
             article?.let {
                 when(v) {
-                    itemView.iv_open_dialog ->
-                        clickListener.onOpenDialogClick(it)
+                    itemView.iv_open_dialog -> clickListener.onOpenDialogClick(it)
                     else -> clickListener.onClick(it)
                 }
             }
