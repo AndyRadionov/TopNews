@@ -12,7 +12,7 @@ data class Article(val publishedAt: Date,
                    val urlToImage: String?,
                    val description: String?,
                    val title: String,
-                   val url: String?,
+                   val url: String,
                    var isFavourite: Boolean = false):
     Parcelable{
     constructor(parcel: Parcel) : this(

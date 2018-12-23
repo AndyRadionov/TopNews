@@ -36,23 +36,20 @@ object Screens {
         }
     }
 
-    data class ExternalBrowserFlow(
-            val url: String
-    ) : SupportAppScreen() {
+    data class ExternalBrowserFlow(val url: String) : SupportAppScreen() {
         override fun getActivityIntent(context: Context?) =
                 Intent(Intent.ACTION_VIEW, Uri.parse(url))
     }
 
-    data class ShareFlow(
-            val text: String
-    ) : SupportAppScreen() {
+    data class ShareFlow(val article: Article) : SupportAppScreen() {
         override fun getActivityIntent(context: Context?) =
                 Intent.createChooser(
                         Intent(Intent.ACTION_SEND).apply {
-                            putExtra(Intent.EXTRA_TEXT, text)
+                            putExtra(Intent.EXTRA_TEXT, article.url)
                             type = "text/plain"
                         },
-                        text
+                        //todo
+                        "Share: ${article.title}"
                 )
     }
 }

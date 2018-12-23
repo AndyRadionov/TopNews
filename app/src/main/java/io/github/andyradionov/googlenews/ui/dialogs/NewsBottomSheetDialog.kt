@@ -89,7 +89,11 @@ class NewsBottomSheetDialog : BottomSheetDialogFragment(), MvpView {
             dismiss()
         }
         view.tv_open_action.setOnClickListener {  }
-        view.tv_share_action.setOnClickListener {  }
+        view.tv_read_action.setOnClickListener {  }
+        view.tv_share_action.setOnClickListener {
+            presenter.shareArticle(article)
+            dismiss()
+        }
     }
 
     companion object {
