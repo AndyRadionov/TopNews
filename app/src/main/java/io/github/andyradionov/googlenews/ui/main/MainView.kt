@@ -9,14 +9,12 @@ import io.github.andyradionov.googlenews.data.entities.Article
 /**
  * @author Andrey Radionov
  */
+@StateStrategyType(SkipStrategy::class)
 interface MainView: MvpView {
 
-    @StateStrategyType(AddToEndSingleStrategy::class)
     fun showBottomSheet(article: Article)
 
-    @StateStrategyType(SkipStrategy::class)
     fun showMessage(msg: String)
 
-    @StateStrategyType(SkipStrategy::class)
     fun showNotConnected()
 }
