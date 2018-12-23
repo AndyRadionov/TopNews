@@ -1,5 +1,8 @@
 package io.github.andyradionov.googlenews.di.modules
 
+import android.app.Application
+import android.content.ClipboardManager
+import android.content.Context
 import android.support.annotation.NonNull
 import dagger.Module
 import dagger.Provides
@@ -39,4 +42,10 @@ class AppModule {
     @Provides
     @Singleton
     fun provideMessageNotifier() = SystemMessageNotifier()
+
+    @NonNull
+    @Provides
+    @Singleton
+    fun provideClipboardManager(app: Application) =
+            app.getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
 }

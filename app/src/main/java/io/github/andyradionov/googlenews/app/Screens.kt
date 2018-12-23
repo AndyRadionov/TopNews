@@ -7,8 +7,8 @@ import io.github.andyradionov.googlenews.data.entities.Article
 import io.github.andyradionov.googlenews.ui.details.DetailsWebViewActivity
 import io.github.andyradionov.googlenews.ui.favourites.FavouritesFragment
 import io.github.andyradionov.googlenews.ui.headlines.HeadlinesFragment
-import io.github.andyradionov.googlenews.ui.search.SearchDialogFragment
 import io.github.andyradionov.googlenews.ui.topnews.TopNewsFragment
+import io.github.andyradionov.googlenews.utils.TEXT_TYPE
 import ru.terrakok.cicerone.android.support.SupportAppScreen
 
 /**
@@ -46,7 +46,7 @@ object Screens {
                 Intent.createChooser(
                         Intent(Intent.ACTION_SEND).apply {
                             putExtra(Intent.EXTRA_TEXT, article.url)
-                            type = "text/plain"
+                            type = TEXT_TYPE
                         },
                         //todo
                         "Share: ${article.title}"

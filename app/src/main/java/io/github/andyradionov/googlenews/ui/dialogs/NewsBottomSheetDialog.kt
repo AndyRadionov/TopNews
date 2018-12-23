@@ -1,5 +1,7 @@
 package io.github.andyradionov.googlenews.ui.dialogs
 
+import android.content.ClipData
+import android.content.ClipboardManager
 import android.content.Context
 import android.os.Bundle
 import android.support.design.widget.BottomSheetBehavior
@@ -14,6 +16,7 @@ import com.arellomobile.mvp.presenter.ProvidePresenter
 import dagger.android.support.AndroidSupportInjection
 import io.github.andyradionov.googlenews.R
 import io.github.andyradionov.googlenews.data.entities.Article
+import io.github.andyradionov.googlenews.utils.TEXT_TYPE
 import io.github.andyradionov.googlenews.utils.setDialogActionListener
 import kotlinx.android.synthetic.main.fragment_dialog_bottom.view.*
 import javax.inject.Inject
@@ -90,13 +93,13 @@ class NewsBottomSheetDialog : BottomSheetDialogFragment(), MvpView {
             presenter.shareArticle(article)
         }
         view.tv_open_action.setDialogActionListener(dialog) {
-
+            presenter.openInBrowser(article.url)
         }
         view.tv_read_action.setDialogActionListener(dialog) {
-
+            presenter.readArticle(article)
         }
         view.tv_copy_link_action.setDialogActionListener(dialog) {
-
+            presenter.copyLink(article.url)
         }
     }
 
