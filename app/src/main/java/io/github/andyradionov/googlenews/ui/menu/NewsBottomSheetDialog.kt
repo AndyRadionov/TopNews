@@ -1,7 +1,5 @@
-package io.github.andyradionov.googlenews.ui.dialogs
+package io.github.andyradionov.googlenews.ui.menu
 
-import android.content.ClipData
-import android.content.ClipboardManager
 import android.content.Context
 import android.os.Bundle
 import android.support.design.widget.BottomSheetBehavior
@@ -16,7 +14,6 @@ import com.arellomobile.mvp.presenter.ProvidePresenter
 import dagger.android.support.AndroidSupportInjection
 import io.github.andyradionov.googlenews.R
 import io.github.andyradionov.googlenews.data.entities.Article
-import io.github.andyradionov.googlenews.utils.TEXT_TYPE
 import io.github.andyradionov.googlenews.utils.setDialogActionListener
 import kotlinx.android.synthetic.main.fragment_dialog_bottom.view.*
 import javax.inject.Inject
@@ -77,17 +74,14 @@ class NewsBottomSheetDialog : BottomSheetDialogFragment(), MvpView {
 
     private fun initView(view: View) {
         if (article.isFavourite) {
-            view.tv_add_favourite_action.visibility = View.GONE
-            view.tv_remove_favourite_action.visibility = View.VISIBLE
+            //todo
+            view.tv_favourite_action.text = "Remove"
         }
     }
 
     private fun setClickListeners(view: View) {
-        view.tv_add_favourite_action.setDialogActionListener(dialog) {
-            presenter.addToFavourites(article)
-        }
-        view.tv_remove_favourite_action.setDialogActionListener(dialog) {
-            presenter.removeFromFavourites(article)
+        view.tv_favourite_action.setDialogActionListener(dialog) {
+            presenter.onFavourites(article)
         }
         view.tv_share_action.setDialogActionListener(dialog) {
             presenter.shareArticle(article)

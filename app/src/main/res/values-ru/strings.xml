@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="article_added">Article Added</string>
+    <string name="article_removed">Article Removed</string>
+    <string name="copied">Copied</string>
+</resources>

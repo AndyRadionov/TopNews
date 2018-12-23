@@ -3,13 +3,13 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
-        android:id="@+id/action_share"
-        android:title="Share article"
+        android:id="@+id/action_favourite"
+        android:title="Save for later"
         app:showAsAction="never" />
 
     <item
-        android:id="@+id/action_favourite"
-        android:title="Save for later"
+        android:id="@+id/action_share"
+        android:title="Share link"
         app:showAsAction="never" />
 
     <item
@@ -19,7 +19,6 @@
 
     <item
         android:id="@+id/action_copy_link"
-        android:title="Copy Link"
+        android:title="Copy link"
         app:showAsAction="never" />
-
 </menu>

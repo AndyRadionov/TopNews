@@ -15,7 +15,7 @@
         android:title="Headlines"
         app:showAsAction="ifRoom" />
     <item
-        android:id="@+id/action_favorites"
+        android:id="@+id/action_favourites"
         android:enabled="true"
         android:icon="@drawable/ic_star_border"
         android:title="Favourites"

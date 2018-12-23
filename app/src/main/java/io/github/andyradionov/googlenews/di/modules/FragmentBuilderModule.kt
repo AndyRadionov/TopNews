@@ -2,7 +2,7 @@ package io.github.andyradionov.googlenews.di.modules
 
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
-import io.github.andyradionov.googlenews.ui.dialogs.NewsBottomSheetDialog
+import io.github.andyradionov.googlenews.ui.menu.NewsBottomSheetDialog
 import io.github.andyradionov.googlenews.ui.favourites.FavouritesFragment
 import io.github.andyradionov.googlenews.ui.headlines.HeadlinesFragment
 import io.github.andyradionov.googlenews.ui.headlines.HeadlinesPageFragment

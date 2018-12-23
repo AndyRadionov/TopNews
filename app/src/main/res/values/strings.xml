@@ -5,4 +5,7 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="article_added">Article Added</string>
+    <string name="article_removed">Article Removed</string>
+    <string name="copied">Copied</string>
 </resources>

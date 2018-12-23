@@ -8,7 +8,7 @@
     android:orientation="vertical">
 
     <TextView
-        android:id="@+id/tv_add_favourite_action"
+        android:id="@+id/tv_favourite_action"
         android:layout_width="match_parent"
         android:layout_height="48dp"
         android:layout_marginStart="16dp"
@@ -20,21 +20,6 @@
         android:text="Save for later"
         android:textColor="@android:color/black"
         android:textSize="16sp" />
-
-    <TextView
-        android:id="@+id/tv_remove_favourite_action"
-        android:layout_width="match_parent"
-        android:layout_height="48dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
-        android:backgroundTint="@android:color/white"
-        android:drawableStart="@drawable/ic_bookmark"
-        android:drawablePadding="32dp"
-        android:gravity="start|center_vertical"
-        android:text="Remove"
-        android:textColor="@android:color/black"
-        android:textSize="16sp"
-        android:visibility="gone" />
 
     <TextView
         android:id="@+id/tv_share_action"

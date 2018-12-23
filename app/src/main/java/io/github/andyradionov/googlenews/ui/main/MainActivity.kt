@@ -9,7 +9,7 @@ import io.github.andyradionov.googlenews.R
 import io.github.andyradionov.googlenews.app.Screens
 import io.github.andyradionov.googlenews.data.entities.Article
 import io.github.andyradionov.googlenews.ui.common.BaseActivity
-import io.github.andyradionov.googlenews.ui.dialogs.NewsBottomSheetDialog
+import io.github.andyradionov.googlenews.ui.menu.NewsBottomSheetDialog
 import io.github.andyradionov.googlenews.ui.search.SearchDialogFragment
 import kotlinx.android.synthetic.main.activity_main.*
 import ru.terrakok.cicerone.Screen
@@ -71,7 +71,7 @@ class MainActivity : BaseActivity(), MainView {
                     changeTab(item, Screens.HeadlinesScreen, "Headlines")
                     true
                 }
-                R.id.action_favorites -> {
+                R.id.action_favourites -> {
                     changeTab(item, Screens.FavouritesScreen, "Favourites")
                     true
                 }
