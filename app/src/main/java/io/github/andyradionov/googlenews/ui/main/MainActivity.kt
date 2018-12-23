@@ -88,6 +88,7 @@ class MainActivity : BaseActivity(), MainView {
     }
 
     private fun changeTab(item: MenuItem, screen: Screen, title: String) {
+        appbar.setExpanded(true)
         selectedTabs.remove(item.itemId)
         selectedTabs.push(item.itemId)
         presenter.selectTab(screen)
