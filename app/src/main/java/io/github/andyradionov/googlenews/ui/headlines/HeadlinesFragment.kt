@@ -8,10 +8,10 @@ import android.support.v4.view.ViewPager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.arellomobile.mvp.MvpAppCompatFragment
 import io.github.andyradionov.googlenews.R
-import io.github.andyradionov.googlenews.ui.common.BaseFragment
 
-class HeadlinesFragment : BaseFragment() {
+class HeadlinesFragment : MvpAppCompatFragment() {
 
     private lateinit var tabLayout: TabLayout
 

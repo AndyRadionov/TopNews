@@ -58,11 +58,9 @@ abstract class BaseNewsFragment : MvpAppCompatFragment(), BaseNewsView {
         setVisibility(container = false, loading = true)
     }
 
-    private fun setUpSwipeRefresh() {
-        swipe_container.setOnRefreshListener {
-            presenter.fetchNews()
-        }
-    }
+    protected abstract fun setUpSwipeRefresh()
+
+    protected abstract fun loadNews()
 
     private fun setUpRecycler() {
         rv_news_container.adapter = newsAdapter
@@ -77,13 +75,10 @@ abstract class BaseNewsFragment : MvpAppCompatFragment(), BaseNewsView {
                               loading: Boolean = false,
                               empty: Boolean = false) {
 
-        rv_news_container.visibility = if (container) View.VISIBLE else View.INVISIBLE
         swipe_container.isRefreshing = loading
-        tv_empty_view.visibility = if (empty) View.VISIBLE else View.INVISIBLE
+        rv_news_container.visibility = getVisibility(container)
+        tv_empty_view.visibility = getVisibility(empty)
     }
 
-    private fun loadNews() {
-        showLoading()
-        presenter.fetchNews()
-    }
+    private fun getVisibility(isVisible: Boolean) = if (isVisible) View.VISIBLE else View.INVISIBLE
 }

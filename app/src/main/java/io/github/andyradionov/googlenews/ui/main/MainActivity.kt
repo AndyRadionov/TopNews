@@ -88,6 +88,7 @@ class MainActivity : BaseActivity(), MainView {
     }
 
     private fun changeTab(item: MenuItem, screen: Screen, title: String) {
+        selectedTabs.remove(item.itemId)
         selectedTabs.push(item.itemId)
         presenter.selectTab(screen)
         toolbar_title.text = title
