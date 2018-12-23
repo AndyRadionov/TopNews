@@ -12,6 +12,8 @@ import io.github.andyradionov.googlenews.data.entities.Article
 @StateStrategyType(SkipStrategy::class)
 interface MainView: MvpView {
 
+    fun initBottomTab()
+
     fun showBottomSheet(article: Article)
 
     fun showMessage(msg: String)

@@ -29,6 +29,7 @@ class MainPresenter @Inject constructor(
     override fun onFirstViewAttach() {
         super.onFirstViewAttach()
         subscribeOnSystemMessages()
+        viewState.initBottomTab()
     }
 
     override fun onDestroy() {
@@ -41,7 +42,7 @@ class MainPresenter @Inject constructor(
                     when (msg.type) {
                         SystemMessageType.ALERT -> viewState.showMessage(msg.data as String)
                         SystemMessageType.BOTTOM -> viewState.showBottomSheet(msg.data as Article)
-                        SystemMessageType.NO_CONNECTION -> println()
+                        SystemMessageType.NO_CONNECTION -> println() /*todo*/
                     }
                 }
     }

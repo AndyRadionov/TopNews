@@ -59,6 +59,10 @@ class MainActivity : BaseActivity(), MainView {
         }
     }
 
+    override fun initBottomTab() {
+        bottom_navigation.selectedItemId = R.id.action_top_news
+    }
+
     private fun setupBottomNavigation() {
         bottom_navigation.setOnNavigationItemSelectedListener { item ->
             return@setOnNavigationItemSelectedListener when (item.itemId) {
@@ -78,7 +82,6 @@ class MainActivity : BaseActivity(), MainView {
                 else -> false
             }
         }
-        bottom_navigation.selectedItemId = R.id.action_top_news
     }
 
     private fun setupListeners() {
