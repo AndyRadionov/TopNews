@@ -46,7 +46,7 @@
         android:drawableStart="@drawable/ic_share"
         android:drawablePadding="32dp"
         android:gravity="start|center_vertical"
-        android:text="Share"
+        android:text="Share Link"
         android:textColor="@android:color/black"
         android:textSize="16sp" />
 
@@ -71,7 +71,7 @@
         android:layout_marginStart="16dp"
         android:layout_marginEnd="16dp"
         android:backgroundTint="@android:color/white"
-        android:drawableStart="@drawable/ic_open_website"
+        android:drawableStart="@drawable/ic_read"
         android:drawablePadding="32dp"
         android:gravity="start|center_vertical"
         android:text="Read Article"

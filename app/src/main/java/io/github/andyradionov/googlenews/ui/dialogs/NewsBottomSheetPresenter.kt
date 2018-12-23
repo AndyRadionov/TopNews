@@ -36,4 +36,16 @@ class NewsBottomSheetPresenter @Inject constructor(
     fun shareArticle(article: Article) {
         router.navigateTo(Screens.ShareFlow(article))
     }
+
+    fun openInBrowser(article: Article) {
+
+    }
+
+    fun readArticle(article: Article) {
+        router.navigateTo(Screens.DetailsScreen(article))
+    }
+
+    fun copyLink(url: String) {
+
+    }
 }

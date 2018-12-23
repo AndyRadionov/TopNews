@@ -14,6 +14,7 @@ import com.arellomobile.mvp.presenter.ProvidePresenter
 import dagger.android.support.AndroidSupportInjection
 import io.github.andyradionov.googlenews.R
 import io.github.andyradionov.googlenews.data.entities.Article
+import io.github.andyradionov.googlenews.utils.setDialogActionListener
 import kotlinx.android.synthetic.main.fragment_dialog_bottom.view.*
 import javax.inject.Inject
 
@@ -79,20 +80,23 @@ class NewsBottomSheetDialog : BottomSheetDialogFragment(), MvpView {
     }
 
     private fun setClickListeners(view: View) {
-        view.tv_copy_link_action.setOnClickListener {  }
-        view.tv_add_favourite_action.setOnClickListener {
+        view.tv_add_favourite_action.setDialogActionListener(dialog) {
             presenter.addToFavourites(article)
-            dismiss()
         }
-        view.tv_remove_favourite_action.setOnClickListener {
+        view.tv_remove_favourite_action.setDialogActionListener(dialog) {
             presenter.removeFromFavourites(article)
-            dismiss()
         }
-        view.tv_open_action.setOnClickListener {  }
-        view.tv_read_action.setOnClickListener {  }
-        view.tv_share_action.setOnClickListener {
+        view.tv_share_action.setDialogActionListener(dialog) {
             presenter.shareArticle(article)
-            dismiss()
+        }
+        view.tv_open_action.setDialogActionListener(dialog) {
+
+        }
+        view.tv_read_action.setDialogActionListener(dialog) {
+
+        }
+        view.tv_copy_link_action.setDialogActionListener(dialog) {
+
         }
     }
 
