@@ -30,6 +30,7 @@ android {
 ext.versions = [ANDROID_SUPPORT  : "28.0.0",
                 CONSTRAINT_LAYOUT: "1.1.3",
                 PICASSO          : "2.71828",
+                ROUND_IMAGE      : "2.3.0",
                 PRETTY_TIME      : "4.0.1.Final",
                 RX_JAVA          : "2.1.16",
                 RX_ANDROID       : "2.1.0",
@@ -58,8 +59,9 @@ dependencies {
     implementation "com.android.support:design:$versions.ANDROID_SUPPORT"
     implementation "com.android.support.constraint:constraint-layout:$versions.CONSTRAINT_LAYOUT"
 
-    //Images Picasso
+    //Images
     implementation "com.squareup.picasso:picasso:$versions.PICASSO"
+    implementation "com.makeramen:roundedimageview:$versions.ROUND_IMAGE"
 
     //PrettyTime
     implementation "org.ocpsoft.prettytime:prettytime:$versions.PRETTY_TIME"

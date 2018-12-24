@@ -95,6 +95,7 @@ class SearchDialogFragment : MvpAppCompatDialogFragment(), SearchNewsView {
 
         searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String): Boolean {
+                swipe_container.isRefreshing = true
                 presenter.searchNews(query)
                 searchView.clearFocus()
                 return true
