@@ -4,17 +4,19 @@ import android.arch.persistence.room.Entity
 import android.arch.persistence.room.PrimaryKey
 import android.os.Parcel
 import android.os.Parcelable
+import com.google.gson.annotations.SerializedName
 import java.util.*
 
 @Entity(tableName = "articles", primaryKeys = ["title", "publishedAt"])
-data class Article(val publishedAt: Date,
-                   val author: String?,
-                   val urlToImage: String?,
-                   val description: String?,
-                   val title: String,
-                   val url: String,
-                   var isFavourite: Boolean = false):
-    Parcelable{
+data class Article(
+        @SerializedName("publishedAt") val publishedAt: Date,
+        @SerializedName("author") val author: String?,
+        @SerializedName("urlToImage") val urlToImage: String?,
+        @SerializedName("description") val description: String?,
+        @SerializedName("title") val title: String,
+        @SerializedName("url") val url: String,
+        @SerializedName("isFavourite") var isFavourite: Boolean = false
+) : Parcelable {
     constructor(parcel: Parcel) : this(
             Date(parcel.readLong()),
             parcel.readString(),
