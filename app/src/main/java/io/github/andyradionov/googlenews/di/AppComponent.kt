@@ -5,7 +5,7 @@ import dagger.BindsInstance
 import dagger.Component
 import dagger.android.AndroidInjector
 import dagger.android.support.AndroidSupportInjectionModule
-import io.github.andyradionov.googlenews.app.NewsApp
+import io.github.andyradionov.googlenews.NewsApp
 import io.github.andyradionov.googlenews.di.modules.*
 import javax.inject.Singleton
 

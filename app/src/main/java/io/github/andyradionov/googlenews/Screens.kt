@@ -1,4 +1,4 @@
-package io.github.andyradionov.googlenews.app
+package io.github.andyradionov.googlenews
 
 import android.content.Context
 import android.content.Intent

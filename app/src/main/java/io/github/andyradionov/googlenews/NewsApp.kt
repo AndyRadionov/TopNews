@@ -1,4 +1,4 @@
-package io.github.andyradionov.googlenews.app
+package io.github.andyradionov.googlenews
 
 import dagger.android.AndroidInjector
 import dagger.android.DaggerApplication

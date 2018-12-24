@@ -6,7 +6,7 @@ import android.widget.Toast
 import com.arellomobile.mvp.presenter.InjectPresenter
 import com.arellomobile.mvp.presenter.ProvidePresenter
 import io.github.andyradionov.googlenews.R
-import io.github.andyradionov.googlenews.app.Screens
+import io.github.andyradionov.googlenews.Screens
 import io.github.andyradionov.googlenews.data.entities.Article
 import io.github.andyradionov.googlenews.ui.common.BaseActivity
 import io.github.andyradionov.googlenews.ui.menu.NewsBottomSheetDialog

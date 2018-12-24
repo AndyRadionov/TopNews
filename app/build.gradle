@@ -12,8 +12,11 @@ android {
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
-        buildConfigField 'String', "ApiKey", news_api_key
-        buildConfigField 'String', "ApiUrl", news_api_url
+        buildConfigField 'String', "API_KEY", news_api_key
+        buildConfigField 'String', "API_URL", news_api_url
+        buildConfigField 'String', "SORT_BY", news_api_sort_by
+        buildConfigField 'int', "PAGE_SIZE", news_api_page_size
+        buildConfigField 'String', "ICONS_URL", icons_api_url
     }
     buildTypes {
         release {
