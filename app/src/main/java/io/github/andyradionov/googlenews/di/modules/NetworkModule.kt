@@ -6,7 +6,8 @@ import android.util.Log
 import com.google.gson.Gson
 import dagger.Module
 import dagger.Provides
-import io.github.andyradionov.googlenews.BuildConfig
+import io.github.andyradionov.googlenews.BuildConfig.API_KEY
+import io.github.andyradionov.googlenews.BuildConfig.API_URL
 import io.github.andyradionov.googlenews.data.datasource.server.NewsApi
 import io.github.andyradionov.googlenews.utils.NetworkManager
 import okhttp3.Cache
@@ -32,7 +33,7 @@ class NetworkModule() {
     fun provideNewsApi(httpClient: OkHttpClient): NewsApi {
 
         return Retrofit.Builder()
-                .baseUrl(BuildConfig.API_URL)
+                .baseUrl(API_URL)
                 .addConverterFactory(GsonConverterFactory.create(Gson()))
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                 .client(httpClient)
@@ -65,7 +66,7 @@ class NetworkModule() {
             val request = original.newBuilder().url(
                     original.url()
                             .newBuilder()
-                            .addQueryParameter("apiKey", BuildConfig.API_KEY)
+                            .addQueryParameter("apiKey", API_KEY)
                             .build())
                     .build()
 

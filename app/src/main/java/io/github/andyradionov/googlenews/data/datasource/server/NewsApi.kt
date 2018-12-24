@@ -1,7 +1,6 @@
 package io.github.andyradionov.googlenews.data.datasource.server
 
-import io.github.andyradionov.googlenews.BuildConfig.PAGE_SIZE
-import io.github.andyradionov.googlenews.BuildConfig.SORT_BY
+import io.github.andyradionov.googlenews.BuildConfig.*
 import io.github.andyradionov.googlenews.data.entities.NewsResponse
 import io.reactivex.Observable
 import retrofit2.http.GET
@@ -11,7 +10,7 @@ import retrofit2.http.Query
  * @author Andrey Radionov
  */
 private const val TOP_NEWS_REQUEST = "top-headlines?pageSize=$PAGE_SIZE"
-private const val SEARCH_NEWS_REQUEST = "everything?sortBy=$SORT_BY&pageSize=100"//todo
+private const val SEARCH_NEWS_REQUEST = "everything?sortBy=$SORT_BY&pageSize=$SEARCH_SIZE"
 
 interface NewsApi {
 

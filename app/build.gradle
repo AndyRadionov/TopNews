@@ -16,6 +16,7 @@ android {
         buildConfigField 'String', "API_URL", news_api_url
         buildConfigField 'String', "SORT_BY", news_api_sort_by
         buildConfigField 'int', "PAGE_SIZE", news_api_page_size
+        buildConfigField 'int', "SEARCH_SIZE", news_api_search_size
         buildConfigField 'String', "ICONS_URL", icons_api_url
     }
     buildTypes {
