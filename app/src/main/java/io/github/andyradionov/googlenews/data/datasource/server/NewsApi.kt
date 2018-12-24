@@ -11,7 +11,7 @@ import retrofit2.http.Query
  * @author Andrey Radionov
  */
 private const val TOP_NEWS_REQUEST = "top-headlines?pageSize=$PAGE_SIZE"
-private const val SEARCH_NEWS_REQUEST = "everything?sortBy=$SORT_BY&pageSize=$PAGE_SIZE"
+private const val SEARCH_NEWS_REQUEST = "everything?sortBy=$SORT_BY&pageSize=100"//todo
 
 interface NewsApi {
 

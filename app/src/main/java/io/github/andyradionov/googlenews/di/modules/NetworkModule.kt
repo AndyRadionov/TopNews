@@ -32,7 +32,7 @@ class NetworkModule() {
     fun provideNewsApi(httpClient: OkHttpClient): NewsApi {
 
         return Retrofit.Builder()
-                .baseUrl(BuildConfig.ApiUrl)
+                .baseUrl(BuildConfig.API_URL)
                 .addConverterFactory(GsonConverterFactory.create(Gson()))
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                 .client(httpClient)
@@ -65,7 +65,7 @@ class NetworkModule() {
             val request = original.newBuilder().url(
                     original.url()
                             .newBuilder()
-                            .addQueryParameter("apiKey", BuildConfig.ApiKey)
+                            .addQueryParameter("apiKey", BuildConfig.API_KEY)
                             .build())
                     .build()
 
@@ -76,8 +76,7 @@ class NetworkModule() {
     private fun initCache(app: Application): Cache? {
         var cache: Cache? = null
         try {
-            cache = Cache(File(app.cacheDir, "http-cache"),
-                    (10 * 1024 * 1024).toLong()) // 10 MB
+            cache = Cache(File(app.cacheDir, "http-cache"), (CACHE_SIZE).toLong())
         } catch (e: Exception) {
             Log.e(TAG, "Could not create Cache!")
         }
@@ -91,7 +90,7 @@ class NetworkModule() {
 
             // re-write response header to force use of cache
             val cacheControl = CacheControl.Builder()
-                    .maxAge(10, TimeUnit.MINUTES)
+                    .maxAge(MAX_AGE, TimeUnit.MINUTES)
                     .build()
 
             response.newBuilder()
@@ -110,7 +109,7 @@ class NetworkModule() {
 
             if (!networkManager.isInternetAvailable()) {
                 val cacheControl = CacheControl.Builder()
-                        .maxStale(7, TimeUnit.DAYS)
+                        .maxStale(STALE_TIME, TimeUnit.DAYS)
                         .build()
 
                 request = request.newBuilder()
@@ -124,9 +123,12 @@ class NetworkModule() {
 
     companion object {
         private const val TAG = "AppModule"
-        private val CACHE_CONTROL_HEADER = "Cache-Control"
-        private val PRAGMA_HEADER = "Pragma"
-        private val ACCESS_CONTROL_ALLOW_ORIGIN_HEADER = "Access-Control-Allow-Origin"
-        private val VARY_HEADER = "Vary"
+        private const val CACHE_CONTROL_HEADER = "Cache-Control"
+        private const val PRAGMA_HEADER = "Pragma"
+        private const val ACCESS_CONTROL_ALLOW_ORIGIN_HEADER = "Access-Control-Allow-Origin"
+        private const val VARY_HEADER = "Vary"
+        private const val CACHE_SIZE = 10 * 1024 * 1024 // 10 MB
+        private const val MAX_AGE = 10
+        private const val STALE_TIME = 7
     }
 }
