@@ -1,5 +1,6 @@
 package io.github.andyradionov.googlenews.ui.details
 
+import android.net.Uri
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.view.Menu
@@ -36,7 +37,7 @@ class DetailsWebViewActivity : BaseActivity(), DetailsView {
 
         article = intent.getParcelableExtra(ARTICLE_EXTRA)
 
-        title = getString(R.string.web_view_title)
+        title = Uri.parse(article.url).host
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
         webView = WebView(this)

@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="article_added">Article Added</string>
-    <string name="article_removed">Article Removed</string>
-    <string name="copied">Copied</string>
+    <string name="empty_view_text">Статьи не найдены</string>
+
+    <string name="article_saved">Статья сохранена</string>
+    <string name="article_removed">Статья удалена</string>
+    <string name="link_copied">Ссылка скопирована</string>
 </resources>

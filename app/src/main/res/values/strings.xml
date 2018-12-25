@@ -1,11 +1,8 @@
 <resources>
-    <string name="app_name">TopNews</string>
-    <string name="web_view_title">Article Details</string>
+    <string name="app_name" translatable="false">TopNews</string>
     <string name="empty_view_text">No Articles Found</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="article_added">Article Added</string>
-    <string name="article_removed">Article Removed</string>
-    <string name="copied">Copied</string>
+    <string name="article_saved">Article saved</string>
+    <string name="article_removed">Article removed</string>
+    <string name="link_copied">Link copied</string>
 </resources>
