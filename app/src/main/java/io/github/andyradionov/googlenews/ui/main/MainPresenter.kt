@@ -41,7 +41,7 @@ class MainPresenter @Inject constructor(
                     when (msg.type) {
                         SystemMessageType.ALERT -> viewState.showMessage(msg.data as String)
                         SystemMessageType.BOTTOM -> viewState.showBottomSheet(msg.data as Article)
-                        SystemMessageType.NO_CONNECTION -> println() /*todo*/
+                        SystemMessageType.NO_CONNECTION -> viewState.showNotConnected()
                     }
                 }
     }

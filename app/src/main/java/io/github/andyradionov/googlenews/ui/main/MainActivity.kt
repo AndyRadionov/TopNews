@@ -15,7 +15,9 @@ import kotlinx.android.synthetic.main.activity_main.*
 import ru.terrakok.cicerone.Screen
 import java.util.*
 import javax.inject.Inject
+import kotlin.collections.ArrayList
 
+private const val EXTRA_TABS_ID = "tabs_id"
 class MainActivity : BaseActivity(), MainView {
 
     @Inject
@@ -33,6 +35,12 @@ class MainActivity : BaseActivity(), MainView {
         supportActionBar?.setDisplayShowTitleEnabled(false)
         setupBottomNavigation()
         setupListeners()
+        restoreState(savedInstanceState)
+    }
+
+    override fun onSaveInstanceState(outState: Bundle) {
+        outState.putIntegerArrayList(EXTRA_TABS_ID, ArrayList(selectedTabs))
+        super.onSaveInstanceState(outState)
     }
 
     override fun showBottomSheet(article: Article) {
@@ -46,7 +54,8 @@ class MainActivity : BaseActivity(), MainView {
     }
 
     override fun showNotConnected() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        //todo
+        Toast.makeText(this, "No Internet connection!", Toast.LENGTH_SHORT).show()
     }
 
     override fun onBackPressed() {
@@ -96,5 +105,13 @@ class MainActivity : BaseActivity(), MainView {
         selectedTabs.push(item.itemId)
         presenter.selectTab(screen)
         toolbar_title.text = title
+    }
+
+    private fun restoreState(savedInstanceState: Bundle?) {
+        if (savedInstanceState != null) {
+            selectedTabs.addAll(savedInstanceState.getIntegerArrayList(EXTRA_TABS_ID))
+            val tabId = selectedTabs.pop()
+            bottom_navigation.selectedItemId = tabId
+        }
     }
 }
