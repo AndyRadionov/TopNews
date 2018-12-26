@@ -1,4 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
+    <dimen name="toolbar_title">18dp</dimen>
+    <dimen name="small_margin">4dp</dimen>
+    <dimen name="bottom_drawable_padding">32dp</dimen>
+    <dimen name="regular_margin">8dp</dimen>
+    <dimen name="big_margin">16dp</dimen>
+    <dimen name="bottom_text_height">48dp</dimen>
+    <dimen name="regular_text">16sp</dimen>
+    <dimen name="huge_text">20sp</dimen>
+    <dimen name="card_radius">8dp</dimen>
+    <dimen name="source_logo_size">16dp</dimen>
+    <dimen name="article_img_size">80dp</dimen>
+    <dimen name="tiny_text">12sp</dimen>
+    <dimen name="small_text">14sp</dimen>
 </resources>

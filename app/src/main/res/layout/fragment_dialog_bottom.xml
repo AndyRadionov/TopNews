@@ -2,78 +2,78 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginTop="8dp"
-    android:layout_marginBottom="8dp"
+    android:layout_marginTop="@dimen/regular_margin"
+    android:layout_marginBottom="@dimen/regular_margin"
     android:orientation="vertical">
 
     <TextView
         android:id="@+id/tv_favourite_action"
         android:layout_width="match_parent"
-        android:layout_height="48dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
+        android:layout_height="@dimen/bottom_text_height"
+        android:layout_marginStart="@dimen/big_margin"
+        android:layout_marginEnd="@dimen/big_margin"
         android:backgroundTint="@android:color/white"
         android:drawableStart="@drawable/ic_bookmark"
-        android:drawablePadding="32dp"
+        android:drawablePadding="@dimen/bottom_drawable_padding"
         android:gravity="start|center_vertical"
         android:text="@string/action_save_for_later"
         android:textColor="@android:color/black"
-        android:textSize="16sp" />
+        android:textSize="@dimen/regular_text" />
 
     <TextView
         android:id="@+id/tv_share_action"
         android:layout_width="match_parent"
-        android:layout_height="48dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
+        android:layout_height="@dimen/bottom_text_height"
+        android:layout_marginStart="@dimen/big_margin"
+        android:layout_marginEnd="@dimen/big_margin"
         android:backgroundTint="@android:color/white"
         android:drawableStart="@drawable/ic_share"
-        android:drawablePadding="32dp"
+        android:drawablePadding="@dimen/bottom_drawable_padding"
         android:gravity="start|center_vertical"
         android:text="@string/action_share"
         android:textColor="@android:color/black"
-        android:textSize="16sp" />
+        android:textSize="@dimen/regular_text" />
 
     <TextView
         android:id="@+id/tv_open_action"
         android:layout_width="match_parent"
-        android:layout_height="48dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
+        android:layout_height="@dimen/bottom_text_height"
+        android:layout_marginStart="@dimen/big_margin"
+        android:layout_marginEnd="@dimen/big_margin"
         android:backgroundTint="@android:color/white"
         android:drawableStart="@drawable/ic_open_website"
-        android:drawablePadding="32dp"
+        android:drawablePadding="@dimen/bottom_drawable_padding"
         android:gravity="start|center_vertical"
         android:text="@string/action_open_in_browser"
         android:textColor="@android:color/black"
-        android:textSize="16sp" />
+        android:textSize="@dimen/regular_text" />
 
     <TextView
         android:id="@+id/tv_read_action"
         android:layout_width="match_parent"
-        android:layout_height="48dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
+        android:layout_height="@dimen/bottom_text_height"
+        android:layout_marginStart="@dimen/big_margin"
+        android:layout_marginEnd="@dimen/big_margin"
         android:backgroundTint="@android:color/white"
         android:drawableStart="@drawable/ic_read"
-        android:drawablePadding="32dp"
+        android:drawablePadding="@dimen/bottom_drawable_padding"
         android:gravity="start|center_vertical"
         android:text="@string/action_read_article"
         android:textColor="@android:color/black"
-        android:textSize="16sp" />
+        android:textSize="@dimen/regular_text" />
 
     <TextView
         android:id="@+id/tv_copy_link_action"
         android:layout_width="match_parent"
-        android:layout_height="48dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
+        android:layout_height="@dimen/bottom_text_height"
+        android:layout_marginStart="@dimen/big_margin"
+        android:layout_marginEnd="@dimen/big_margin"
         android:backgroundTint="@android:color/white"
         android:drawableStart="@drawable/ic_content_copy"
-        android:drawablePadding="32dp"
+        android:drawablePadding="@dimen/bottom_drawable_padding"
         android:gravity="start|center_vertical"
         android:text="@string/action_copy_link"
         android:textColor="@android:color/black"
-        android:textSize="16sp" />
+        android:textSize="@dimen/regular_text" />
 
 </LinearLayout>
