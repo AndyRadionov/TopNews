@@ -26,9 +26,9 @@ class DetailsPresenter @Inject constructor(
     override fun onFavourites(article: Article) {
         dispose()
         if (!article.isFavourite) {
-            addToFavourites(article) { viewState.showToast(R.string.article_saved) }
+            addToFavourites(article) { viewState.onArticleFavourite(R.string.article_saved) }
         } else {
-            removeFromFavourites(article) { viewState.showToast(R.string.article_removed) }
+            removeFromFavourites(article) { viewState.onArticleFavourite(R.string.article_removed) }
         }
     }
 

@@ -11,4 +11,5 @@ import com.arellomobile.mvp.viewstate.strategy.StateStrategyType
 interface DetailsView : MvpView {
 
     fun showToast(msgId: Int)
+    fun onArticleFavourite(msgId: Int)
 }

@@ -2,14 +2,12 @@ package io.github.andyradionov.googlenews.ui.details
 
 import android.net.Uri
 import android.os.Bundle
-import android.support.v7.app.AppCompatActivity
 import android.view.Menu
 import android.view.MenuItem
 import android.webkit.WebResourceRequest
 import android.webkit.WebView
 import android.webkit.WebViewClient
 import android.widget.Toast
-import com.arellomobile.mvp.MvpView
 import com.arellomobile.mvp.presenter.InjectPresenter
 import com.arellomobile.mvp.presenter.ProvidePresenter
 import io.github.andyradionov.googlenews.R
@@ -60,8 +58,7 @@ class DetailsWebViewActivity : BaseActivity(), DetailsView {
 
     override fun onPrepareOptionsMenu(menu: Menu): Boolean {
         if (article.isFavourite) {
-            //todo
-            menu.findItem(R.id.action_favourite).title = "Remove"
+            menu.findItem(R.id.action_favourite).title = getString(R.string.action_remove)
         }
         return super.onPrepareOptionsMenu(menu)
     }
@@ -87,6 +84,11 @@ class DetailsWebViewActivity : BaseActivity(), DetailsView {
 
     override fun showToast(msgId: Int) {
         Toast.makeText(this, msgId, Toast.LENGTH_SHORT).show()
+    }
+
+    override fun onArticleFavourite(msgId: Int) {
+        invalidateOptionsMenu()
+        showToast(msgId)
     }
 
     private fun performAction(action: () -> Unit): Boolean {
