@@ -48,7 +48,7 @@ object Screens {
                             putExtra(Intent.EXTRA_TEXT, article.url)
                             type = TEXT_TYPE
                         },
-                        context.getString(R.string.share, article.title)
+                        context.getString(R.string.action_share, article.title)
                 )
     }
 }

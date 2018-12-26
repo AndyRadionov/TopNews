@@ -74,8 +74,9 @@ class NewsBottomSheetDialog : BottomSheetDialogFragment(), MvpView {
 
     private fun initView(view: View) {
         if (article.isFavourite) {
-            //todo
-            view.tv_favourite_action.text = "Remove"
+            context?.let {
+                view.tv_favourite_action.text = it.getString(R.string.action_remove)
+            }
         }
     }
 

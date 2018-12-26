@@ -8,8 +8,8 @@ class SystemMessageNotifier {
     private val notifierRelay = PublishRelay.create<SystemMessage>()
 
     val notifier: Observable<SystemMessage> = notifierRelay.hide()
-    fun send(text: String) =
-            notifierRelay.accept(SystemMessage(text, SystemMessageType.ALERT))
+    fun send(textId: Int) =
+            notifierRelay.accept(SystemMessage(textId, SystemMessageType.ALERT))
     fun send(article: Article) =
             notifierRelay.accept(SystemMessage(article, SystemMessageType.BOTTOM))
 }

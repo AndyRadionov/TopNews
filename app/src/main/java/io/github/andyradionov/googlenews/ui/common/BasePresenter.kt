@@ -2,6 +2,7 @@ package io.github.andyradionov.googlenews.ui.common
 
 import com.arellomobile.mvp.MvpPresenter
 import com.arellomobile.mvp.MvpView
+import io.github.andyradionov.googlenews.R
 import io.github.andyradionov.googlenews.data.message.SystemMessageNotifier
 import io.github.andyradionov.googlenews.utils.NetworkManager
 import io.github.andyradionov.googlenews.utils.RxComposers
@@ -28,7 +29,7 @@ abstract class BasePresenter<T : MvpView> : MvpPresenter<T>() {
     protected fun checkNotConnected(): Boolean {
         dispose()
         if (!networkManager.isInternetAvailable()) {
-            messageNotifier.send("Not Connected")
+            messageNotifier.send(R.string.error_no_internet)
             return true
         }
         return false

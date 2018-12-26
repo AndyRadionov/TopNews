@@ -2,9 +2,13 @@
     <string name="app_name" translatable="false">TopNews</string>
     <string name="empty_view_text">No Articles Found</string>
 
-    <string name="share">Share: %s</string>
+    <string name="action_share">Share: %s</string>
     <string name="article_saved">Article saved</string>
     <string name="article_removed">Article removed</string>
     <string name="link_copied">Link copied</string>
     <string name="action_remove">Remove</string>
+    <string name="top_news">Top News</string>
+    <string name="headlines">Headlines</string>
+    <string name="favourites">Favourites</string>
+    <string name="error_no_internet">No Internet connection!</string>
 </resources>

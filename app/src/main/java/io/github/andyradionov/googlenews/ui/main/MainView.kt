@@ -16,7 +16,7 @@ interface MainView: MvpView {
 
     fun showBottomSheet(article: Article)
 
-    fun showMessage(msg: String)
+    fun showMessage(msgId: Int)
 
     fun showNotConnected()
 }

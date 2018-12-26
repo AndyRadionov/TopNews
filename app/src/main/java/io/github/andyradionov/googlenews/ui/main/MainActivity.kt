@@ -49,13 +49,12 @@ class MainActivity : BaseActivity(), MainView {
                 .show(supportFragmentManager, NewsBottomSheetDialog.TAG)
     }
 
-    override fun showMessage(msg: String) {
-        Toast.makeText(this, msg, Toast.LENGTH_SHORT).show()
+    override fun showMessage(msgId: Int) {
+        Toast.makeText(this, msgId, Toast.LENGTH_SHORT).show()
     }
 
     override fun showNotConnected() {
-        //todo
-        Toast.makeText(this, "No Internet connection!", Toast.LENGTH_SHORT).show()
+        Toast.makeText(this, getString(R.string.error_no_internet), Toast.LENGTH_SHORT).show()
     }
 
     override fun onBackPressed() {
@@ -76,16 +75,15 @@ class MainActivity : BaseActivity(), MainView {
         bottom_navigation.setOnNavigationItemSelectedListener { item ->
             return@setOnNavigationItemSelectedListener when (item.itemId) {
                 R.id.action_top_news -> {
-                    //todo resources
-                    changeTab(item, Screens.TopNewsScreen, "Top News")
+                    changeTab(item, Screens.TopNewsScreen, getString(R.string.top_news))
                     true
                 }
                 R.id.action_headlines -> {
-                    changeTab(item, Screens.HeadlinesScreen, "Headlines")
+                    changeTab(item, Screens.HeadlinesScreen, getString(R.string.headlines))
                     true
                 }
                 R.id.action_favourites -> {
-                    changeTab(item, Screens.FavouritesScreen, "Favourites")
+                    changeTab(item, Screens.FavouritesScreen, getString(R.string.favourites))
                     true
                 }
                 else -> false
