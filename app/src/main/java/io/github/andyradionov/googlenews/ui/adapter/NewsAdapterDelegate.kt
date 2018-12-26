@@ -61,7 +61,7 @@ class NewsAdapterDelegate(private val clickListener: NewsAdapter.OnArticleClickL
                     .into(itemView.iv_article_image)
 
             itemView.tv_article_author.text = baseUrl
-            itemView.tv_article_title.text = article.title
+            itemView.tv_article_title.text = article.title.substringBeforeLast("-")
             itemView.tv_article_date.text = prettyTime.format(article.publishedAt)
         }
 
