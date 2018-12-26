@@ -1,9 +1,6 @@
 package io.github.andyradionov.googlenews.ui.headlines
 
-import android.app.Activity
-import android.content.Context
 import android.os.Bundle
-import android.support.design.widget.TabLayout
 import android.support.v4.view.ViewPager
 import android.view.LayoutInflater
 import android.view.View

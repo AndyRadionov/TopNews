@@ -2,13 +2,22 @@
 <resources>
     <string name="empty_view_text">Статьи не найдены</string>
 
-    <string name="action_share">Поделиться: %s</string>
+    <string name="action_open_in_browser">Открыть в браузере</string>
+    <string name="action_copy_link">Скопировать ссылку</string>
+    <string name="action_read_article">Прочитать статью</string>
+    <string name="action_remove">Удалить</string>
+    <string name="action_share">Поделиться ссылкой</string>
+    <string name="action_save_for_later">Сохранить в избранное</string>
+
     <string name="article_saved">Статья сохранена</string>
     <string name="article_removed">Статья удалена</string>
+    <string name="share_link">Поделиться: %s</string>
     <string name="link_copied">Ссылка скопирована</string>
-    <string name="action_remove">Remove</string>
-    <string name="top_news">Top News</string>
-    <string name="headlines">Headlines</string>
-    <string name="favourites">Favourites</string>
-    <string name="error_no_internet">No Internet connection!</string>
+
+    <string name="top_news">Главное</string>
+    <string name="headlines">Заголовки</string>
+    <string name="favourites">Избранное</string>
+    <string name="search">Поиск</string>
+
+    <string name="error_no_internet">Нет интернет соединения!</string>
 </resources>

@@ -4,7 +4,6 @@ import com.arellomobile.mvp.InjectViewState
 import io.github.andyradionov.googlenews.interactors.NewsInteractor
 import io.github.andyradionov.googlenews.ui.common.BaseNewsView
 import io.github.andyradionov.googlenews.ui.common.BasePresenter
-import io.github.andyradionov.googlenews.utils.RxComposers
 import javax.inject.Inject
 
 /**

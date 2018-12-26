@@ -52,7 +52,7 @@ class DetailsWebViewActivity : BaseActivity(), DetailsView {
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        menuInflater.inflate(R.menu.details, menu);
+        menuInflater.inflate(R.menu.details, menu)
         return super.onCreateOptionsMenu(menu)
     }
 

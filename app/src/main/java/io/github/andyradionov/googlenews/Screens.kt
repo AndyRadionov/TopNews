@@ -42,13 +42,13 @@ object Screens {
     }
 
     data class ShareFlow(val article: Article) : SupportAppScreen() {
-        override fun getActivityIntent(context: Context) =
+        override fun getActivityIntent(context: Context): Intent =
                 Intent.createChooser(
                         Intent(Intent.ACTION_SEND).apply {
                             putExtra(Intent.EXTRA_TEXT, article.url)
                             type = TEXT_TYPE
                         },
-                        context.getString(R.string.action_share, article.title)
+                        context.getString(R.string.share_link, article.title)
                 )
     }
 }

@@ -4,21 +4,21 @@
 
     <item
         android:id="@+id/action_favourite"
-        android:title="Save for later"
+        android:title="@string/action_save_for_later"
         app:showAsAction="never" />
 
     <item
         android:id="@+id/action_share"
-        android:title="Share link"
+        android:title="@string/action_share"
         app:showAsAction="never" />
 
     <item
         android:id="@+id/action_open_browser"
-        android:title="Open in browser"
+        android:title="@string/action_open_in_browser"
         app:showAsAction="never" />
 
     <item
         android:id="@+id/action_copy_link"
-        android:title="Copy link"
+        android:title="@string/action_copy_link"
         app:showAsAction="never" />
 </menu>

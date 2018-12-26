@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginTop="8dp"
@@ -17,7 +16,7 @@
         android:drawableStart="@drawable/ic_bookmark"
         android:drawablePadding="32dp"
         android:gravity="start|center_vertical"
-        android:text="Save for later"
+        android:text="@string/action_save_for_later"
         android:textColor="@android:color/black"
         android:textSize="16sp" />
 
@@ -31,7 +30,7 @@
         android:drawableStart="@drawable/ic_share"
         android:drawablePadding="32dp"
         android:gravity="start|center_vertical"
-        android:text="Share Link"
+        android:text="@string/action_share"
         android:textColor="@android:color/black"
         android:textSize="16sp" />
 
@@ -45,7 +44,7 @@
         android:drawableStart="@drawable/ic_open_website"
         android:drawablePadding="32dp"
         android:gravity="start|center_vertical"
-        android:text="Open in browser"
+        android:text="@string/action_open_in_browser"
         android:textColor="@android:color/black"
         android:textSize="16sp" />
 
@@ -59,7 +58,7 @@
         android:drawableStart="@drawable/ic_read"
         android:drawablePadding="32dp"
         android:gravity="start|center_vertical"
-        android:text="Read Article"
+        android:text="@string/action_read_article"
         android:textColor="@android:color/black"
         android:textSize="16sp" />
 
@@ -73,7 +72,7 @@
         android:drawableStart="@drawable/ic_content_copy"
         android:drawablePadding="32dp"
         android:gravity="start|center_vertical"
-        android:text="Copy Link"
+        android:text="@string/action_copy_link"
         android:textColor="@android:color/black"
         android:textSize="16sp" />
 

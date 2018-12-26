@@ -2,12 +2,10 @@ package io.github.andyradionov.googlenews.ui.headlines
 
 import android.content.Context
 import android.content.res.Configuration
-import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentManager
 import android.support.v4.app.FragmentStatePagerAdapter
 import io.github.andyradionov.googlenews.R
 import java.util.*
-
 
 /**
  * @author Andrey Radionov

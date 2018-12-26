@@ -56,7 +56,7 @@ class SearchDialogFragment : MvpAppCompatDialogFragment(), BaseNewsView {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        dialog?.window?.attributes?.windowAnimations = R.style.SearchDialogAnimation;
+        dialog?.window?.attributes?.windowAnimations = R.style.SearchDialogAnimation
     }
 
     override fun onAttach(context: Context?) {
@@ -136,6 +136,6 @@ class SearchDialogFragment : MvpAppCompatDialogFragment(), BaseNewsView {
     }
 
     companion object {
-        val TAG = SearchDialogFragment::class.java.simpleName
+        val TAG: String = SearchDialogFragment::class.java.simpleName
     }
 }

@@ -6,18 +6,18 @@
         android:id="@+id/action_top_news"
         android:enabled="true"
         android:icon="@drawable/ic_home"
-        android:title="Top News"
+        android:title="@string/top_news"
         app:showAsAction="ifRoom" />
     <item
         android:id="@+id/action_headlines"
         android:enabled="true"
         android:icon="@drawable/ic_globe"
-        android:title="Headlines"
+        android:title="@string/headlines"
         app:showAsAction="ifRoom" />
     <item
         android:id="@+id/action_favourites"
         android:enabled="true"
         android:icon="@drawable/ic_star_border"
-        android:title="Favourites"
+        android:title="@string/favourites"
         app:showAsAction="ifRoom" />
 </menu>

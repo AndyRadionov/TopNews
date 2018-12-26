@@ -25,7 +25,7 @@ import javax.inject.Singleton
  * @author Andrey Radionov
  */
 @Module
-class NetworkModule() {
+class NetworkModule {
 
     @NonNull
     @Provides
