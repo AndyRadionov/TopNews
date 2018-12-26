@@ -2,7 +2,9 @@
 <resources>
     <string name="empty_view_text">Статьи не найдены</string>
 
+    <string name="share">Поделиться: %s</string>
     <string name="article_saved">Статья сохранена</string>
     <string name="article_removed">Статья удалена</string>
     <string name="link_copied">Ссылка скопирована</string>
+    <string name="action_remove">Remove</string>
 </resources>

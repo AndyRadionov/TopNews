@@ -48,6 +48,7 @@ abstract class MenuPresenter<T : MvpView> (
     }
 
     protected fun removeFromFavourites(article: Article, onSubscribe: () -> Unit) {
+        article.isFavourite = false
         disposable = newsInteractor.removeFromFavourites(article)
                 .compose(rxComposers.getCompletableComposer())
                 .subscribe { onSubscribe() }
