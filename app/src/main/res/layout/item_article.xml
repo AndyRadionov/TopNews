@@ -11,14 +11,14 @@
         android:layout_height="wrap_content">
 
         <ImageView
-            android:scaleType="centerCrop"
-            android:src="@drawable/error_placeholder"
-            android:layout_margin="@dimen/regular_margin"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
             android:id="@+id/iv_author"
             android:layout_width="@dimen/source_logo_size"
-            android:layout_height="@dimen/source_logo_size" />
+            android:layout_height="@dimen/source_logo_size"
+            android:layout_margin="@dimen/regular_margin"
+            android:scaleType="centerCrop"
+            android:src="@drawable/error_placeholder"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/tv_article_author"
