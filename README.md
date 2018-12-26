@@ -1,4 +1,4 @@
-# GoogleNews
+# TopNews
 Android News Reader App. 
 
 <a href="https://play.google.com/store/apps/details?id=io.github.andyradionov.topnews">
