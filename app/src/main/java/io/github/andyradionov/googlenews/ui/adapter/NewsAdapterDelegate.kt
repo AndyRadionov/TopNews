@@ -63,7 +63,7 @@ class NewsAdapterDelegate(private val clickListener: NewsAdapter.OnArticleClickL
 
             Picasso.get()
                     .load(String.format(ICONS_URL, baseUrl, AUTHOR_IMG_SIZE))
-                    .placeholder(R.drawable.error_placeholder)
+                    .placeholder(R.mipmap.ic_launcher)
                     .into(itemView.iv_author)
 
             itemView.tv_article_author.text = baseUrl
