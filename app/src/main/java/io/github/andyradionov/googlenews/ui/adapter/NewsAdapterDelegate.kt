@@ -54,11 +54,17 @@ class NewsAdapterDelegate(private val clickListener: NewsAdapter.OnArticleClickL
 
             val baseUrl = Uri.parse(article.url).host
             val imgUrl = if (TextUtils.isEmpty(article.urlToImage))
-                String.format(ICONS_URL, baseUrl) else article.urlToImage
+                String.format(ICONS_URL, baseUrl, ARTICLE_IMG_SIZE) else article.urlToImage
+
             Picasso.get()
                     .load(imgUrl)
                     .placeholder(R.drawable.error_placeholder)
                     .into(itemView.iv_article_image)
+
+            Picasso.get()
+                    .load(String.format(ICONS_URL, baseUrl, AUTHOR_IMG_SIZE))
+                    .placeholder(R.drawable.error_placeholder)
+                    .into(itemView.iv_author)
 
             itemView.tv_article_author.text = baseUrl
             itemView.tv_article_title.text = article.title.substringBeforeLast("-")
@@ -74,5 +80,10 @@ class NewsAdapterDelegate(private val clickListener: NewsAdapter.OnArticleClickL
             }
 
         }
+    }
+
+    companion object {
+        private const val AUTHOR_IMG_SIZE = "16..32..64"
+        private const val ARTICLE_IMG_SIZE = "60..100..120"
     }
 }
