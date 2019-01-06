@@ -38,7 +38,6 @@ ext.versions = [ANDROID_SUPPORT  : "28.0.0",
                 GSON             : "2.8.5",
                 RETROFIT         : "2.4.0",
                 DAGGER           : "2.16",
-                DAGGER_SUPPORT   : "2.17",
                 MOXY             : "1.5.5",
                 CICERONE         : "4.0.2",
                 ADAPTER_DELEGATES: "3.1.0",
@@ -79,7 +78,7 @@ dependencies {
 
     //DI Dagger
     implementation "com.google.dagger:dagger:$versions.DAGGER"
-    implementation "com.google.dagger:dagger-android-support:$versions.DAGGER_SUPPORT"
+    implementation "com.google.dagger:dagger-android-support:$versions.DAGGER"
     kapt "com.google.dagger:dagger-android-processor:$versions.DAGGER"
     kapt "com.google.dagger:dagger-compiler:$versions.DAGGER"
 
