@@ -88,7 +88,6 @@ class SearchDialogFragment : MvpAppCompatDialogFragment(), BaseNewsView {
         val searchAction = toolbar.menu.findItem(R.id.action_search)
         val searchView = searchAction.actionView as SearchView
         searchView.setIconifiedByDefault(false)
-        searchView.imeOptions = EditorInfo.IME_FLAG_FORCE_ASCII
         val magImage = searchView
                 .findViewById(android.support.v7.appcompat.R.id.search_mag_icon) as ImageView?
         magImage?.visibility = View.GONE
