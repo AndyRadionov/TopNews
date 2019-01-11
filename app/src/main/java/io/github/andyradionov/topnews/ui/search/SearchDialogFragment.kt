@@ -54,6 +54,13 @@ class SearchDialogFragment : MvpAppCompatDialogFragment(), BaseNewsView {
         createMenu()
     }
 
+    override fun onDestroyView() {
+        if (dialog != null && retainInstance) {
+            dialog.setDismissMessage(null)
+        }
+        super.onDestroyView()
+    }
+
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         dialog?.window?.attributes?.windowAnimations = R.style.SearchDialogAnimation
