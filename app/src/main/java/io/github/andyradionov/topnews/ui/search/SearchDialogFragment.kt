@@ -100,6 +100,7 @@ class SearchDialogFragment : MvpAppCompatDialogFragment(), BaseNewsView {
         magImage?.visibility = View.GONE
         magImage?.setImageDrawable(null)
 
+        searchView.maxWidth = Integer.MAX_VALUE
         searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String): Boolean {
                 swipe_container.isRefreshing = true
