@@ -14,8 +14,6 @@ interface BaseNewsView : MvpView {
 
     @StateStrategyType(SkipStrategy::class)
     fun showError()
-//    @StateStrategyType(SkipStrategy::class)
-//    fun showSuccess(msgId: Int)
     fun showNews(articles: List<Article>)
     fun showLoading()
 }

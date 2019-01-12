@@ -15,7 +15,10 @@ class SearchPresenter @Inject constructor(
 ) : BasePresenter<BaseNewsView>() {
 
     fun searchNews(query: String) {
-        if (checkNotConnected()) return
+        if (checkNotConnected()) {
+            viewState.showError()
+            return
+        }
         disposable = newsInteractor.searchNews(query)
                 .compose(rxComposers.getObservableComposer())
                 .subscribe({ articles ->

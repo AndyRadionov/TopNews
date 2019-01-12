@@ -15,7 +15,10 @@ class HeadlinesPresenter @Inject constructor(
 ) : BasePresenter<BaseNewsView>() {
 
     fun fetchNewsForHeadline(headline: String) {
-        if (checkNotConnected()) return
+        if (checkNotConnected()) {
+            viewState.showError()
+            return
+        }
         disposable = newsInteractor.fetchNewsForHeadline(headline)
                 .compose(rxComposers.getObservableComposer())
                 .subscribe({ articles ->
