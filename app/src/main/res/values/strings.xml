@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name" translatable="false">TopNews</string>
     <string name="empty_view_text">No Articles Found</string>
+    <string name="empty_view_search">No Articles\nTry to search again!</string>
 
     <string name="action_open_in_browser">Open in browser</string>
     <string name="action_copy_link">Copy link</string>

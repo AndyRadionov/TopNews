@@ -17,10 +17,10 @@ import io.github.andyradionov.topnews.R
 import io.github.andyradionov.topnews.data.entities.Article
 import io.github.andyradionov.topnews.ui.adapter.NewsAdapter
 import io.github.andyradionov.topnews.ui.common.BaseNewsView
-import io.github.andyradionov.topnews.utils.EMPTY_STRING
+import io.github.andyradionov.topnews.ui.common.`BaseNewsView$$State`
 import io.github.andyradionov.topnews.utils.getVisibility
-import kotlinx.android.synthetic.main.news_content_layout.*
 import kotlinx.android.synthetic.main.fragment_search_dialog.*
+import kotlinx.android.synthetic.main.news_content_layout.*
 import javax.inject.Inject
 
 class SearchDialogFragment : MvpAppCompatDialogFragment(), BaseNewsView {
@@ -49,6 +49,7 @@ class SearchDialogFragment : MvpAppCompatDialogFragment(), BaseNewsView {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        initViews()
         setUpSwipeRefresh()
         setUpRecycler()
         createMenu()
@@ -68,12 +69,16 @@ class SearchDialogFragment : MvpAppCompatDialogFragment(), BaseNewsView {
 
     override fun onAttach(context: Context?) {
         AndroidSupportInjection.inject(this)
+        val viewState = `BaseNewsView$$State`()
+        viewState.attachView(this)
+        presenter.setViewState(viewState)
         super.onAttach(context)
     }
 
     override fun showNews(articles: List<Article>) {
         setVisibility(container = true)
         newsAdapter.items = articles
+        swipe_container.isRefreshing = false
     }
 
     override fun showError() {
@@ -82,6 +87,11 @@ class SearchDialogFragment : MvpAppCompatDialogFragment(), BaseNewsView {
 
     override fun showLoading() {
         setVisibility(container = false, loading = true)
+    }
+
+    private fun initViews() {
+        tv_empty_view.setText(R.string.empty_view_search)
+        setVisibility(empty = true)
     }
 
     private fun createMenu() {

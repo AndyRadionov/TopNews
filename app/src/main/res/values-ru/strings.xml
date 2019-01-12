@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="empty_view_text">Статьи не найдены</string>
+    <string name="empty_view_search">Нет статей\nПопробуйте пойскать снова!</string>
 
     <string name="action_open_in_browser">Открыть в браузере</string>
     <string name="action_copy_link">Скопировать ссылку</string>
