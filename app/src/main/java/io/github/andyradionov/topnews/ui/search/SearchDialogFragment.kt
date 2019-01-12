@@ -18,6 +18,7 @@ import io.github.andyradionov.topnews.data.entities.Article
 import io.github.andyradionov.topnews.ui.adapter.NewsAdapter
 import io.github.andyradionov.topnews.ui.common.BaseNewsView
 import io.github.andyradionov.topnews.utils.EMPTY_STRING
+import io.github.andyradionov.topnews.utils.getVisibility
 import kotlinx.android.synthetic.main.news_content_layout.*
 import kotlinx.android.synthetic.main.fragment_search_dialog.*
 import javax.inject.Inject
@@ -136,9 +137,9 @@ class SearchDialogFragment : MvpAppCompatDialogFragment(), BaseNewsView {
                               loading: Boolean = false,
                               empty: Boolean = false) {
 
-        rv_news_container.visibility = if (container) View.VISIBLE else View.INVISIBLE
         swipe_container.isRefreshing = loading
-        tv_empty_view.visibility = if (empty) View.VISIBLE else View.INVISIBLE
+        rv_news_container.visibility = rv_news_container.getVisibility(container)
+        tv_empty_view.visibility = tv_empty_view.getVisibility(empty)
     }
 
     companion object {

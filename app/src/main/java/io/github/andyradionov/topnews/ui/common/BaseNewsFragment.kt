@@ -11,6 +11,7 @@ import dagger.android.support.AndroidSupportInjection
 import io.github.andyradionov.topnews.R
 import io.github.andyradionov.topnews.data.entities.Article
 import io.github.andyradionov.topnews.ui.adapter.NewsAdapter
+import io.github.andyradionov.topnews.utils.getVisibility
 import kotlinx.android.synthetic.main.news_content_layout.*
 import javax.inject.Inject
 
@@ -76,9 +77,7 @@ abstract class BaseNewsFragment : MvpAppCompatFragment(), BaseNewsView {
                               empty: Boolean = false) {
 
         swipe_container.isRefreshing = loading
-        rv_news_container.visibility = getVisibility(container)
-        tv_empty_view.visibility = getVisibility(empty)
+        rv_news_container.visibility = rv_news_container.getVisibility(container)
+        tv_empty_view.visibility = tv_empty_view.getVisibility(empty)
     }
-
-    private fun getVisibility(isVisible: Boolean) = if (isVisible) View.VISIBLE else View.INVISIBLE
 }
