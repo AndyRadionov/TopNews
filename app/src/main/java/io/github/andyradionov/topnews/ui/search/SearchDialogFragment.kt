@@ -31,7 +31,7 @@ class SearchDialogFragment : MvpAppCompatDialogFragment(), BaseNewsView {
 
     @Inject
     lateinit var newsAdapter: NewsAdapter
-    private var query: String = EMPTY_STRING
+    private lateinit var searchView: SearchView
 
     @ProvidePresenter
     fun providePresenter() = presenter
@@ -93,7 +93,7 @@ class SearchDialogFragment : MvpAppCompatDialogFragment(), BaseNewsView {
         }
 
         val searchAction = toolbar.menu.findItem(R.id.action_search)
-        val searchView = searchAction.actionView as SearchView
+        searchView = searchAction.actionView as SearchView
         searchView.setIconifiedByDefault(false)
         val magImage = searchView
                 .findViewById(android.support.v7.appcompat.R.id.search_mag_icon) as ImageView?
@@ -117,9 +117,8 @@ class SearchDialogFragment : MvpAppCompatDialogFragment(), BaseNewsView {
 
     private fun setUpSwipeRefresh() {
         swipe_container.setOnRefreshListener {
-            swipe_container.isRefreshing = false
-            if (query != EMPTY_STRING) {
-                presenter.searchNews(query)
+            if (searchView.query.isNotEmpty()) {
+                presenter.searchNews(searchView.query.toString())
             }
         }
     }
